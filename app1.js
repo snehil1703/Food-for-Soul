@@ -73,6 +73,10 @@ app.get('/ForgotPassword', loginController.forgotPassword);
 app.get('/SiteAnalyticsReport', adminDashboardController.siteAnalyticsReport);
 app.get('/login',homeController.login);
 app.get('/SellerProfile',sellerDashboardController.sellerProfile);
+app.get('/AddRemoveAdmin',adminDashboardController.addRemoveAdmin);
+app.get('/AddAdmin',adminDashboardController.addAdmin);
+app.get('/AdminProfile',adminDashboardController.adminProfile);
+app.get('/Newsletter', adminDashboardController.newsletter);
 
 app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
 app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
@@ -86,6 +90,7 @@ app.post('/Registersuccessseller', registerSellerController.confirmRegistration)
 app.post('/Forgotpassword', resetPassword.confirmPasswordreset);
 app.post('/Deletecartitem', deleteCartItem.confirmDelete);
 app.post('/Checkout', confirmCheckout.checkoutConfirm);
+
 
 
 
