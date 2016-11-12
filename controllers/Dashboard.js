@@ -4,7 +4,6 @@ var path = require('path');
 
 
 
-
 exports.cancelOrder = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/CancelOrderFormPage.html'));
 

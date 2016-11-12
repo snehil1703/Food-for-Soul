@@ -5,6 +5,12 @@ var path = require('path');
 
 
 
+exports.sellerProfile = (req, res) => {
+  res.sendFile(path.join(__dirname + '/../views'+'/SellerProfile.html'));
+
+    console.log('Seller Profile Page');
+
+};
 
 exports.manageBooks = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/ManageBooks.html'));

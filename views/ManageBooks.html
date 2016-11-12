@@ -237,13 +237,13 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="/checkout">
                                                 <i class="icon icon-dropdown icon-dropdown-check"></i>
                                                 <span>Checkout</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="/login">
                                                 <i class="icon icon-dropdown icon-dropdown-lock"></i>
                                                 <span>Login or Register</span>
                                             </a>
@@ -304,8 +304,8 @@
                                         </div><!-- End .dcart-action-info -->
 
                                         <div class="dcart-action">
-                                            <a href="#" class="btn btn-gray3 btn-sm">View Cart</a>
-                                            <a href="#" class="btn btn-custom btn-sm">Checkout</a>
+                                            <a href="/cart" class="btn btn-gray3 btn-sm">View Cart</a>
+                                            <a href="/checkout" class="btn btn-custom btn-sm">Checkout</a>
                                         </div><!-- End .dcart-action -->
                                     </div><!-- End .dcart-action-container -->
                                 </div><!-- End .dropdown-menu -->
@@ -365,7 +365,7 @@
                                                               <div class="page-header">
                                                                   <div class="container-fluid">
                                                                       <ol class="breadcrumb">
-                                                                          <li><a href="index.html">Home</a></li>
+                                                                          <li><a href="/">Home</a></li>
                                                                           <li class="active"><a href="/SellerDashboard">MY DASHBOARD</a></li>
                                                             <li class="active"><a href="/ManageBooks">INVENTORY MANAGEMENT - MANAGE BOOKS</a></li>
                                                           </ol>
@@ -520,19 +520,24 @@
                                     <i class="icon cat-title-icon"></i>
                                 </h3>
                                 <ul class="category-list">
-                                    <li>
-                                        <a href="/ManageBooks">MANAGE BOOKS</a>
-                                    </li>
-                                    <li>
-                                        <a href="/GenerateReports">GENERATE REPORTS</a>
-                                    </li>
-                                    <li>
-                                        <a href="/PersonalInformation">MY PROFILE</a>
-                                    </li>
-                                    <li>
-                                        <a href="/Notes">NOTES</a>
-                                    </li>
-
+                                  <li>
+                                    <a data-toggle="collapse" href="#collapse1">INVENTORY MANAGEMENT</a>
+                                    <div id="collapse1" class="panel-collapse collapse">
+                                        <div><a href="/ManageBooks">Manage Books</a></div>
+                                        <div><a href="/ManageNotes">Manage Notes</a></div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <a data-toggle="collapse" href="#collapse2">GENERATE REPORTS</a>
+                                    <div id="collapse2" class="panel-collapse collapse">
+                                        <div><a href="/OrdersReport">My Orders</a></div>
+                                        <div><a href="/BooksReport">My Books</a></div>
+                                        <div><a href="/NotesReport">My Notes</a></div>
+                                    </div>
+                                  </li>
+                                  <li>
+                                      <a href="/SellerProfile">MY PROFILE</a>
+                                  </li>
                                 </ul>
                             </div><!-- End .widget -->
 

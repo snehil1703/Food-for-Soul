@@ -28,6 +28,12 @@ app.get('/', function(req, res) {
 //     console.log('Buyer Dashboard Page');
 // });
 
+app.get('/MyDashboard', function(req, res) {
+    res.sendFile(path.join(__dirname + '/views/MyDashboard.html'));
+    console.log('Buyer Dashboard Page');
+});
+
+
 app.get('/SellerDashboard', function(req, res) {
     res.sendFile(path.join(__dirname + '/views/SellerDashboard.html'));
     console.log('Admin Dashboard Page');
@@ -66,6 +72,7 @@ app.get('/RegisterSeller', loginController.registerSeller);
 app.get('/ForgotPassword', loginController.forgotPassword);
 app.get('/SiteAnalyticsReport', adminDashboardController.siteAnalyticsReport);
 app.get('/login',homeController.login);
+app.get('/SellerProfile',sellerDashboardController.sellerProfile);
 
 app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
 app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
