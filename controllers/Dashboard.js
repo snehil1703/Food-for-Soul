@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-
+var paymentCard  = require('../models/PaymentCard.js');
 
 
 exports.cancelOrder = (req, res) => {
@@ -24,6 +24,12 @@ exports.addCard = (req, res) => {
     console.log('Add Card Page');
 
 };
+
+exports.addNewCard = (req, res) => {
+      paymentCard.insertNewCard(req, res);
+}   
+
+
 exports.editCard = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/EditCard.html'));
 

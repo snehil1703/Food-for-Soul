@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-
+var Admin  = require('../models/Admin.js');
 
 exports.siteAnalyticsReport = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/SiteAnalyticsReport.html'));
@@ -21,6 +21,10 @@ exports.addAdmin = (req, res) => {
     console.log('Add Admin Page');
 
 };
+
+exports.newAdmin = (req, res) => {
+      Admin.insertNewAdmin(req, res);
+}
 
 exports.adminProfile = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/AdminProfile.html'));

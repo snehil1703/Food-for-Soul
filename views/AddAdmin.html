@@ -368,42 +368,58 @@
 
 
 
-                                              <!--START OF ADD ADMINS TABLE -->
-                                                          <div class="main">
-                                                              <div class="page-header">
-                                                                  <div class="container-fluid">
-                                                                      <ol class="breadcrumb">
-                                                                          <li><a href="/">Home</a></li>
-                                                                        <li class="active"><a href="/adminDashboard">MY DASHBOARD</a></li>
-                                              							<li class="active"><a href="/addRemoveAdmin">ADD REMOVE ADMIN</a></li>
-                                                            				<li class="active"><a href="/addAdmin">ADD  ADMIN</a></li>
-                                                                      </ol>
-                                                                  </div><!-- End .container-fluid -->
-                                                              </div><!-- End .page-header -->
-                                                              <form method = "POST">
-                                                                  <div class="form-group label-overlay">
-                                                                      <input type="email" class="form-control" required>
-                                                                      <label class="input-desc"><i class="icon input-icon input-email"></i>Enter email <span class="input-required">*</span></label>
-                                                                  </div><!-- End .form-group -->
+            <!--START OF ADD ADMINS TABLE -->
+            <div class="main">
+                <div class="page-header">
+                  <div class="container-fluid">
+                    <ol class="breadcrumb">
+                      <li><a href="/">Home</a></li>
+                      <li class="active"><a href="/adminDashboard">MY DASHBOARD</a></li>
+                  		<li class="active"><a href="/addRemoveAdmin">ADD REMOVE ADMIN</a></li>
+                  		<li class="active"><a href="/addAdmin">ADD  ADMIN</a></li>
+                    </ol>
+                  </div><!-- End .container-fluid -->
+                </div><!-- End .page-header -->
 
-                                                                  <div class="mb20"></div><!-- margin -->
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-9">
+                       <div class="row row-lg">
+                          <div class="col-sm-6">
+                            <!--Using enctype= "text/plain" or any other value was not allowing textbox values
+                            //to be stored in the databse. Columns were getting added but with null values
+                            //After removing 'enctype', everything worked fine
+                          -->
+                            <form method = "POST" action="/NewAdmin" >
+                                <div class="form-group label-overlay">
+                                    <input type="text" placeholder="Enter First Name" class="form-control" name="adminFirstName" id = "adminFirstName" required>
+                                    <label class="input-desc"><i class="icon input-icon input-user"></i></label>
+                                </div><!-- End .form-group -->
+                                <div class="form-group label-overlay">
+                                    <input type="text" placeholder="Enter Last Name" class="form-control" name="adminLastName" id = "adminLastName" required>
+                                    <label class="input-desc"><i class="icon input-icon input-user"></i></label>
+                                </div><!-- End .form-group -->
+                                <div class="form-group label-overlay">
+                                    <input type="text" placeholder="Enter Email address" class="form-control" name="adminEmail" id = "adminEmail" required>
+                                    <label class="input-desc"><i class="icon input-icon input-number"></i></label>
+                                </div><!-- End .form-group -->
+                            </div><!-- End .col-sm-6 -->
+                          </div><!-- End row row-lg -->
+                       </div><!--end col-md-9-->
 
-                                                                  <div class="form-action">
-
-
-                                                              <button type="submit" class="btn btn-custom" onclick="alert('Admin added')"> Add Admin</button>
-                                                                  </div><!-- End .form-action -->
-                                                              </form>
-
-                                                          </div><!-- End .main -->
-
-                                              <!--END OF ADD ADMINS TABLE -->
+                       <div class="mb20"></div><!-- margin -->
+                          <div class="form-action">
+                             <button type="submit" class="btn btn-custom" >Add Admin</button>
+                          </div><!-- End .form-action -->
+                    </form>
+                  </div><!-- End .main -->
+              <!--END OF ADD ADMINS TABLE -->
 
 
 
 
 
-                                                                                            </div><!-- End .product-container-->
+                                            </div><!-- End .product-container-->
                                         </div><!-- End .row -->
                                     </div><!-- End .tab-pane -->
                                 </div><!-- End .swiper-wrapper -->

@@ -1,8 +1,30 @@
- var express = require('express');
+var express = require('express');
 var app = express();
 var path = require('path');
 
+//Body Parser to  be written here in the app1.js file
+//No need to include body-parser in controller and model file
+//Works fine here
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+//app.use(express.bodyParser({uploadDir:'./uploads'}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
+
+//To connect to database
+var mysql = require('mysql')
+
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'foodforsoul'
+})
+
+connection.connect(function(err) {
+  if (err) throw err
+  console.log('You are now connected...')
+})
 var dashboardController= require('./controllers/Dashboard');
 var sellerDashboardController= require('./controllers/SellerDashboard');
 var adminDashboardController= require('./controllers/AdminDashboard');
@@ -82,17 +104,31 @@ app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
 app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
 app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
 app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
-app.post('/InventoryAddBooks', inventoryManagementController.confirmAddBooks);
-app.post('/InventoryModifyBooks', inventoryManagementController.confirmModifyBooks);
-app.post('/Login', loginController.confirmLogin);
+//app.post('/InventoryAddBooks', inventoryManagementController.confirmAddBooks);
+//app.post('/Login', loginController.confirmLogin);
 app.post('/Registersuccessbuyer', registerBuyerController.confirmRegistrationbuyer);
 app.post('/Registersuccessseller', registerSellerController.confirmRegistration);
 app.post('/Forgotpassword', resetPassword.confirmPasswordreset);
 app.post('/Deletecartitem', deleteCartItem.confirmDelete);
 app.post('/Checkout', confirmCheckout.checkoutConfirm);
+app.post('/NewAdmin', adminDashboardController.newAdmin);
+app.post('/addnewcard', dashboardController.addNewCard);
 
+//called when inserting my book records on add book from the form
+app.post('/addbook', inventoryManagementController.postBook);
 
+//called to fetch records for a selected id
+app.get('/getbook/:id', inventoryManagementController.getBook);
 
+//called to modify and update a book record for given id after submitting
+app.put('/book/:id',inventoryManagementController.editBook);
+
+//called to redirect to html page which will contain form
+app.get('/editbook/:id',inventoryManagementController.getEditBookPage );
+
+//called to fetch records for a selected id and populate the form which is previously sent ...
+//this will be called onload of the previous page using jquery
+app.get('/getbook/:id', inventoryManagementController.getBook);
 
 console.log('Server UP! Go 8080');
 app.listen(8080);

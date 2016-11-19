@@ -694,85 +694,123 @@
 
 
 <!--Portion to be worked on start by Nikitha-->
+<script src="assets/js/plugins.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
+          //  alert( "ready!" );
+
+            var st = window.location + '';
+            var splits = st.split('/');
+            var bookId = splits[splits.length-1];
+            console.log(bookId);
+
+
+            $.get( "/book/" + bookId, function( data )  //  this function fetchs the database entries from the database in the                                                                                        form of a json and populates the field
+
+            {
+              var bookDetails = JSON.parse(data);
+              console.log(bookDetails);
+              console.log(bookDetails['name']);
+              $( "#nameTextBox" ).val(bookDetails['name']);
+              }, "json" );
+
+          });
+
+
+          function myFunction() {
+              alert( "ready!" );
+          }
+        </script>
+
+
+
 <div class="container">
     <div class="row">
                         <div class="col-sm-6">
                             <h2>Modify Book Details</h2>
-<form method="POST" action="/InventoryModifyBooks">
+<form  action="on">
 
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Name of Book</span>
-                                <input type="text" required="" class="form-control" placeholder="Name of Books">
-                            </div><!-- End .input-group -->
-
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Author</span>
-                                <input type="text" required="" class="form-control" placeholder="Author">
-                            </div><!-- End .input-group -->
+  <div class="input-group input-group-sm">
+      <span class="input-group-addon">Name of Book</span>
+      <input type="text" required="" class="form-control" name="name" id="nameTextBox" placeholder="Name of Book" required>
+  </div><!-- End .input-group -->
 
 
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Price</span>
-                                <input type="number" required="" class="form-control" placeholder="Price">
-                            </div><!-- End .input-group -->
+  <div class="input-group input-group-sm">
+      <span class="input-group-addon">Author</span>
+      <input type="text" required="" class="form-control" placeholder="Author" name="author" id = "author" required>
+  </div><!-- End .input-group -->
 
 
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Quantity</span>
-                                <input type="number" required="" class="form-control" placeholder="Quantity">
-                            </div><!-- End .input-group -->
+  <div class="input-group input-group-sm">
+      <span class="input-group-addon">Price</span>
+      <input type="number" required="" class="form-control" placeholder="Price" name="price" id="price" required>
+  </div><!-- End .input-group -->
+
+
+  <div class="input-group input-group-sm">
+      <span class="input-group-addon">Quantity</span>
+      <input type="number" required="" class="form-control" placeholder="Quantity" name="quantity" id="quantity" required>
+  </div><!-- End .input-group -->
 
 
 
-                            <div class="row">
+  <div class="row">
+  <div class="col-sm-6">
+  <div class="input-group textarea-container">
+     <span class="input-group-addon">Description</span>
+     <textarea class="form-control" cols="30" rows="6" placeholder="Description" name="description" id="description"></textarea>
+ </div><!-- End .input-group -->
+</div><!-- End .col-sm-6 -->
+</div><!-- row -->
+
+<div class="mb20"></div><!-- margin -->
+
+<label class="radio-inline">
+Discount Applicable?
+</label>
+
+<label class="radio-inline">
+<input type="radio"  name="discountApplicable" id="discountApplicable" value="yes"> Yes
+</label>
+
+<label class="radio-inline">
+<input type="radio"  name="discountApplicable" id="discountApplicable" value="no"> No
+</label>
 
 
-                       <div class="col-sm-6">
-
-                           <div class="input-group textarea-container">
-                               <span class="input-group-addon">Description</span>
-                               <textarea class="form-control" cols="30" rows="6" placeholder="Description"></textarea>
-                           </div><!-- End .input-group -->
-                       </div><!-- End .col-sm-6 -->
-                   </div><!-- row -->
-
-                   <div class="mb20"></div><!-- margin -->
-
-                   <label class="radio-inline">
-                      Discount Applicable?
-                   </label>
-
-                   <label class="radio-inline">
-                       <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Yes
-                   </label>
-
-                   <label class="radio-inline">
-                       <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> No
-                   </label>
+<div class="input-group input-group-sm">
+<span class="input-group-addon">Discount Rate</span>
+<input type="number" required="" class="form-control" placeholder="Discount Rate" name="discountRate" id="discountRate">
+</div><!-- End .input-group -->
 
 
-                   <div class="input-group input-group-sm">
-                       <span class="input-group-addon">Discount Rate</span>
-                       <input type="number" required="" class="form-control" placeholder="Discount Rate">
-                   </div><!-- End .input-group -->
-
-                   <div class="input-group input-group-sm">
-                       <span class="input-group-addon">Coupon Code</span>
-                       <input type="number" required="" class="form-control" placeholder="Coupon Code">
-                   </div><!-- End .input-group -->
-
-                   <div class="col-md-6">
-
-                                                <button type="submit" class="btn btn-sm btn-custom">Return Order</button>
-                                           </div>
-               </form>
-               </div><!-- End .col-sm-6 -->
-
-                        </div><!-- End .col-sm-6 -->
+<div class="input-group input-group-sm">
+<span class="input-group-addon">Start Date</span>
+<input type="date" required="" class="form-control" placeholder="Start Date" name="discountStartDate" id="discountStartDate">
+</div><!-- End .input-group -->
 
 
-                    </div><!-- End .row -->
+<div class="input-group input-group-sm">
+<span class="input-group-addon">End Date</span>
+<input type="date" required="" class="form-control" placeholder="End Date" name="discountEndDate" id="discountEndDate">
+</div><!-- End .input-group -->
+
+
+
+<div class="input-group input-group-sm">
+<span class="input-group-addon">Coupon Code</span>
+<input type="number" required="" class="form-control" placeholder="Coupon Code" name="couponCode" id="couponCode">
+</div><!-- End .input-group -->
+
+<div class="col-md-6">
+
+                                    <button id="modifyClick" onclick="myFunction()" class="btn btn-sm btn-custom">Add books</button>
+                 </div>
+</form>
+
 <!--Portion to be worked on end-->
                     <div class="mb60"></div><!-- margin -->
 

@@ -7,8 +7,7 @@ var app = express();
 var connection = mysql.createConnnection({
 //properties
   host: 'locathost',
-  user: 'root',
-  password: '',
+  user: 'root',a
   database: 'sampleDB'
 });
 

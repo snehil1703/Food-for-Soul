@@ -698,41 +698,42 @@
     <div class="row">
                         <div class="col-sm-6">
                             <h2>Add Book</h2>
-<form method="POST" action="/InventoryAddBooks">
+<form method="POST" action="/book" enctype="multipart/form-data">
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Name of Book</span>
-                                <input type="text" required="" class="form-control" placeholder="Name of Book" required>
+                                <input type="text"  class="form-control" name="name" id="name" placeholder="Name of Book" >
                             </div><!-- End .input-group -->
 
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Author</span>
-                                <input type="text" required="" class="form-control" placeholder="Author" required>
+                                <input type="text"  class="form-control" placeholder="Author" name="author" id = "author" >
                             </div><!-- End .input-group -->
 
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Price</span>
-                                <input type="number" required="" class="form-control" placeholder="Price" required>
+                                <input type="number" class="form-control" placeholder="Price" name="price" id="price" >
                             </div><!-- End .input-group -->
 
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Quantity</span>
-                                <input type="number" required="" class="form-control" placeholder="Quantity" required>
+                                <input type="number"  class="form-control" placeholder="Quantity" name="quantity" id="quantity" >
+                            </div><!-- End .input-group -->
+
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">ISBN</span>
+                                <input type="text"  class="form-control" placeholder="ISBN" name="isbn" id = "isbn" >
                             </div><!-- End .input-group -->
 
 
-
                             <div class="row">
-
-
-                       <div class="col-sm-6">
-
-                           <div class="input-group textarea-container">
+                            <div class="col-sm-6">
+                            <div class="input-group textarea-container">
                                <span class="input-group-addon">Description</span>
-                               <textarea class="form-control" cols="30" rows="6" placeholder="Description"></textarea>
+                               <textarea class="form-control" cols="30" rows="6" placeholder="Description" name="description" id="description"></textarea>
                            </div><!-- End .input-group -->
                        </div><!-- End .col-sm-6 -->
                    </div><!-- row -->
@@ -744,27 +745,32 @@
                    </label>
 
                    <label class="radio-inline">
-                       <input type="radio" name="inlineRadioOptions" id="discountApplicable" value="option2"> Yes
+                       <input type="radio"  name="discountApplicable" id="discountApplicable" value="yes"> Yes
                    </label>
 
                    <label class="radio-inline">
-                       <input type="radio" name="inlineRadioOptions" id="discountApplicable" value="option3"> No
+                       <input type="radio"  name="discountApplicable" id="discountApplicable" value="no"> No
                    </label>
 
 
                    <div class="input-group input-group-sm">
                        <span class="input-group-addon">Discount Rate</span>
-                       <input type="number" required="" class="form-control" placeholder="Discount Rate">
+                       <input type="number"  class="form-control" placeholder="Discount Rate" name="discountRate" id="discountRate" value="0">
                    </div><!-- End .input-group -->
+
+
+
+
+          <input type="file" name="imagefile"  id="imagefile"/>
 
                    <div class="input-group input-group-sm">
                        <span class="input-group-addon">Coupon Code</span>
-                       <input type="number" required="" class="form-control" placeholder="Coupon Code">
+                       <input type="number" class="form-control" placeholder="Coupon Code" name="couponCode" id="couponCode" value="0">
                    </div><!-- End .input-group -->
 
                    <div class="col-md-6">
 
-                                                              <button type="submit" class="btn btn-sm btn-custom">Return Order</button>
+                                                              <button type="submit" class="btn btn-sm btn-custom">Add books</button>
                                            </div>
 </form>
                </div><!-- End .col-sm-6 -->
@@ -773,7 +779,20 @@
 
 
                     </div><!-- End .row -->
+
+
 <!--Portion to be worked on end-->
+
+<form ref='uploadForm'
+            id='uploadForm'
+            action='/upload'
+            method='post'
+            encType="multipart/form-data">
+                <input type="file" name="imagefile" />
+                <input type='submit' value='Upload!' />
+        </form>
+
+
                     <div class="mb60"></div><!-- margin -->
 
                 <div class="footer-inner">
@@ -900,6 +919,37 @@
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/main.js"></script>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+
+          function myFunction() {
+
+console.log($("input[name='discountApplicable']:checked").val());
+            var request = $.ajax({
+          //  async:false,
+             url:  "/book",
+             type: "POST",
+             data: {name : $("#name").val(),
+             author:$("#author").val(),
+             description:$("#description").val(),
+             quantity:$("#quantity").val(),
+             isbn:$("#isbn").val(),
+             price:$("#price").val(),
+             discountApplicable:$("#discountApplicable").val(),
+             discountRate:$("#discountRate").val(),
+             couponCode:$("#couponCode").val() },
+          success: function(res) {
+                      console.log(res);
+                        //alert(res);
+               window.location.href = "/editbooksuccess";
+                         }
+            });
+          }//end of myfunction
+
+
+
+        </script>
 
     </body>
 </html>
