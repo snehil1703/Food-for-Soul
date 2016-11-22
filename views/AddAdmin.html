@@ -390,7 +390,7 @@
                             //to be stored in the databse. Columns were getting added but with null values
                             //After removing 'enctype', everything worked fine
                           -->
-                            <form method = "POST" action="/NewAdmin" >
+
                                 <div class="form-group label-overlay">
                                     <input type="text" placeholder="Enter First Name" class="form-control" name="adminFirstName" id = "adminFirstName" required>
                                     <label class="input-desc"><i class="icon input-icon input-user"></i></label>
@@ -409,9 +409,9 @@
 
                        <div class="mb20"></div><!-- margin -->
                           <div class="form-action">
-                             <button type="submit" class="btn btn-custom" >Add Admin</button>
+                             <button id="addAdminButton" class="btn btn-custom" onclick="addAdminFunction()" >Add Admin</button>
                           </div><!-- End .form-action -->
-                    </form>
+
                   </div><!-- End .main -->
               <!--END OF ADD ADMINS TABLE -->
 
@@ -586,7 +586,29 @@
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          function addAdminFunction() {
 
+              var request = $.ajax({
+               url:  "/NewAdmin",
+               type: "POST",
+               data:
+               {
+                 adminFirstName: $("#adminFirstName").val(),
+                 adminLastName: $("#adminLastName").val(),
+                 adminEmail: $("#adminEmail").val()
+               },
+               success: function(res) {
+                 alert('Admin Added');
+             window.location.href = "/addRemoveAdmin";
+           }
+         });
+
+        }
+
+
+        </script>
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.themepunch.revolution.min.js"></script>

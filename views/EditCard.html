@@ -362,6 +362,40 @@
 
 
 <!--START OF ADD CARD -->
+
+<!--Portion to be worked on start by Nikitha-->
+<script src="assets/js/plugins.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
+          //  alert( "ready!" );
+
+            var st = window.location + '';
+            var splits = st.split('/');
+            var cardId = splits[splits.length-1];
+            console.log(cardId);
+
+
+            $.get( "/book/" + cardId, function( data )  //  this function fetchs the database entries from the database in theform of a json and populates the field
+
+            {
+              var cardDetails = JSON.parse(data);
+              console.log(cardDetails);
+              console.log(cardDetails['name']);
+              $( "#cardHolderName" ).val(cardDetails['name']);
+              }, "json" );
+
+          });
+
+
+          function myFunction() {
+              alert( "ready!" );
+          }
+        </script>
+
+
+
             <div class="main">
                 <div class="page-header">
                     <div class="container-fluid">
@@ -380,49 +414,36 @@
                                <div class="row row-lg">
                                     <div class="col-sm-6">
 
-										<div class="form-group label-overlay form-control">
+										                    <div class="form-group label-overlay form-control">
                                             <label class="input-desc"><i class="icon input-icon input-user"></i>Card Holder's Name <span class="input-required">*</span></label>
-                                        </div><!-- End .form-group -->
-                                        <div class="form-group label-overlay form-control">
-                                            <label class="input-desc"><i class="icon input-icon input-user"></i>Card Type<span class="input-required">*</span></label>
                                         </div><!-- End .form-group -->
                                         <div class="form-group label-overlay form-control" >
                                             <label class="input-desc"><i class="icon input-icon input-number"></i>Card Number <span class="input-required">*</span></label>
                                         </div><!-- End .form-group -->
-										<div class="form-group label-overlay form-control">
+										                    <div class="form-group label-overlay form-control">
                                             <label class="input-desc"><i class="icon input-icon input-datetime"></i>Valid Till<span class="input-required">*</span></label>
                                         </div><!-- End .form-group -->
-										<div class="form-group label-overlay form-control">
-                                            <label class="input-desc"><i class="icon input-icon input-number"></i>CVV <span class="input-required">*</span></label>
-                                        </div><!-- End .form-group -->
 
                                     </div><!-- End .col-sm-6 -->
-									 <div class="col-sm-6">
+									                  <div class="col-sm-6">
 
-										<div class="form-group label-overlay">
-                                            <input type="text" class="form-control" required>
+									                      <div class="form-group label-overlay">
+                                            <input type="text" class="form-control" name="cardHolderName" id ="cardHolderName" required>
                                             <label class="input-desc"><i class="icon input-icon input-user"></i><span class="input-required">*</span></label>
                                         </div><!-- End .form-group -->
                                         <div class="form-group label-overlay">
-                                            <input type="text" class="form-control" required>
-                                            <label class="input-desc"><i class="icon input-icon input-user"></i><span class="input-required">*</span></label>
-                                        </div><!-- End .form-group -->
-                                        <div class="form-group label-overlay">
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" name="cardNumber" id ="cardNumber" required>
                                             <label class="input-desc"><i class="icon input-icon input-number"></i><span class="input-required">*</span></label>
                                         </div><!-- End .form-group -->
-										<div class="form-group label-overlay">
-                                            <input type="datetime" class="form-control" required>
+										                    <div class="form-group label-overlay">
+                                            <input type="datetime" class="form-control" name="validTill" id ="validTill" required>
                                             <label class="input-desc"><i class="icon input-icon input-datetime"></i><span class="input-required">*</span></label>
                                         </div><!-- End .form-group -->
-										<div class="form-group label-overlay">
-                                            <input type="text" class="form-control" required>
-                                            <label class="input-desc"><i class="icon input-icon input-number"></i><span class="input-required">*</span></label>
-                                        </div><!-- End .form-group -->
 
                                     </div><!-- End .col-sm-6 -->
-								</div>
-								<div class="row" style="display:inline; text-align:right">
+								              </div><!--row row-lg-->
+
+              	<div class="row" style="display:inline; text-align:right">
 									<div class="col-xs-6 col-lg-4" >
 										<button onclick="alert('Card Edited Successfully');"  class="btn btn-custom min-width">EDIT CARD</button>
 									</div><!-- End .col-lg-8-->

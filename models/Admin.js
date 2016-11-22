@@ -31,7 +31,7 @@ var adminRecords = sequelize.define('admin_records', {
 });
 
 
-
+//Adds new Admin details to database
 exports.insertNewAdmin = (req, res) => {
   console.log(''+req.body.adminFirstName);
   console.log(''+req.body.adminLastName);
@@ -46,38 +46,29 @@ exports.insertNewAdmin = (req, res) => {
     res.sendStatus(200);
     console.log('Admin Added');
     //res.status(200);
-  //res.sendFile(path.join(__dirname + '/../views'+'/InventoryBookAddedConfirmPage.html'));
+//  res.sendFile(path.join(__dirname + '/../views'+'/AddRemoveAdmin.html'));
   });
-
-
 };
-//
-// exports.findBookRecords = (req, res) => {
-//     bookrecords.findById(req.params.id).then(function(result) {
-//       var x = {
-//     name:result.bookName,
-//     author:result.author
-// };
-//   //  res.send(result.bookName);
-// console.log(x);
-// res.json(x);
-// //res.sendFile(path.join(__dirname + '/../views'+'/InventoryBookAddedConfirmPage.html'),x);
-//   });
-// }
-//
-// exports.updateBookRecords = (req, res) => {
-//   bookrecords.update({
-//     bookName: req.body.name,
-//     author:req.body.author
-//   },
-// {
-//   where:
-//   {
-//     bookID : req.params.id
-//   }
-// }).then(function() {
-//   res.sendStatus(200);
-// })
-// };
-//
-// //module.exports=Book;
+
+//Fetches a list of all admins from database
+exports.findAllAdminRecords = (req, res) => {
+  adminRecords.findAll().then(function(result) {
+        res.json(result);
+  });
+};
+
+//Delete the selected admin from database
+//Deleting a book record
+exports.deleteAdminForAdminId = (req, res) => {
+//var check =   JSON.parse(req.body);
+adminRecords.destroy({
+  where: {
+  //  author:req.params.author
+  adminId : req.session.adminId
+  }
+}).then(function(result) {
+
+res.sendStatus(200);
+});
+
+ };

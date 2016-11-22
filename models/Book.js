@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'mysqlroot',{
+var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
    timestamps: false // true by default
  }
@@ -53,6 +53,14 @@ var bookrecords = sequelize.define('book_records', {
     couponCode:{
       type: Sequelize.STRING,
       field: 'couponCode'
+    },
+    sellerID:{
+      type: Sequelize.STRING,
+      field: 'sellerID'
+    },
+    category:{
+      type: Sequelize.STRING,
+      field: 'category'
     }
 });
 
@@ -73,23 +81,24 @@ exports.insertBookRecords = (req, res) => {
       category:req.body.category,
       discountApplicable:req.body.discountApplicable,
       discountRate:req.body.discountRate,
-      couponCode:req.body.couponCode
+      couponCode:req.body.couponCode,
+      sellerID:req.session.sellerID
 
     });
   }).then(function () {
-   res.sendStatus(200);
-    console.log('Created');
+  res.sendStatus(200);
+  //  console.log('Created');
     //res.status(200);
-//  res.sendFile(path.join(__dirname + '/../views'+'/InventoryBookAddedConfirmPage.html'));
+  //res.sendFile(path.join(__dirname + '/../views'+'/InventoryBookAddedConfirmPage.html'));
   });
 
 
 };
 
 exports.findBookRecords = (req, res) => {
-  var x =req.body.id;
-  console.log(x);
-    bookrecords.findById(req.body.id).then(function(result) {
+  //var x =req.session.bookId;
+//  console.log(x);
+    bookrecords.findById(req.session.bookId).then(function(result) {
       var x = {
     name:result.bookName,
     author:result.author,
@@ -103,8 +112,8 @@ exports.findBookRecords = (req, res) => {
   couponCode:result.couponCode
 };
   //  res.send(result.bookName);
-console.log(x);
- app.use(express.static(__dirname+'/../'));
+//console.log(x);
+ //app.use(express.static(__dirname+'/../'));
 res.json(x);
 //res.sendFile(path.join(__dirname + '/../views'+'/InventoryBookAddedConfirmPage.html'),x);
   });
@@ -128,7 +137,7 @@ exports.updateBookRecords = (req, res) => {
 {
   where:
   {
-    bookID : req.body.id
+    bookID : req.session.bookId
   }
 }).then(function() {
 //  res.sendStatus(200);
@@ -142,19 +151,36 @@ exports.findAllBookRecords = (req, res) => {
 bookrecords.findAll({
   where: {
   //  author:req.params.author
-  author : 'nikitha'
+  sellerID : '17'
   }
 }).then(function(result) {
 
   var x  = result;
   console.log(result.length);
-   console.log(result[0].bookName);
-   console.log(result[1].bookName);
+
 
    res.json(x);
 });
 
  };
+
+
+ //Deleting a book record
+ exports.deleteBookForBookId = (req, res) => {
+ //var check =   JSON.parse(req.body);
+ bookrecords.destroy({
+   where: {
+   //  author:req.params.author
+   bookId : req.session.bookId
+   }
+ }).then(function(result) {
+
+res.sendStatus(200);
+ });
+
+  };
+
+
 
 
 //module.exports=Book;

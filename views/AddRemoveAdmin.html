@@ -367,125 +367,51 @@
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
 
 
+<!--START OF ADMINS TABLE -->
+<div class="main">
+    <div class="page-header">
+      <div class="container-fluid">
+          <ol class="breadcrumb">
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="/adminDashboard">MY DASHBOARD</a></li>
+						  <li class="active"><a href="/addRemoveAdmin">ADD REMOVE ADMIN</a></li>
+          </ol>
+      </div><!-- End .container-fluid -->
+    </div><!-- End .page-header -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="table-responsive">
+            <table class="table table-bordered cart-table" name="adminTable" id = "adminTable">
+              <thead>
+                <tr>
+                  <th class="code-col">Select Admin</th>
+                  <th class="code-col">Admin ID</th>
+                  <th class="code-col">First Name</th>
+                  <th class="code-col">Last Name</th>
+                  <th class="code-col">Email</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+        </div><!-- End .table-responsive -->
+        <div class="row">
+          <div class="col-xs-6 col-lg-4">
+            <a href="/addAdmin" class="btn btn-custom min-width">ADD ADMIN</a>
+          <!--  <button class="btn btn-custom min-width " onclick="addAdminFunction()" >ADD ADMIN</button>-->
+          </div><!-- End .col-lg-8-->
+          <div class="mb50 clearfix hidden-lg"></div><!-- margin -->
+            <div class="col-xs-6 col-lg-4">
+              <button id="deleteAdmin" class="btn btn-danger min-width " onclick="deleteAdminFunction()" >REMOVE</button>
+            </div><!-- End .col-lg-8-->
+          </div><!-- End .row -->
+        </div><!-- End .col-md-9 -->
+    </div><!-- End .row -->
+  </div><!-- End .container-fluid -->
+</div><!-- End .main -->
 
-                                              <!--START OF ADMINS TABLE -->
-                                                          <div class="main">
-                                                              <div class="page-header">
-                                                                  <div class="container-fluid">
-                                                                      <ol class="breadcrumb">
-                                                                          <li><a href="/">Home</a></li>
-                                                                        <li class="active"><a href="/adminDashboard">MY DASHBOARD</a></li>
-                                              							<li class="active"><a href="/addRemoveAdmin">ADD REMOVE ADMIN</a></li>
-                                                                      </ol>
-                                                                  </div><!-- End .container-fluid -->
-                                                              </div><!-- End .page-header -->
-
-                                                              <div class="container-fluid">
-                                                                  <div class="row">
-                                                                      <div class="col-md-10">
-
-                                                                          <div class="table-responsive">
-                                                                              <table class="table table-bordered cart-table">
-                                                                                  <thead>
-                                                                                      <tr>
-                                                                                          <th class="product-col">Select Admin</th>
-                                                                                          <th class="code-col">Admin ID</th>
-                                                                                          <th class="subtotal-col">Admin Name</th>
-                                                                                      </tr>
-                                                                                  </thead>
-
-                                                                                  <tbody>
-                                                                                      <tr>
-                                                                                          <td class="product-col">
-                                                                                              <div class="product">
-
-                                                                                                      <span class="">
-                                              															<input type="radio">
-                                              														</span>
-                                                                                                  </div><!-- End .product -->
-                                                                                          </td>
-                                                                                          <td class="code-col">A_01</td>
-
-                                                                                          <td class="subtotal-col">Prasan</td>
-                                                                                      </tr>
-
-                                                                                      <tr>
-                                                                                          <td class="product-col">
-                                                                                              <div class="product">
-                                                                                                        <span class="">
-                                              															<input type="radio">
-                                              														</span>
-
-
-                                                                                                  </div><!-- End .product-content-wrapper -->
-                                                                                              </div><!-- End .product -->
-                                                                                          </td>
-                                                                                          <td class="code-col">A_02</td>
-                                                                                          <td class="subtotal-col">Snehil</td>
-                                                                                      </tr>
-
-                                                                                      <tr>
-                                                                                          <td class="product-col">
-                                                                                              <div class="product">
-                                                                                                       <span class="">
-                                              															<input type="radio">
-                                              														</span>
-
-                                                                                              </div><!-- End .product -->
-                                                                                          </td>
-                                                                                          <td class="code-col">A_03</td>
-                                                                                        <td class="subtotal-col">Nikitha</td>
-                                                                                  	 </tr>
-                                                                                     <tr>
-                                                                                         <td class="product-col">
-                                                                                             <div class="product">
-                                                                                                      <span class="">
-                                                                           <input type="radio">
-                                                                         </span>
-
-                                                                                             </div><!-- End .product -->
-                                                                                         </td>
-                                                                                         <td class="code-col">A_04</td>
-                                                                                       <td class="subtotal-col">Rerajitha</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td class="product-col">
-                                                                                            <div class="product">
-                                                                                                     <span class="">
-                                                                          <input type="radio">
-                                                                        </span>
-
-                                                                                            </div><!-- End .product -->
-                                                                                        </td>
-                                                                                        <td class="code-col">A_05</td>
-                                                                                      <td class="subtotal-col">Siddaartha</td>
-                                                                                   </tr>
-                                                                                  </tbody>
-                                                                              </table>
-                                                                          </div><!-- End .table-responsive -->
-
-                                                                          <div class="row">
-                                                                              <div class="col-xs-6 col-lg-4">
-                                                                                  <a href="/addAdmin" class="btn btn-custom min-width">ADD ADMIN</a>
-                                                                              </div><!-- End .col-lg-8-->
-
-                                                                              <div class="mb50 clearfix hidden-lg"></div><!-- margin -->
-
-                                                                           <div class="col-xs-6 col-lg-4">
-                                                                                  <button class="btn btn-danger min-width " onclick="confirm('Are you sure?'); alert('Admin Removed')" >REMOVE</button>
-                                                                              </div><!-- End .col-lg-8-->
-
-                                                                          </div><!-- End .row -->
-
-
-                                                                      </div><!-- End .col-md-9 -->
-
-
-                                                                  </div><!-- End .row -->
-                                                              </div><!-- End .container-fluid -->
-                                                          </div><!-- End .main -->
-
-                                              <!--END OF ADMINS TABLE -->
+  <!--END OF ADMINS TABLE -->
 
 
 
@@ -658,6 +584,63 @@
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/main.js"></script>
+
+        <!--FETCH AND DISPLAY-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
+
+            var request = $.ajax({
+             url:  "/adminlist",
+             type: "POST",
+
+             success: function(data) {
+               var r = new Array(), j = -1;
+               var jsonData = JSON.parse(data);
+               for (var i = 0; i < jsonData.length; i++) {
+                   var counter = jsonData[i];
+
+                   r[++j] ='<tr><td>';
+                   r[++j] = '<input id="adminId" name="adminId" type="radio" value="'+jsonData[i].adminId+'">';
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].adminId;
+                   r[++j] ='<td class="">';
+                   r[++j] = jsonData[i].adminFirstName;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].adminLastName;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].adminEmail;
+                   r[++j] = '</td></tr>';
+
+               }
+             $('#adminTable').html(r.join(''));
+             }
+           });// rend request
+
+          }); //  end ready
+
+          //Delete an admin function
+          function deleteAdminFunction() {
+
+            console.log($("input[name='adminId']:checked").val());
+            var request = $.ajax({
+             url:  "/deleteAdmin",
+             type: "DELETE",
+             data: { adminId: $("input[name='adminId']:checked").val()
+                  },
+            success: function(res) {
+                      //console.log(res);
+              alert('deleted');
+             window.location.href = "/addRemoveAdmin";
+                         }
+            });
+          }// end delete click
+
+
+          </script>
+        <!--CLOSE OF FETCH AND DISPLAY-->
+
+
 
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>

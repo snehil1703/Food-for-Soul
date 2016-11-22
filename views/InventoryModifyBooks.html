@@ -694,65 +694,44 @@
 
 
 <!--Portion to be worked on start by Nikitha-->
-<script src="assets/js/plugins.min.js"></script>
-        <script src="assets/js/main.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
-        <script>
-          $( document ).ready(function() {
-          //  alert( "ready!" );
-
-            var st = window.location + '';
-            var splits = st.split('/');
-            var bookId = splits[splits.length-1];
-            console.log(bookId);
-
-
-            $.get( "/book/" + bookId, function( data )  //  this function fetchs the database entries from the database in the                                                                                        form of a json and populates the field
-
-            {
-              var bookDetails = JSON.parse(data);
-              console.log(bookDetails);
-              console.log(bookDetails['name']);
-              $( "#nameTextBox" ).val(bookDetails['name']);
-              }, "json" );
-
-          });
-
-
-          function myFunction() {
-              alert( "ready!" );
-          }
-        </script>
-
-
-
 <div class="container">
     <div class="row">
                         <div class="col-sm-6">
                             <h2>Modify Book Details</h2>
-<form  action="on">
+
 
   <div class="input-group input-group-sm">
       <span class="input-group-addon">Name of Book</span>
-      <input type="text" required="" class="form-control" name="name" id="nameTextBox" placeholder="Name of Book" required>
+      <input type="text" class="form-control" name="name" id="nameTextBox" placeholder="Name of Book">
   </div><!-- End .input-group -->
 
 
   <div class="input-group input-group-sm">
       <span class="input-group-addon">Author</span>
-      <input type="text" required="" class="form-control" placeholder="Author" name="author" id = "author" required>
+      <input type="text"  class="form-control" placeholder="Author" name="author" id = "author">
   </div><!-- End .input-group -->
 
 
   <div class="input-group input-group-sm">
+      <span class="input-group-addon">Category</span>
+      <input type="text"  class="form-control" placeholder="Category" name="category" id = "category">
+  </div><!-- End .input-group -->
+
+  <div class="input-group input-group-sm">
       <span class="input-group-addon">Price</span>
-      <input type="number" required="" class="form-control" placeholder="Price" name="price" id="price" required>
+      <input type="number" class="form-control" placeholder="Price" name="price" id="price" >
+  </div><!-- End .input-group -->
+
+
+  <div class="input-group input-group-sm">
+      <span class="input-group-addon">ISBN</span>
+      <input type="number" class="form-control" placeholder="ISBN" name="isbn" id="isbn" >
   </div><!-- End .input-group -->
 
 
   <div class="input-group input-group-sm">
       <span class="input-group-addon">Quantity</span>
-      <input type="number" required="" class="form-control" placeholder="Quantity" name="quantity" id="quantity" required>
+      <input type="number"  class="form-control" placeholder="Quantity" name="quantity" id="quantity" >
   </div><!-- End .input-group -->
 
 
@@ -783,33 +762,30 @@ Discount Applicable?
 
 <div class="input-group input-group-sm">
 <span class="input-group-addon">Discount Rate</span>
-<input type="number" required="" class="form-control" placeholder="Discount Rate" name="discountRate" id="discountRate">
+<input type="number" class="form-control" placeholder="Discount Rate" name="discountRate" id="discountRate">
 </div><!-- End .input-group -->
 
 
-<div class="input-group input-group-sm">
-<span class="input-group-addon">Start Date</span>
-<input type="date" required="" class="form-control" placeholder="Start Date" name="discountStartDate" id="discountStartDate">
-</div><!-- End .input-group -->
-
-
-<div class="input-group input-group-sm">
-<span class="input-group-addon">End Date</span>
-<input type="date" required="" class="form-control" placeholder="End Date" name="discountEndDate" id="discountEndDate">
-</div><!-- End .input-group -->
 
 
 
 <div class="input-group input-group-sm">
 <span class="input-group-addon">Coupon Code</span>
-<input type="number" required="" class="form-control" placeholder="Coupon Code" name="couponCode" id="couponCode">
+<input type="number"  class="form-control" placeholder="Coupon Code" name="couponCode" id="couponCode">
 </div><!-- End .input-group -->
 
 <div class="col-md-6">
 
-                                    <button id="modifyClick" onclick="myFunction()" class="btn btn-sm btn-custom">Add books</button>
+    <button id="modifyClick" onclick="addBookClick()" class="btn btn-sm btn-custom">Modify book</button>
                  </div>
-</form>
+
+</div><!-- End .col-sm-6 -->
+
+</div><!-- End .col-sm-6 -->
+
+
+</div><!-- End .row -->
+
 
 <!--Portion to be worked on end-->
                     <div class="mb60"></div><!-- margin -->
@@ -938,6 +914,94 @@ Discount Applicable?
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
+          //  alert( "ready!" );
 
+            // var st = window.location + '';
+            // var splits = st.split('/');
+            // var bookId = splits[splits.length-1];
+            // console.log(bookId);
+            var request = $.ajax({
+             url:  "/getbookforid",
+             type: "POST",
+              data: {id:'2'},
+             success: function(data) {
+               var bookDetails = JSON.parse(data);
+               $( "#nameTextBox" ).val(bookDetails['name']);
+               $( "#author" ).val(bookDetails['author']);
+               $( "#description" ).val(bookDetails['description']);
+               $( "#quantity" ).val(bookDetails['quantity']);
+               $( "#isbn" ).val(bookDetails['isbn']);
+               $( "#price" ).val(bookDetails['price']);
+               $( "#discountApplicable" ).val(bookDetails['discountApplicable']);
+               $( "#discountRate" ).val(bookDetails['discountRate']);
+                $( "#couponCode" ).val(bookDetails['couponCode']);
+                  $( "#category" ).val(bookDetails['category']);
+             }
+            });
+
+            // $.get( "/book/" + bookId, {id:'4'}).done(function( data ) {
+            //   var bookDetails = JSON.parse(data);
+            //   console.log(bookDetails);
+            //   console.log(bookDetails['name']);
+            //   $( "#nameTextBox" ).val(bookDetails['name']);
+            //   }, "json" );
+
+            // $.get( "/book/" + bookId, function( data ) {
+            //   var bookDetails = JSON.parse(data);
+            //   console.log(bookDetails);
+            //   console.log(bookDetails['name']);
+            //   $( "#nameTextBox" ).val(bookDetails['name']);
+            //   }, "json" );
+
+          });
+
+
+
+
+          function myFunction() {
+            var st = window.location + '';
+            var splits = st.split('/');
+            var bookId = splits[splits.length-1];
+            console.log('inside myfunction put'+bookId);
+            // // $.put( "/book/" + bookId);
+            //
+            // //var menuId = $("ul.nav").first().attr("id");
+            // $.ajax({
+            //   url:  "/book/" + bookId,
+            //   type: "PUT",
+            //   data: {name : $("#nameTextBox").val()}
+            //
+            // });
+
+
+            var request = $.ajax({
+          //  async:false,
+             url:  "/modifybook",
+             type: "PUT",
+             data: {name : $("#nameTextBox").val(),
+             author:$("#author").val(),
+             description:$("#description").val(),
+             quantity:$("#quantity").val(),
+             isbn:$("#isbn").val(),
+             category:$("#category").val(),
+             price:$("#price").val(),
+             discountApplicable:$("input[name='discountApplicable']:checked").val(),
+             discountRate:$("#discountRate").val(),
+             couponCode:$("#couponCode").val()
+           },
+          success: function(res) {
+                      console.log(res);
+                        //alert(res);
+                         window.location.href = "/editbooksuccess";
+                         }
+            });
+          }//end of myfunction
+
+
+
+        </script>
     </body>
 </html>

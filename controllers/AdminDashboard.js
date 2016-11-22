@@ -15,6 +15,19 @@ exports.addRemoveAdmin = (req, res) => {
     console.log('Add Remove Admin Page');
 
 };
+
+//fetch all admins from database
+exports.getAllAdmins = (req, res) => {
+  Admin.findAllAdminRecords(req, res);
+}
+
+//Delete selected admin from the database
+exports.deleteAdminForAdminId = (req, res) => {
+  req.session.adminId= req.body.adminId;
+ Admin.deleteAdminForAdminId(req, res) ;
+    //console.log('this is in3 controllers');
+};
+
 exports.addAdmin = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/AddAdmin.html'));
 
