@@ -51,3 +51,12 @@ exports.newsletter = (req, res) => {
     console.log('Newsletter Page');
 
 };
+//fetch admin profile from database
+exports.getAdminProfile = (req, res) => {
+  Admin.findAdminRecord(req, res);
+}
+
+//Update admin profile
+exports.updateAdmin = (req, res) => {
+  Admin.updateAdminRecords(req, res);
+}

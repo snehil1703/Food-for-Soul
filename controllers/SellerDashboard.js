@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var seller  = require('../models/Seller.js');
 
 
 
@@ -71,3 +72,13 @@ exports.notesReport = (req, res) => {
     console.log('Notes Report Page');
 
 };
+
+//fetch seller profile from database
+exports.getsellerProfile = (req, res) => {
+  seller.findSellerRecord(req, res);
+}
+
+//Update seller profile
+exports.updateSeller = (req, res) => {
+  seller.updateSellerRecords(req, res);
+}

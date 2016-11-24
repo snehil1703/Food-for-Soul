@@ -26,7 +26,15 @@ var adminRecords = sequelize.define('admin_records', {
     },
     adminEmail:{
       type: Sequelize.STRING,
-      field: 'adminEmail'
+      field: 'adminEmail',
+    },
+    adminPhoneNumber:{
+      type: Sequelize.STRING,
+      field: 'adminPhoneNumber',
+    },
+    adminAddress1:{
+      type: Sequelize.STRING,
+      field: 'adminAddress1',
     }
 });
 
@@ -36,7 +44,9 @@ exports.insertNewAdmin = (req, res) => {
   console.log(''+req.body.adminFirstName);
   console.log(''+req.body.adminLastName);
   console.log(''+req.body.adminEmail);
-  sequelize.sync().then(function() {
+  sequelize.sync({
+  //  force:true
+  }).then(function() {
     return adminRecords.create({
       adminFirstName: req.body.adminFirstName,
       adminLastName: req.body.adminLastName,
@@ -71,4 +81,48 @@ adminRecords.destroy({
 res.sendStatus(200);
 });
 
+ };
+
+
+ //Fetches Admin details from database
+ exports.findAdminRecord = (req, res) => {
+   adminRecords.findById(2).then(function(result) {
+
+         var x =
+         {
+           adminFirstName:result.adminFirstName,
+           adminLastName:result.adminLastName,
+           adminEmail:result.adminEmail,
+           adminPhoneNumber:result.adminPhoneNumber,
+           adminAddress1:result.adminAddress1
+         };
+
+         //This is working
+         console.log(result.adminFirstName);
+         res.json(x);
+   });
+ };
+
+
+
+ exports.updateAdminRecords = (req, res) => {
+
+   adminRecords.update(
+   {
+     adminFirstName: req.body.adminFirstName,
+     adminLastName: req.body.adminLastName,
+     adminEmail:req.body.adminEmail,
+     adminPhoneNumber:req.body.adminPhoneNumber,
+     adminAddress1:req.body.adminAddress1
+   },
+   {
+     where:
+     {
+       adminId : '2'
+     }
+   })
+   .then(function()
+    {
+      res.sendFile(path.join(__dirname + '/../views'+'/PersonalInformation.html'));
+    })
  };

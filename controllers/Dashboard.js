@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var paymentCard  = require('../models/PaymentCard.js');
+var buyer  = require('../models/Buyer.js');
 
 
 exports.cancelOrder = (req, res) => {
@@ -27,7 +28,7 @@ exports.addCard = (req, res) => {
 
 exports.addNewCard = (req, res) => {
       paymentCard.insertNewCard(req, res);
-}   
+}
 
 
 exports.editCard = (req, res) => {
@@ -60,3 +61,13 @@ exports.personalInformation = (req, res) => {
     console.log('Personal Information Page');
 
 };
+
+//fetch buyer profile from database
+exports.getbuyerProfile = (req, res) => {
+  buyer.findBuyerRecord(req, res);
+}
+
+//Update buyer profile
+exports.updateBuyer = (req, res) => {
+  buyer.updateBuyerRecords(req, res);
+}

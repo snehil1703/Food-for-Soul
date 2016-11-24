@@ -386,7 +386,7 @@
                                                                              <div class="row row-lg">
                                                                                   <div class="col-sm-6">
 
-                                              										<div class="form-group label-overlay form-control">
+                                              										                    <div class="form-group label-overlay form-control">
                                                                                           <label class="input-desc"><i class="icon input-icon input-user"></i>First Name <span class="input-required">*</span></label>
                                                                                       </div><!-- End .form-group -->
                                                                                       <div class="form-group label-overlay form-control">
@@ -395,46 +395,44 @@
                                                                                       <div class="form-group label-overlay form-control" >
                                                                                           <label class="input-desc"><i class="icon input-icon input-number"></i>Email<span class="input-required">*</span></label>
                                                                                       </div><!-- End .form-group -->
-                                              										<div class="form-group label-overlay form-control">
+                                              										                    <div class="form-group label-overlay form-control">
                                                                                           <label class="input-desc"><i class="icon input-icon input-datetime"></i>Phone Number<span class="input-required">*</span></label>
                                                                                       </div><!-- End .form-group -->
-                                              										<div class="form-group label-overlay form-control">
+                                              										                    <div class="form-group label-overlay form-control">
                                                                                           <label class="input-desc"><i class="icon input-icon input-number"></i>Address<span class="input-required">*</span></label>
                                                                                       </div><!-- End .form-group -->
 
                                                                                   </div><!-- End .col-sm-6 -->
-                                              									 <div class="col-sm-6">
 
-                                              										<div class="form-group label-overlay">
-                                                                                          <input type="text" class="form-control" required>
-                                                                                          <label class="input-desc"><i class="icon input-icon input-user"></i><span class="input-required">Prasandeep</span></label>
-                                                                                      </div><!-- End .form-group -->
-                                                                                      <div class="form-group label-overlay">
-                                                                                          <input type="text" class="form-control" required>
-                                                                                          <label class="input-desc"><i class="icon input-icon input-user"></i><span class="input-required">Singh</span></label>
-                                                                                      </div><!-- End .form-group -->
-                                                                                      <div class="form-group label-overlay">
-                                                                                          <input type="text" class="form-control" required>
-                                                                                          <label class="input-desc"><i class="icon input-icon input-number"></i><span class="input-required">ps23@umail.iu.edu</span></label>
-                                                                                      </div><!-- End .form-group -->
-                                              										<div class="form-group label-overlay">
-                                                                                          <input type="datetime" class="form-control" required>
-                                                                                          <label class="input-desc"><i class="icon input-icon input-datetime"></i><span class="input-required">8127274940</span></label>
-                                                                                      </div><!-- End .form-group -->
-                                              										<div class="form-group label-overlay">
-                                                                                          <input type="text" class="form-control" required>
-                                                                                          <label class="input-desc"><i class="icon input-icon input-number"></i><span class="input-required">Fountain Park, Bloomington</span></label>
-                                                                                      </div><!-- End .form-group -->
-
+                                                                                  <div class="col-sm-6">
+                                                                                     <div class="form-group label-overlay">
+                                                                                       <input type="text" class="form-control" id="sellerFirstName" name="sellerFirstName" required>
+                                                                                       <span class="input-required"></span></label>
+                                                                                     </div><!-- End .form-group -->
+                                                                                     <div class="form-group label-overlay">
+                                                                                       <input type="text" class="form-control" id="sellerLastName" name="sellerLastName" required>
+                                                                                       <span class="input-required"></span></label>
+                                                                                     </div><!-- End .form-group -->
+                                                                                     <div class="form-group label-overlay">
+                                                                                       <input type="text" class="form-control" id="sellerEmail" name="sellerEmail" required>
+                                                                                       <span class="input-required"></span>
+                                                                                     </div><!-- End .form-group -->
+                                                                                     <div class="form-group label-overlay">
+                                                                                       <input type="datetime" class="form-control" id="sellerPhoneNumber" name="sellerPhoneNumber"required>
+                                                                                       <span class="input-required"></span></label>
+                                                                                     </div><!-- End .form-group -->
+                                                                                     <div class="form-group label-overlay">
+                                                                                       <input type="text" class="form-control" id="sellerAddress1" name="sellerAddress1" required>
+                                                                                       <span class="input-required"></span></label>
+                                                                                     </div><!-- End .form-group -->
+                                                                                     <div class="row">
+                                                                                       <div class="col-xs-6 col-lg-4" >
+                                                                                         <button id="updateSellerDetails"onclick="updateSellerFunction()"class="btn btn-custom min-width">SAVE DETAILS</button>
+                                                                                       </div><!-- End .col-lg-8-->
+                                                                                     </div>
                                                                                   </div><!-- End .col-sm-6 -->
-                                              								</div>
-                                              								<div class="row" style="display:inline; text-align:right">
-                                              									<div class="col-xs-6 col-lg-4" >
-                                              										<button onclick="alert('Saved Successfully');"  class="btn btn-custom min-width">SAVE DETAILS</button>
-                                              									</div><!-- End .col-lg-8-->
-                                              									</div>
-
-                                              						</div>
+                                              								            </div>
+                                              							</div>
                                               					</div>
                                               				</div>
                                                           </div><!-- End .main -->
@@ -614,7 +612,60 @@
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
 
+            var request = $.ajax({
+             url:  "/sellerProfile",
+             type: "POST",
+              data: {sellerId:'1'},
+             success: function(data)
+              {
+
+                  var sellerDetails = JSON.parse(data);
+                $( "#sellerFirstName" ).val(sellerDetails['sellerFirstName']);
+                $( "#sellerLastName" ).val(sellerDetails['sellerLastName']);
+                $( "#sellerEmail" ).val(sellerDetails['sellerEmail']);
+                $( "#sellerPhoneNumber" ).val(sellerDetails['sellerPhoneNumber']);
+                $( "#sellerAddress1" ).val(sellerDetails['sellerAddress1']);
+              }
+            });
+
+
+          });
+
+          //Update seller details
+          function updateSellerFunction()
+          {
+              var st = window.location + '';
+              var splits = st.split('/');
+              var sellerId = splits[splits.length-1];
+              var request = $.ajax(
+              {
+                 url:  "/updateseller",
+                 type: "PUT",
+                 data:
+                 {
+                   sellerFirstName : $("#sellerFirstName").val(),
+                   sellerLastName:$("#sellerLastName").val(),
+                   sellerEmail:$("#sellerEmail").val(),
+                   sellerPhoneNumber:$("#sellerPhoneNumber").val(),
+                   sellerAddress1:$("#sellerAddress1").val(),
+                 },
+                 success: function(res)
+                 {
+                  alert('Details Updated');
+                  window.location.href = "/SellerProfile";
+                 }
+              });
+            }
+
+            //end of update seller Function
+
+
+        </script>
+        <!--CLOSE OF FETCH AND DISPLAY-->
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.themepunch.revolution.min.js"></script>

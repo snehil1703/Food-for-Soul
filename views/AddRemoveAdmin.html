@@ -383,29 +383,10 @@
         <div class="col-md-10">
           <div class="table-responsive">
             <table class="table table-bordered cart-table" name="adminTable" id = "adminTable">
-              <thead>
-                <tr>
-                  <th class="code-col">Select Admin</th>
-                  <th class="code-col">Admin ID</th>
-                  <th class="code-col">First Name</th>
-                  <th class="code-col">Last Name</th>
-                  <th class="code-col">Email</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
           </table>
         </div><!-- End .table-responsive -->
-        <div class="row">
-          <div class="col-xs-6 col-lg-4">
-            <a href="/addAdmin" class="btn btn-custom min-width">ADD ADMIN</a>
-          <!--  <button class="btn btn-custom min-width " onclick="addAdminFunction()" >ADD ADMIN</button>-->
-          </div><!-- End .col-lg-8-->
-          <div class="mb50 clearfix hidden-lg"></div><!-- margin -->
-            <div class="col-xs-6 col-lg-4">
-              <button id="deleteAdmin" class="btn btn-danger min-width " onclick="deleteAdminFunction()" >REMOVE</button>
-            </div><!-- End .col-lg-8-->
-          </div><!-- End .row -->
+
+
         </div><!-- End .col-md-9 -->
     </div><!-- End .row -->
   </div><!-- End .container-fluid -->
@@ -597,6 +578,16 @@
              success: function(data) {
                var r = new Array(), j = -1;
                var jsonData = JSON.parse(data);
+
+
+               r[++j] ='<tr>';
+               r[++j] = '<th style="text-align:center">Select Admin</th>';
+               r[++j] = '<th style="text-align:center">Admin ID</th>';
+               r[++j] = '<th style="text-align:center">First Name</th>';
+               r[++j] = '<th style="text-align:center">Last Name</th>';
+               r[++j] = '<th style="text-align:center">Email</th>';
+               r[++j] = '</tr>';
+
                for (var i = 0; i < jsonData.length; i++) {
                    var counter = jsonData[i];
 
@@ -613,6 +604,16 @@
                    r[++j] = '</td></tr>';
 
                }
+                r[++j] ='<tr><td></td><td><div class="row">'
+                r[++j] ='<div class="col-xs-6 col-lg-4">'
+                r[++j] ='<a href="/addAdmin" class="btn btn-custom min-width">ADD ADMIN</a>'
+                r[++j] ='</div></td><td></td><td><!-- End .col-lg-8-->'
+                r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
+                r[++j] ='<div class="col-xs-6 col-lg-4">'
+                r[++j] ='<button id="deleteAdmin" class="btn btn-danger min-width " onclick="deleteAdminFunction()" >REMOVE</button>'
+                r[++j] ='</div></td></tr><!-- End .col-lg-8-->'
+                r[++j] ='</div><!-- End .row -->'
+
              $('#adminTable').html(r.join(''));
              }
            });// rend request

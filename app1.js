@@ -112,7 +112,6 @@ app.get('/addbookpage', function(req, res) {
 
 app.get('/ManageNotes', sellerDashboardController.manageNotes);
 app.get('/AddBook', sellerDashboardController.addBook);
-app.get('/EditBook', sellerDashboardController.editBook);
 app.get('/EditNotes', sellerDashboardController.editNotes);
 app.get('/OrdersReport', sellerDashboardController.ordersReport);
 app.get('/BooksReport', sellerDashboardController.booksReport);
@@ -155,6 +154,24 @@ app.get('/addRemoveAdmin', function(req, res) {
     res.sendFile(path.join(__dirname + '/views/AddRemoveAdmin.html'));
 
 });
+
+
+//fetches seller profile from the database
+app.post('/sellerProfile',sellerDashboardController.getsellerProfile);
+//Updates the changes made to the seller profile
+app.put('/updateseller',sellerDashboardController.updateSeller);
+
+//fetches buyer profile from the database
+app.post('/buyerProfile',dashboardController.getbuyerProfile);
+//Updates the changes made to the buyer profile
+app.put('/updatebuyer',dashboardController.updateBuyer);
+
+
+//fetches admin profile from the database
+app.post('/adminProfile',adminDashboardController.getAdminProfile);
+//Updates the changes made to the buyer profile
+app.put('/updateadmin',adminDashboardController.updateAdmin);
+
 
 //inserts new card details into the database
 app.post('/addnewcard', dashboardController.addNewCard);
