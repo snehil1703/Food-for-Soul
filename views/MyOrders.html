@@ -378,111 +378,14 @@
                         <div class="col-md-10">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered cart-table">
-                                    <thead>
-                                        <tr>
-                                            <th class="product-col">Select Order</th>
-                                            <th class="code-col">Order ID</th>
-                                            <th class="price-col">Product ID</th>
-                                            <th class="quantity-col">Delivery Date</th>
-                                            <th class="subtotal-col">Order Status</th>
-                                            <th class="delete-col">Price</th>
-                                        </tr>
-                                    </thead>
+                                <table class="table table-bordered cart-table" id="ordersTable" name ="ordersTable">
 
-                                    <tbody>
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-
-                                                        <span class="">
-															<input type="radio">
-														</span>
-                                                    </div><!-- End .product -->
-                                            </td>
-                                            <td class="code-col">O_01</td>
-                                            <td class="price-col">
-                                                <div class="product-price-container">
-                                                    <span class="product-price">P_1</span>
-                                                </div><!-- End .product-price-container -->
-                                            </td>
-                                            <td class="quantity-col">
-                                                10/28/2016
-                                            </td>
-                                            <td class="subtotal-col">Confirmed</td>
-                                            <td><span class="product-price">$30.00</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-                                                          <span class="">
-															<input type="radio">
-														</span>
-
-
-                                                    </div><!-- End .product-content-wrapper -->
-                                                </div><!-- End .product -->
-                                            </td>
-                                            <td class="code-col">O_02</td>
-                                            <td class="price-col">
-                                                <div class="product-price-container">
-                                                    <span class="product-price">P_3</span>
-                                                </div><!-- End .product-price-container -->
-                                            </td>
-                                            <td class="quantity-col">
-                                                10/25/2016
-                                            </td>
-                                            <td class="subtotal-col">Dispatched</td>
-                                            <td><span class="product-price">$50.00</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-                                                         <span class="">
-															<input type="radio">
-														</span>
-
-                                                </div><!-- End .product -->
-                                            </td>
-                                            <td class="code-col">O_03</td>
-                                            <td class="price-col">
-                                                <div class="product-price-container">
-                                                    <span class="product-price">P_6</span>
-                                                </div><!-- End .product-price-container -->
-                                            </td>
-                                            <td class="quantity-col">
-                                                10/20/2016
-                                            </td>
-                                            <td class="subtotal-col">Delivered</td>
-                                            <td><span class="product-price">$300.00</span></td>
-										 </tr>
-                                    </tbody>
                                 </table>
                             </div><!-- End .table-responsive -->
-
-                            <div class="row">
-                                <div class="col-xs-6 col-lg-4">
-                                    <a href="/ReturnOrder" class="btn btn-custom min-width">Return/Replace</a>
-                                </div><!-- End .col-lg-8-->
-
-                                <div class="mb50 clearfix hidden-lg"></div><!-- margin -->
-
-                             <div class="col-xs-6 col-lg-4">
-                                    <a href="/CancelOrder" class="btn btn-danger min-width ">Cancel Order</a>
-                                </div><!-- End .col-lg-8-->
-
-                            </div><!-- End .row -->
-
-
                         </div><!-- End .col-md-9 -->
-
-
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
-
 <!--END OF ORDERS TABLE -->
 
 
@@ -662,7 +565,112 @@
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
 
+
+            var request = $.ajax({
+             url:  "/buyerorderlist",
+             type: "POST",
+          //    data: {author:'nikitha'},
+             success: function(data) {
+              // var bookDetails = JSON.parse(data);
+               var r = new Array(), j = -1;
+               var jsonData = JSON.parse(data);
+
+               r[++j] = '<thead>'
+               r[++j] =   '<tr>'
+               r[++j] =     '<th class="product-col">Select Order</th>'
+               r[++j] =   '<th class="code-col">Order ID</th>'
+               r[++j] =   '  <th class="price-col">Delivery Date</th>'
+               r[++j] =    '<th class="product-col">Order Status</th>'
+               r[++j] =     '<th class="code-col">Price</th>'
+               r[++j] =   '</tr>'
+               r[++j] =   '</thead>'
+
+               for (var i = 0; i < jsonData.length; i++) {
+                   var counter = jsonData[i];
+                   console.log(counter.author);
+
+                   r[++j] ='<tr><td>';
+                   r[++j] = '<input id="orderId" name="orderId" type="radio" value="'+jsonData[i].orderId+'">';
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].orderId;
+                   r[++j] ='<td class="">';
+                   r[++j] = jsonData[i].deliveryDate;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].orderStatus;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].price;
+                   r[++j] = '</td></tr>';
+
+               }
+
+               r[++j] ='<tr><td></td><td><div class="row">'
+               r[++j] ='<div class="col-xs-6 col-lg-4">'
+               r[++j] ='<a href="/AddBook" class="btn btn-custom min-width">RETURN/REPLACE</a>'
+               r[++j] ='</div></td><td><!-- End .col-lg-8-->'
+               r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
+               r[++j] ='<div class="col-xs-6 col-lg-4">'
+               r[++j] ='<td><button id="deleteBook" class="btn btn-danger min-width " onclick="deleteBookFunction()">CANCEL</button>'
+               r[++j] ='</div></td></tr><!-- End .col-lg-8-->'
+               r[++j] ='</div><!-- End .row -->'
+             $('#ordersTable').html(r.join(''));
+             }
+
+           });// rend request
+
+          }); //  end ready
+
+          function modifyBookFunction() {
+
+            console.log($("input[name='bookId']:checked").val());
+            var request = $.ajax({
+          //  async:false,
+             url:  "/setbookid",
+             type: "POST",
+             data: { bookId: $("input[name='bookId']:checked").val()
+                  },
+          success: function(res) {
+                      //console.log(res);
+                        //alert(res);
+               window.location.href = "/editbook";
+                         }
+            });
+          }// end modify click
+
+
+          function deleteBookFunction() {
+
+            console.log($("input[name='bookId']:checked").val());
+            var request = $.ajax({
+          //  async:false,
+             url:  "/deletebook",
+             type: "DELETE",
+             data: { bookId: $("input[name='bookId']:checked").val()
+                  },
+          success: function(res) {
+                      //console.log(res);
+                        alert('deleted');
+             window.location.href = "/managebooks";
+                         }
+            });
+          }// end delete click
+
+
+          function addBook() {
+
+              var request = $.ajax({
+               url:  "/addbookpage",
+               type: "GET",
+               success: function(res) {
+             window.location.href = "/addbookpage";
+           }
+         });
+
+      }
+        </script>
         <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
         (Load Extensions only on Local File Systems !
         The following part can be removed on Server for On Demand Loading) -->

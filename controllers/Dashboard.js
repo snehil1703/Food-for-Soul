@@ -3,7 +3,8 @@ var app = express();
 var path = require('path');
 var paymentCard  = require('../models/PaymentCard.js');
 var buyer  = require('../models/Buyer.js');
-
+var buyerOrders  = require('../models/Orders.js');
+var buyerReviews  = require('../models/Reviews.js');
 
 exports.cancelOrder = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/CancelOrderFormPage.html'));
@@ -37,6 +38,13 @@ exports.editCard = (req, res) => {
     console.log('Edit Card Page');
 
 };
+
+//To get card details
+exports.getCard = (req, res) => {
+  paymentCard.findCardRecords(req, res);
+}
+
+
 exports.myOrders = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/MyOrders.html'));
 
@@ -71,3 +79,51 @@ exports.getbuyerProfile = (req, res) => {
 exports.updateBuyer = (req, res) => {
   buyer.updateBuyerRecords(req, res);
 }
+
+//Fetches all the orders placed by a buyer
+exports.getAllOrders = (req, res) => {
+  buyerOrders.findAllOrderRecords(req, res);
+}
+
+//Fetches all the reviews placed by a buyer
+exports.getAllReviews = (req, res) => {
+  buyerReviews.findAllReviewRecords(req, res);
+}
+
+//Fetches all the payment cards of a buyer
+exports.getAllCards = (req, res) => {
+  paymentCard.findAllCardRecords(req, res);
+}
+
+
+//Insert new card details
+ exports.newCard = (req, res) => {
+       paymentCard.insertNewCard(req, res);
+ }
+
+ //Update payment Card Infor
+ exports.updateCard = (req, res) => {
+     console.log(req.body.cardId);
+   req.session.cardId= req.body.cardId;
+    console.log(req.body.cardId);
+   paymentCard.updateCardRecords(req, res);
+ }
+//Deletes a particular payment card of a buyer
+exports.deleteCardForCardId = (req, res) => {
+  req.session.cardId= req.body.cardId;
+ paymentCard.deleteCardForCardId(req, res) ;
+    //console.log('this is in3 controllers');
+
+};
+
+exports.setBuyerIdSession = (req, res) => {
+    console.log(req.body.buyerId);
+  req.session.buyerId= req.body.buyerId;
+  res.sendStatus(200);
+  };
+
+exports.setCardIdSession = (req, res) => {
+      console.log(req.body.cardId);
+    req.session.cardId= req.body.cardId;
+    res.sendStatus(200);
+    };

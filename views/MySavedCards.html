@@ -361,7 +361,7 @@
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
 
 
-<!--START OF ORDERS TABLE -->
+<!--START OF CARD DETAILS TABLE -->
             <div class="main">
                 <div class="page-header">
                     <div class="container-fluid">
@@ -379,102 +379,11 @@
                         <div class="col-md-9">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered cart-table">
-                                    <thead>
-                                        <tr>
-                                            <th class="product-col">Select Card</th>
-                                            <th class="code-col">Card Type</th>
-                                            <th class="price-col">Card Number</th>
-                                            <th class="quantity-col">Valid Date</th>
-                                            <th class="subtotal-col">Card Holder's Name</th>
-                                        </tr>
-                                    </thead>
+                                <table class="table table-bordered cart-table" id="cardDetailsTable" name="cardDetailsTable">
 
-                                    <tbody>
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-
-                                                        <span class="">
-															<input type="radio">
-														</span>
-                                                    </div><!-- End .product -->
-                                            </td>
-                                            <td class="code-col">MASTERCARD</td>
-                                            <td class="price-col">
-                                                <div class="product-price-container">
-                                                    <span class="product-price">4351 5454 9595 1939</span>
-                                                </div><!-- End .product-price-container -->
-                                            </td>
-                                            <td class="quantity-col">
-                                                10/28/2020
-                                            </td>
-                                            <td class="subtotal-col">Prasan</td>
-                                            </tr>
-
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-                                                          <span class="">
-															<input type="radio">
-														</span>
-
-
-                                                    </div><!-- End .product-content-wrapper -->
-                                                </div><!-- End .product -->
-                                            </td>
-                                            <td class="code-col">VISA</td>
-                                            <td class="price-col">
-                                                <div class="product-price-container">
-                                                    <span class="product-price">4351 2341 2352 1235</span>
-                                                </div><!-- End .product-price-container -->
-                                            </td>
-                                            <td class="quantity-col">
-                                                10/25/2021
-                                            </td>
-                                            <td class="subtotal-col">Prasandeep</td>
-                                         </tr>
-
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-                                                         <span class="">
-															<input type="radio">
-														</span>
-
-                                                </div><!-- End .product -->
-                                            </td>
-                                            <td class="code-col">VISA</td>
-                                            <td class="price-col">
-                                                <div class="product-price-container">
-                                                    <span class="product-price">4351 2554 1315 1129</span>
-                                                </div><!-- End .product-price-container -->
-                                            </td>
-                                            <td class="quantity-col">
-                                                10/20/2018
-                                            </td>
-                                            <td class="subtotal-col">Singh</td>
-                                          </tr>
-                                    </tbody>
                                 </table>
                             </div><!-- End .table-responsive -->
 
-                            <div class="row">
-                                <div class="col-xs-6 col-lg-4">
-                                    <a href="/AddCard" class="btn btn-custom min-width">ADD CARD</a>
-                                </div><!-- End .col-lg-8-->
-
-                                <div class="mb50 clearfix hidden-lg"></div><!-- margin -->
-
-								<div class="col-xs-6 col-lg-4">
-                                    <a href="/EditCard" class="btn btn-custom min-width">EDIT CARD</a>
-                                </div><!-- End .col-lg-8-->
-
-						        <div class="col-xs-6 col-lg-4">
-                                    <button onclick="confirm('Are you sure?'); alert('Card Removed Successfully')" class="btn btn-danger min-width">REMOVE CARD</button>
-                                </div><!-- End .col-lg-8-->
-
-                            </div><!-- End .row -->
 
 
                         </div><!-- End .col-md-9 -->
@@ -484,7 +393,7 @@
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
 
-<!--END OF ORDERS TABLE -->
+<!--END OF CARDS TABLE -->
 
 
 
@@ -659,6 +568,114 @@
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
+
+
+            var request = $.ajax({
+             url:  "/carddetailslist",
+             type: "POST",
+              //data: {author:'nikitha'},
+             success: function(data) {
+              // var bookDetails = JSON.parse(data);
+               var r = new Array(), j = -1;
+               var jsonData = JSON.parse(data);
+
+               r[++j] = '<thead>'
+               r[++j] =   '<tr>'
+               r[++j] =     '<th class="product-col">Select Card</th>'
+               r[++j] =   '<th class="code-col">Card Holder\'s Name</th>'
+               r[++j] =   '  <th class="price-col">Card Number</th>'
+               r[++j] =    '<th class="product-col">Valid Till</th>'
+               r[++j] =   '</tr>'
+               r[++j] =   '</thead>'
+
+               for (var i = 0; i < jsonData.length; i++) {
+                   var counter = jsonData[i];
+                   console.log(counter.author);
+
+                   r[++j] ='<tr><td>';
+                   r[++j] = '<input id="cardId" name="cardId" type="radio" value="'+jsonData[i].cardId+'">';
+                   r[++j] ='<td class="">';
+                   r[++j] = jsonData[i].CardHolderName;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].CardNumber;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].ValidTill;
+                   r[++j] = '</td></tr>';
+
+               }
+
+               r[++j] ='<tr><td></td><td><div class="row">'
+               r[++j] ='<div class="col-xs-6 col-lg-4">'
+               r[++j] ='<a href="/AddCard" class="btn btn-custom min-width">ADD CARD</a>'
+               r[++j] ='</div></td><td><!-- End .col-lg-8-->'
+               r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
+               r[++j] ='<div class="col-xs-6 col-lg-4">'
+               r[++j] ='<button id="modifyCard" class="btn btn-custom min-width" onclick="modifyCardFunction()">EDIT CARD</a>'
+               r[++j] ='</div></td><!-- End .col-lg-8-->'
+               r[++j] ='</div><!-- End .row -->'
+               r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
+               r[++j] ='<div class="col-xs-6 col-lg-4">'
+               r[++j] ='<td><button id="deleteCard" class="btn btn-danger min-width " onclick="deleteCardFunction()">REMOVE</button>'
+               r[++j] ='</div></td></tr><!-- End .col-lg-8-->'
+               r[++j] ='</div><!-- End .row -->'
+             $('#cardDetailsTable').html(r.join(''));
+             }
+
+           });// rend request
+
+          }); //  end ready
+
+          function modifyCardFunction() {
+
+            console.log($("input[name='cardId']:checked").val());
+            var request = $.ajax({
+          //  async:false,
+             url:  "/setcardid",
+             type: "POST",
+             data: { cardId: $("input[name='cardId']:checked").val()
+                  },
+          success: function(res) {
+                      //console.log(res);
+                        //alert(res);
+               window.location.href = "/editcard";
+                         }
+            });
+          }// end modify click
+
+
+          function deleteCardFunction() {
+
+            console.log($("input[name='cardId']:checked").val());
+            var request = $.ajax({
+          //  async:false,
+             url:  "/deletecard",
+             type: "DELETE",
+             data: { cardId: $("input[name='cardId']:checked").val()
+                  },
+          success: function(res) {
+                      //console.log(res);
+                        alert('deleted');
+             window.location.href = "/MySavedCards";
+                         }
+            });
+          }// end delete click
+
+
+          function addBook() {
+
+              var request = $.ajax({
+               url:  "/addbookpage",
+               type: "GET",
+               success: function(res) {
+             window.location.href = "/addbookpage";
+           }
+         });
+
+        }
+        </script>
 
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>

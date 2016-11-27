@@ -428,16 +428,13 @@
 									                  <div class="col-sm-6">
 
 									                      <div class="form-group label-overlay">
-                                            <input type="text" class="form-control" name="cardHolderName" id ="cardHolderName" required>
-                                            <label class="input-desc"><i class="icon input-icon input-user"></i><span class="input-required">*</span></label>
+                                            <input type="text" class="form-control" name="CardHolderName" id ="CardHolderName" required>
                                         </div><!-- End .form-group -->
                                         <div class="form-group label-overlay">
-                                            <input type="text" class="form-control" name="cardNumber" id ="cardNumber" required>
-                                            <label class="input-desc"><i class="icon input-icon input-number"></i><span class="input-required">*</span></label>
+                                            <input type="text" class="form-control" name="CardNumber" id ="CardNumber" required>
                                         </div><!-- End .form-group -->
 										                    <div class="form-group label-overlay">
-                                            <input type="datetime" class="form-control" name="validTill" id ="validTill" required>
-                                            <label class="input-desc"><i class="icon input-icon input-datetime"></i><span class="input-required">*</span></label>
+                                            <input type="datetime" class="form-control" name="ValidTill" id ="ValidTill" required>
                                         </div><!-- End .form-group -->
 
                                     </div><!-- End .col-sm-6 -->
@@ -445,7 +442,7 @@
 
               	<div class="row" style="display:inline; text-align:right">
 									<div class="col-xs-6 col-lg-4" >
-										<button onclick="alert('Card Edited Successfully');"  class="btn btn-custom min-width">EDIT CARD</button>
+										<button id="updateCardDetails" onclick="updateCardFunction()"  class="btn btn-custom min-width">EDIT CARD</button>
 									</div><!-- End .col-lg-8-->
 									</div>
 
@@ -629,7 +626,56 @@
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function()
+          {
+            var request = $.ajax(
+            {
+              url:  "/getcardforid",
+              type: "POST",
+              data: {id:'2'},
+              success: function(data)
+              {
+                var cardDetails = JSON.parse(data);
+                $( "#CardHolderName" ).val(cardDetails['CardHolderName']);
+                $( "#CardNumber" ).val(cardDetails['CardNumber']);
+                $( "#ValidTill" ).val(cardDetails['ValidTill']);
+              }
+            });
+          });
 
+
+          //Update Card details
+          function updateCardFunction()
+          {
+              var st = window.location + '';
+              var splits = st.split('/');
+              var buyerId = splits[splits.length-1];
+              var request = $.ajax(
+              {
+                 url:  "/updatecard",
+                 type: "PUT",
+                 data:
+                 {
+                   cardId: $("input[name='cardId']:checked").val(),
+                   CardHolderName : $("#CardHolderName").val(),
+                   CardNumber:$("#CardNumber").val(),
+                   ValidTill:$("#ValidTill").val(),
+                  },
+                 success: function(res)
+                 {
+                  alert('Card Details Updated');
+                  window.location.href = "/MySavedCards";
+                 }
+              });
+            }
+
+            //end of update Buyer Function
+
+
+
+        </script>
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.themepunch.revolution.min.js"></script>

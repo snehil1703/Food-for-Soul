@@ -44,40 +44,70 @@ exports.insertNewCard = (req, res) => {
     });
   }).then(function () {
     res.sendStatus(200);
-    console.log('Admin Added');
-    //res.status(200);
-  //res.sendFile(path.join(__dirname + '/../views'+'/InventoryBookAddedConfirmPage.html'));
-  });
-
-
+    });
 };
-//
-// exports.findBookRecords = (req, res) => {
-//     bookrecords.findById(req.params.id).then(function(result) {
-//       var x = {
-//     name:result.bookName,
-//     author:result.author
-// };
-//   //  res.send(result.bookName);
-// console.log(x);
-// res.json(x);
-// //res.sendFile(path.join(__dirname + '/../views'+'/InventoryBookAddedConfirmPage.html'),x);
-//   });
-// }
-//
-// exports.updateBookRecords = (req, res) => {
-//   bookrecords.update({
-//     bookName: req.body.name,
-//     author:req.body.author
-//   },
-// {
-//   where:
-//   {
-//     bookID : req.params.id
-//   }
-// }).then(function() {
-//   res.sendStatus(200);
-// })
-// };
-//
-// //module.exports=Book;
+
+exports.findCardRecords = (req, res) => {
+  //var x =req.session.bookId;
+//  console.log(x);
+    savedCards.findById(req.session.cardId).then(function(result) {
+      var x = {
+    CardHolderName:result.CardHolderName,
+    CardNumber:result.CardNumber,
+    ValidTill:result.ValidTill
+};
+res.json(x);
+  });
+}
+
+exports.findAllCardRecords = (req, res) => {
+savedCards.findAll({
+  // where: {
+  // //  author:req.params.author
+  // buyerId : '1'
+  // }
+}).then(function(result) {
+
+  var x  = result;
+  console.log(result.length);
+
+
+   res.json(x);
+});
+
+ };
+
+//To update payment card details
+ exports.updateCardRecords = (req, res) => {
+
+   savedCards.update(
+   {
+     CardHolderName: req.body.CardHolderName,
+     CardNumber: req.body.CardNumber,
+     ValidTill:req.body.ValidTill,
+     },
+   {
+     where:
+     {
+          cardId : req.session.cardId
+     }
+   })
+   .then(function()
+    {
+        console.log(req.body.cardId);
+      res.sendFile(path.join(__dirname + '/../views'+'/MySavedCards.html'));
+    })
+ };
+
+ //Deleting a payment card record
+ exports.deleteCardForCardId = (req, res) => {
+ savedCards.destroy({
+   where: {
+   cardId : req.session.cardId
+   }
+ }).then(function(result) {
+
+res.sendStatus(200);
+ });
+
+  };

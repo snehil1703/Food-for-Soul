@@ -89,7 +89,7 @@ app.get('/checkout',homeController.checkout);
 app.get('/CancelOrder', dashboardController.cancelOrder);
 app.get('/ReturnOrder', dashboardController.returnReplace);
 app.get('/AddCard', dashboardController.addCard);
-app.get('/EditCard', dashboardController.editCard);
+app.get('/editcard', dashboardController.editCard);
 app.get('/MyOrders', dashboardController.myOrders);
 app.get('/MySavedCards', dashboardController.mySavedCards);
 app.get('/ReviewRating', dashboardController.reviewRating);
@@ -166,6 +166,23 @@ app.post('/buyerProfile',dashboardController.getbuyerProfile);
 //Updates the changes made to the buyer profile
 app.put('/updatebuyer',dashboardController.updateBuyer);
 
+// fetches list if all orders for a given buyer id
+app.post('/buyerorderlist',dashboardController.getAllOrders);
+
+// fetches list if all reviews for a given buyer id
+app.post('/reviewlist',dashboardController.getAllReviews);
+
+// fetches list if all payment cards for a given buyer id
+app.post('/carddetailslist',dashboardController.getAllCards);
+
+//inserts new payment card details to database
+app.post('/NewCard', dashboardController.newCard);
+
+//Updates the changes made to the payment card
+app.put('/updatecard',dashboardController.updateCard);
+
+// call to delete selected payment card
+app.delete('/deletecard',dashboardController.deleteCardForCardId);
 
 //fetches admin profile from the database
 app.post('/adminProfile',adminDashboardController.getAdminProfile);
@@ -196,6 +213,15 @@ app.get('/editbook',inventoryManagementController.getEditBookPage);
 
 // setting selected book id in session
 app.post('/setbookid',inventoryManagementController.setBookIdSession);
+
+// setting selected buyer id in session
+app.post('/setbuyerid',dashboardController.setBuyerIdSession);
+
+// setting selected card id in session
+app.post('/setcardid',dashboardController.setCardIdSession);
+
+// fetches payment record for selected card id to be modified by buyer
+app.post('/getcardforid', dashboardController.getCard);
 
 //call to get the confirmation htmls
 app.get('/editbooksuccess',inventoryManagementController.getBookkEditSuccessPage );

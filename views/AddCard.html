@@ -379,27 +379,25 @@
                         <div class="col-md-9">
                                <div class="row row-lg">
                                     <div class="col-sm-6">
-                                      <form method = "POST" action="/addnewcard" >
+                                      <form method = "GET" action="/MySavedCards" >
 
 										                    <div class="form-group label-overlay">
                                             <input type="text" class="form-control" placeholder="Card Holder's Name" name="CardHolderName" id = "CardHolderName" required>
-                                            <label class="input-desc"><i class="icon input-icon input-user"></i><span class="input-required">*</span></label>
+
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group label-overlay">
                                             <input type="text" class="form-control" placeholder="Card Number" name="CardNumber" id = "CardNumber" required>
-                                            <label class="input-desc"><i class="icon input-icon input-number"></i><span class="input-required">*</span></label>
                                         </div><!-- End .form-group -->
 										                    <div class="form-group label-overlay">
                                             <input type="datetime" class="form-control" placeholder="Valid Till" name="ValidTill" id = "ValidTill" required>
-                                            <label class="input-desc"><i class="icon input-icon input-datetime"></i><span class="input-required">*</span></label>
                                         </div><!-- End .form-group -->
 
                                     </div><!-- End .col-sm-6 -->
 								                </div>
 								<div class="row">
 									<div class="col-xs-6 col-lg-4">
-										<button type = "submit" class="btn btn-custom min-width">ADD CARD</button>
+										<button id="addCardButton "type = "submit"  class="btn btn-custom min-width" onclick="addCardFunction()">ADD CARD</button>
 									</div><!-- End .col-lg-8-->
                   </form>
 									</div>
@@ -584,6 +582,29 @@
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          function addCardFunction() {
+
+              var request = $.ajax({
+               url:  "/NewCard",
+               type: "POST",
+               data:
+               {
+                 CardHolderName: $("#CardHolderName").val(),
+                 CardNumber: $("#CardNumber").val(),
+                 ValidTill: $("#ValidTill").val()
+               },
+               success: function(res) {
+                 alert('Card Added');
+             window.location.href = "/MySavedCards";
+           }
+         });
+
+        }
+
+
+        </script>
 
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
