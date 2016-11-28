@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 
 var Book  = require('../models/Book.js');
-
+var ClassNotes  = require('../models/Classnote.js');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -70,6 +70,12 @@ exports.setBookIdSession = (req, res) => {
   res.sendStatus(200);
   };
 
+exports.setClassNotesIdSession = (req, res) => {
+      console.log(req.body.bookId);
+    req.session.classnotesId= req.body.classnotesId;
+    res.sendStatus(200);
+    };
+
 
 exports.getBookAddSuccessPage = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/InventoryAddBookAddImage.html'));
@@ -97,19 +103,65 @@ exports.deleteBookForBookId = (req, res) => {
 
 };
 
-exports.confirmAddNotes = (req, res) => {
-  res.sendFile(path.join(__dirname + '/../views'+'/InventoryClassNotesAddedConfirmPage.html'));
 
-    console.log('this is in3 controllers');
+//Starting for Class Notes
+exports.getAllClassNotes = (req, res) => {
+  ClassNotes.findAllClassNotesRecords(req, res);
+}
+
+
+exports.addClassNotes = (req, res) => {
+  req.session.classNotesName= req.body.name;
+    req.session.classNotesSubject= req.body.subject;
+    req.session.classNotesDescription= req.body.description;
+    req.session.classNotesPrice= req.body.price;
+  req.session.classNotesUniversity= req.body.university;
+
+console.log('price set in session'+req.session.classNotesPrice);
+  res.sendFile(path.join(__dirname + '/../views'+'/InventoryUploadClassNotes.html'));
 
 };
 
+exports.uploadClassNotes= (req, res) => {
+  var sampleFile;
 
-exports.confirmModifyNotes = (req, res) => {
-  res.sendFile(path.join(__dirname + '/../views'+'/InventoryClassNotesModifiedPage.html'));
+  if (!req.files) {
+      res.send('No files were uploaded.');
+      return;
+  }
 
-    console.log('this is in 4 controllers');
+  sampleFile = req.files.sellerfile;
+  sampleFile.mv(__dirname +'/../classnotes/'+req.session.classNotesName+'.pdf', function(err) {
+      if (err) {
+          res.status(500).send(err);
+      }
+
+
+       {
+        ClassNotes.insertClassNotes(req,res);
+      }
+  });
+};// end of upload classnotes
+
+exports.getAddClassNotesPage = (req, res) => {
+
+  res.sendFile(path.join(__dirname + '/../views'+'/InventoryAddClassNotesPage.html'));
 
 };
 
-//for deleting notes
+exports.findClassNotesForId = (req, res) => {
+
+    Book.findClassNotesRecords(req, res);
+}
+
+exports.editClassNotesForId = (req, res) => {
+
+    Book.updateClassNoteRecords(req, res);
+}
+
+exports.deleteClassNotesForClassNotesId = (req, res) => {
+  req.session.classnotesId= req.body.classnotesId;
+ ClassNotes.deleteClassNotesForClassNotesId(req, res) ;
+    //console.log('this is in3 controllers');
+
+};

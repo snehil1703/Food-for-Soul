@@ -2,29 +2,61 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
-
-
+var ReturnOrder  = require('../models/ReturnOrder.js');
+var CancelOrder  = require('../models/CancelOrder.js');
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+exports.getReturnOrderFormPage = (req, res) => {
+  res.sendFile(path.join(__dirname + '/../views'+'/ReturnOrderFormPage.html'));
+}
+
+
+exports.getReturnOrderDetails = (req, res) => {
+  var orderDetails = {
+orderid:'51',
+price:'444',
+deliveryStatus:'Delivered'
+};
+console.log('hit');
+
+res.json(orderDetails);
+
+}
+
 exports.confirmReturnOrder = (req, res) => {
-      console.log('this is in controllers');
-      var keyName=req.query.Key;
-    console.log(keyName);
-
-  res.sendFile(path.join(__dirname + '/../views'+'/ReturnOrderConfirmPage.html'));
-
-
+ReturnOrder.insertReasonForReturn(req, res);
 
 
 };
 
 
-exports.confirmCancelOrder = (req, res) => {
-  res.sendFile(path.join(__dirname + '/../views'+'/CancelOrderConfirmPage.html'));
 
-    console.log('this is in controllers');
+
+//for cancel order
+
+exports.getCancelOrderFormPage = (req, res) => {
+  res.sendFile(path.join(__dirname + '/../views'+'/CancelOrderFormPage.html'));
+}
+
+
+exports.getCancelOrderDetails = (req, res) => {
+  var orderDetails = {
+orderid:'51',
+price:'444',
+deliveryStatus:'Delivered'
+};
+console.log('hit');
+
+res.json(orderDetails);
+
+}
+
+exports.confirmCancelOrder = (req, res) => {
+CancelOrder.insertReasonForCancel(req, res);
+
 
 };

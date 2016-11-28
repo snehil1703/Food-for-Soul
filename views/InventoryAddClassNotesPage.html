@@ -700,28 +700,23 @@
                         <div class="col-sm-6">
                             <h2>Add Class Notes</h2>
 
-<form method="POST" action="/InventoryAddClassNotes">
+<form method="POST" action="/addclassnotes">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Name of Notes</span>
-                                <input type="text" required="" class="form-control" placeholder="Name of Notes" required>
+                                <input type="text" class="form-control" placeholder="Name of Notes"  name="name" id="name">
                             </div><!-- End .input-group -->
 
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Author</span>
-                                <input type="text" required="" class="form-control" placeholder="Author" required>
-                            </div><!-- End .input-group -->
 
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Subject</span>
-                                <input type="text" required="" class="form-control" placeholder="Subject" required>
+                                <input type="text"  class="form-control" placeholder="Subject" name="subject" id="subject">
                             </div><!-- End .input-group -->
 
 
                                                         <div class="input-group input-group-sm">
                                                             <span class="input-group-addon">University</span>
-                                                            <input type="text" required="" class="form-control" placeholder="University" required>
+                                                            <input type="text"  class="form-control" placeholder="University" name="university" id="university">
                                                         </div><!-- End .input-group -->
                             <div class="row">
 
@@ -730,21 +725,21 @@
 
                            <div class="input-group textarea-container">
                                <span class="input-group-addon">Description</span>
-                               <textarea class="form-control" cols="30" rows="6" placeholder="Description" ></textarea>
+                               <textarea class="form-control" cols="30" rows="6" placeholder="Description"  name="description" id ="description" ></textarea>
                            </div><!-- End .input-group -->
                         </div><!-- End .col-sm-6 -->
                         </div><!-- row -->
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Price</span>
-                                <input type="number" required="" class="form-control" placeholder="Price" required>
+                                <input type="number" required="" class="form-control" placeholder="Price" name="price" id="price" required>
                             </div><!-- End .input-group -->
 
 
 
                    <div class="col-md-6">
 
-                     <button type="submit" class="btn btn-sm btn-custom">Return Order</button>
+                     <button type="submit" class="btn btn-sm btn-custom">Add Class Notes</button>
                 </div>
 </form>
 

@@ -609,11 +609,11 @@
 
                r[++j] ='<tr><td></td><td><div class="row">'
                r[++j] ='<div class="col-xs-6 col-lg-4">'
-               r[++j] ='<a href="/AddBook" class="btn btn-custom min-width">RETURN/REPLACE</a>'
+               r[++j] ='<button id="returnorder" class="btn btn-custom min-width" onclick="returnOrderFunction()">RETURN</button>'
                r[++j] ='</div></td><td><!-- End .col-lg-8-->'
                r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
                r[++j] ='<div class="col-xs-6 col-lg-4">'
-               r[++j] ='<td><button id="deleteBook" class="btn btn-danger min-width " onclick="deleteBookFunction()">CANCEL</button>'
+               r[++j] ='<button id="cancelorder" class="btn btn-danger min-width" onclick="cancelOrderFunction()">CANCEL</button>'
                r[++j] ='</div></td></tr><!-- End .col-lg-8-->'
                r[++j] ='</div><!-- End .row -->'
              $('#ordersTable').html(r.join(''));
@@ -623,53 +623,45 @@
 
           }); //  end ready
 
-          function modifyBookFunction() {
+          function returnOrderFunction() {
 
-            console.log($("input[name='bookId']:checked").val());
+            console.log($("input[name='orderId']:checked").val());
             var request = $.ajax({
           //  async:false,
-             url:  "/setbookid",
+             url:  "/setorderid",
              type: "POST",
-             data: { bookId: $("input[name='bookId']:checked").val()
-                  },
+             data:
+             {
+                orderId: $("input[name='orderId']:checked").val()
+             },
           success: function(res) {
                       //console.log(res);
                         //alert(res);
-               window.location.href = "/editbook";
+               window.location.href = "/returnorder";
+                         }
+            });
+          }// end modify click
+
+          function cancelOrderFunction() {
+
+            console.log($("input[name='orderId']:checked").val());
+            var request = $.ajax({
+          //  async:false,
+             url:  "/setorderid",
+             type: "POST",
+             data:
+             {
+                orderId: $("input[name='orderId']:checked").val()
+             },
+          success: function(res) {
+                      //console.log(res);
+                        //alert(res);
+               window.location.href = "/cancelorder";
                          }
             });
           }// end modify click
 
 
-          function deleteBookFunction() {
-
-            console.log($("input[name='bookId']:checked").val());
-            var request = $.ajax({
-          //  async:false,
-             url:  "/deletebook",
-             type: "DELETE",
-             data: { bookId: $("input[name='bookId']:checked").val()
-                  },
-          success: function(res) {
-                      //console.log(res);
-                        alert('deleted');
-             window.location.href = "/managebooks";
-                         }
-            });
-          }// end delete click
-
-
-          function addBook() {
-
-              var request = $.ajax({
-               url:  "/addbookpage",
-               type: "GET",
-               success: function(res) {
-             window.location.href = "/addbookpage";
-           }
-         });
-
-      }
         </script>
         <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
         (Load Extensions only on Local File Systems !

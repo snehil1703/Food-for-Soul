@@ -80,6 +80,7 @@ savedCards.findAll({
 //To update payment card details
  exports.updateCardRecords = (req, res) => {
 
+console.log(req.session.cardId);
    savedCards.update(
    {
      CardHolderName: req.body.CardHolderName,

@@ -103,9 +103,7 @@ exports.getAllCards = (req, res) => {
 
  //Update payment Card Infor
  exports.updateCard = (req, res) => {
-     console.log(req.body.cardId);
-   req.session.cardId= req.body.cardId;
-    console.log(req.body.cardId);
+
    paymentCard.updateCardRecords(req, res);
  }
 //Deletes a particular payment card of a buyer
@@ -116,14 +114,20 @@ exports.deleteCardForCardId = (req, res) => {
 
 };
 
-exports.setBuyerIdSession = (req, res) => {
-    console.log(req.body.buyerId);
-  req.session.buyerId= req.body.buyerId;
-  res.sendStatus(200);
-  };
+exports.setBuyerIdSession = (req, res) =>
+ {
+   req.session.buyerId= req.body.buyerId;
+   res.sendStatus(200);
+ };
 
-exports.setCardIdSession = (req, res) => {
-      console.log(req.body.cardId);
+exports.setCardIdSession = (req, res) =>
+ {
     req.session.cardId= req.body.cardId;
     res.sendStatus(200);
-    };
+ };
+
+exports.setOrderIdSession = (req, res) =>
+{
+    req.session.orderId= req.body.orderId;
+    res.sendStatus(200);
+};

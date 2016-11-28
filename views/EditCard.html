@@ -657,8 +657,9 @@
                  url:  "/updatecard",
                  type: "PUT",
                  data:
+
                  {
-                   cardId: $("input[name='cardId']:checked").val(),
+                   cardId: $("#cardId").val(),
                    CardHolderName : $("#CardHolderName").val(),
                    CardNumber:$("#CardNumber").val(),
                    ValidTill:$("#ValidTill").val(),

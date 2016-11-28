@@ -130,8 +130,8 @@ app.get('/Newsletter', adminDashboardController.newsletter);
 
 app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
 app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
-app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
-app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
+//app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
+//app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
 //app.post('/InventoryAddBooks', inventoryManagementController.confirmAddBooks);
 //app.post('/Login', loginController.confirmLogin);
 app.post('/Registersuccessbuyer', registerBuyerController.confirmRegistrationbuyer);
@@ -205,6 +205,8 @@ app.post('/getbookforid', inventoryManagementController.getBook);
 //call to update book with modified details for a given id
 app.put('/modifybook',inventoryManagementController.editBook);
 
+// fetches list if all classnotes for a given seller id
+app.post('/sellerclassnoteslist',inventoryManagementController.getAllClassNotes);
 
 //app.get('/editbook/:id',inventoryManagementController.getEditBookPage );
 
@@ -214,11 +216,17 @@ app.get('/editbook',inventoryManagementController.getEditBookPage);
 // setting selected book id in session
 app.post('/setbookid',inventoryManagementController.setBookIdSession);
 
+// setting selected class notes id in session
+app.post('/setclassnotesid',inventoryManagementController.setClassNotesIdSession);
+
 // setting selected buyer id in session
 app.post('/setbuyerid',dashboardController.setBuyerIdSession);
 
 // setting selected card id in session
 app.post('/setcardid',dashboardController.setCardIdSession);
+
+// setting selected order id in session
+app.post('/setorderid',dashboardController.setOrderIdSession);
 
 // fetches payment record for selected card id to be modified by buyer
 app.post('/getcardforid', dashboardController.getCard);
@@ -230,6 +238,28 @@ app.post('/addbooksuccess',inventoryManagementController.uploadImage);
 
 // call to delete selected book id
 app.delete('/deletebook',inventoryManagementController.deleteBookForBookId);
+
+// call to delete selected class notes id
+app.delete('/deleteclassnotes',inventoryManagementController.deleteClassNotesForClassNotesId);
+
+// for adding class notes
+app.get('/addclassnotespage', inventoryManagementController.getAddClassNotesPage);
+app.post('/addclassnotes', inventoryManagementController.addClassNotes);
+app.post('/uploadclassnotes', inventoryManagementController.uploadClassNotes);
+
+//for modifyin classnotes
+app.get('/addclassnotespage', inventoryManagementController.getAddClassNotesPage);
+app.post('/getclassnotesforid', inventoryManagementController.findClassNotesForId);
+app.post('/editclassnotes', inventoryManagementController.editClassNotesForId);
+
+
+app.get('/returnorder', returnController.getReturnOrderFormPage);
+app.get('/returnorderdetails', returnController.getReturnOrderDetails);
+app.post('/returnorderconfirm', returnController.confirmReturnOrder);
+
+app.get('/cancelorder', returnController.getCancelOrderFormPage);
+app.get('/cancelorderdetails', returnController.getCancelOrderDetails);
+app.post('/cancelorderconfirm', returnController.confirmCancelOrder);
 
 
 console.log('Server UP! Go 8080');

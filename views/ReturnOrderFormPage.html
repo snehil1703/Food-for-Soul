@@ -31,8 +31,8 @@
             <header class="header sticky-header">
                 <div class="container-fluid">
                     <div class="logo">
-                        <a href="/" title="FoodForSoul">
-                            <img src="assets/images/logo.png" alt="Sconto">
+                        <a href="index.html" title="FoodForSoul">
+                            <img src="assets/images/logo.png" alt="FoodForSoul">
                         </a>
                     </div><!-- End .logo -->
 
@@ -395,7 +395,7 @@
                                             <li><a href="contact2.html">Contact Us 2</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="404.html">404</a></li>
+                                    <li><a href=1"404.html">404</a></li>
                                     <li><a href="login.html">Login</a></li>
                                     <li><a href="register.html">Register</a></li>
                                 </ul>
@@ -700,18 +700,14 @@
                         <div class="col-sm-6">
                             <h2>Return Order</h2>
 
-<form method="POST" action="/ReturnOrderConfirmPage">
+<form method="POST" action="/returnorderconfirm">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Order ID</span>
-                                <input type="text" required="" class="form-control" placeholder="Order ID" disabled>
+                                <input type="text" required="" name="orderid" id="orderid" class="form-control" placeholder="Order ID" disabled>
                             </div><!-- End .input-group -->
 
 
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Name of Book</span>
 
-                                <input type="text" required="" name="name" id="name" class="form-control" placeholder="Name of Book" disabled>
-                            </div><!-- End .input-group -->
 
 
                             <div class="input-group input-group-sm">
@@ -724,14 +720,14 @@
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Delivery Status</span>
-                                <input type="text" required="" name="deliveryStatus" id="delivery Status" class="form-control" placeholder="Delivery Status" disabled>
+                                <input type="text" required="" name="deliveryStatus" id="deliveryStatus" class="form-control" placeholder="Delivery Status" disabled>
                             </div><!-- End .input-group -->
 
-                            <select class="form-control" name="reason" id="reason">
+                            <select class="form-control" name="reasonforreturn" id="reasonforreturn">
                                                             <option>Reason for Return</option>
-                                                            <option>Wrong Order</option>
-                                                            <option>Damaged Product</option>
-                                                            <option>Didnt meet expectations</option>
+                                                            <option value="Wrong Order">Wrong Order</option>
+                                                            <option value="Damaged Product">Damaged Product</option>
+                                                            <option value="Didnt meet expectations">Didnt meet expectations</option>
 
                                                         </select>
 
@@ -739,7 +735,7 @@
                                                         <div class="col-md-6">
 
                                                                                     <!-- <a href="/ReturnOrderConfirmPage" class="btn btn-sm btn-custom">Return Order</a> -->
-                                                                                    <button type="submit" class="btn btn-sm btn-custom">Return Order</button>
+                                                                                    <input type="submit" class="btn btn-sm btn-custom">Return Order</button>
                                                                                 </div>
 <form>
 
@@ -883,6 +879,31 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js'></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src='/app.js'></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+<script>
+
+  $( document ).ready(function() {
+  alert( "ready!" );
+
+    // var st = window.location + '';
+    // var splits = st.split('/');
+    // var bookId = splits[splits.length-1];
+    // console.log(bookId);
+    var request = $.ajax({
+     url:  "/returnorderdetails",
+     type: "GET",
+     success: function(data) {
+       var orderDetails = JSON.parse(data);
+       $( "#orderid" ).val(orderDetails['orderid']);
+       $( "#price" ).val(orderDetails['price']);
+       $( "#deliveryStatus" ).val(orderDetails['deliveryStatus']);
+       }
+    });
+
+
+
+  });
+</script>
     </body>
 </html>
