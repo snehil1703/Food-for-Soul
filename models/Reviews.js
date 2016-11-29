@@ -20,28 +20,10 @@ var reviewrecords = sequelize.define('review_records', {
       primaryKey: true
     },
 
-  bookId:
-  {
-      type: Sequelize.INTEGER,
-      field: 'bookID',
-      primaryKey: true
-  },
-  notesId:
-  {
-      type: Sequelize.INTEGER,
-      field: 'reviewID',
-      primaryKey: true
-  },
-
-  bookName:
+  productName:
   {
       type: Sequelize.STRING,
-      field: 'bookName'
-  },
-  notesName:
-  {
-      type: Sequelize.STRING,
-      field: 'notesName'
+      field: 'productName'
   },
   rating:
   {
@@ -74,6 +56,23 @@ reviewrecords.findAll(
   .then(function(result)
   {
     var x  = result;
+    res.json(x);
+  });
+};
+
+
+exports.findTopRated = (req, res) => {
+reviewrecords.findAll(
+  {
+    where:
+    {
+      $or: [{rating :'5'}, {rating :'4'}]
+
+    }
+  })
+  .then(function(result)
+  {
+    var x  =result;
     res.json(x);
   });
 };

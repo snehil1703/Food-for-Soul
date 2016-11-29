@@ -1,3 +1,4 @@
+
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -230,6 +231,15 @@ app.post('/setorderid',dashboardController.setOrderIdSession);
 
 // fetches payment record for selected card id to be modified by buyer
 app.post('/getcardforid', dashboardController.getCard);
+
+// fetches Top rated records for newsletter
+app.post('/getTopRated', dashboardController.getTopRated);
+
+// fetches new Records for newsletter
+app.post('/getnewProducts', sellerDashboardController.getnewProducts);
+
+// fetches new Offers with discount > 30% for newsletter
+app.post('/getNewOffers', sellerDashboardController.getNewOffers);
 
 //call to get the confirmation htmls
 app.get('/editbooksuccess',inventoryManagementController.getBookkEditSuccessPage );

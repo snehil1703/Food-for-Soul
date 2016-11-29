@@ -44,6 +44,12 @@ exports.getCard = (req, res) => {
   paymentCard.findCardRecords(req, res);
 }
 
+//To get Top rated Products
+exports.getTopRated = (req, res) => {
+  buyerReviews.findTopRated(req, res);
+}
+
+
 
 exports.myOrders = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/MyOrders.html'));

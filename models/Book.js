@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
-   timestamps: false // true by default
+   timestamps: true
  }
 });
 
@@ -61,7 +61,7 @@ var bookrecords = sequelize.define('book_records', {
     category:{
       type: Sequelize.STRING,
       field: 'category'
-    }
+    },
 });
 
 
@@ -70,7 +70,9 @@ exports.insertBookRecords = (req, res) => {
   console.log(''+req.body.name);
   console.log(''+req.body.discountEndDate);
   console.log(''+req.body.discountApplicable1);
-  sequelize.sync().then(function() {
+  sequelize.sync({
+    force: true
+  }).then(function() {
     return bookrecords.create({
       bookName: req.body.name,
       author: req.body.author,
@@ -180,7 +182,40 @@ res.sendStatus(200);
 
   };
 
+  exports.findNewProducts = (req, res) => {
+  bookrecords.findAll(
+    {
+      where:
+      {
+        createdAt:
+         {
+           $gt: new Date(new Date() - 24 * 60 * 60 * 1000)
+         }
+      }
+    })
+    .then(function(result)
+    {
+      var x  =result;
+      res.json(x);
+    });
+  };
 
-
+  exports.findNewOffers = (req, res) => {
+  bookrecords.findAll(
+    {
+      where:
+      {
+        discountRate:
+         {
+           $gt: 30
+         }
+      }
+    })
+    .then(function(result)
+    {
+      var x  =result;
+      res.json(x);
+    });
+  };
 
 //module.exports=Book;

@@ -581,6 +581,7 @@
                r[++j] = '<thead>'
                r[++j] =   '<tr>'
                r[++j] =     '<th class="product-col">Review ID</th>'
+               r[++j] =     '<th class="product-col">Product Name</th>'
                r[++j] =   '<th class="code-col">Rating</th>'
                r[++j] =   '  <th class="price-col">Review</th>'
                r[++j] =   '</tr>'
@@ -592,6 +593,8 @@
                   //To add book/notes name based of which review is provided
                    r[++j] ='<tr><td>';
                    r[++j] = jsonData[i].reviewId;
+                   r[++j] ='</td><td class="">';
+                   r[++j] = jsonData[i].productName;
                    r[++j] ='</td><td class="">';
                    r[++j] = jsonData[i].rating;
                    r[++j] = '</td><td class="">';
