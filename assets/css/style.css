@@ -4177,19 +4177,46 @@ select.form-control.input-lg {
 
 @media (min-width: 992px) {
   .header-search-container {
-    width: auto;
+    width: 350px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .header-search-container {
+    width: 400px;
+  }
+}
+@media (min-width: 1200px) {
+  .header-search-container {
+    width: 450px;
+  }
+}
+@media (min-width: 1300px) {
+  .header-search-container {
+    width: 500px;
+  }
+}
+@media (min-width: 1400px) {
+  .header-search-container {
+    width: 550px;
+  }
+}
+@media (min-width: 1500px) {
+  .header-search-container {
+    width: 600px;
   }
 }
 
 @media (min-width: 1600px) {
   .header-search-container {
-    width: 380px;
+    width: 650px;
     margin-left: 50px;
   }
 }
 
 @media (min-width: 1920px) {
   .header-search-container {
+    width: 800px;
     margin-left: 140px;
   }
 }
@@ -4236,26 +4263,20 @@ select.form-control.input-lg {
   color: #fff;
   font-size: 11px;
   line-height: 1.5;
-  width: 140px;
+  width: 0px;
   font-weight: 600;
   transition: all 0.4s;
 }
 
 @media (min-width: 992px) {
   .header-search-container .dropdown.search-dropdown > a {
-    width: 176px;
-    font-size: 13px;
-    padding: 12px 30px 9px 22px;
+    width: 0px;
   }
 }
 
 .header-search-container .dropdown.search-dropdown .dropdown-menu {
-  width: 100%;
-  border: 1px solid #51cdeb;
-  font-size: 11px;
-  padding: 10px 20px 7px;
-  box-shadow: none;
-  min-width: 140px;
+  width: 0px;
+  min-width: 0px;
 }
 
 .header-search-container .dropdown.search-dropdown .dropdown-menu li {
@@ -4268,8 +4289,6 @@ select.form-control.input-lg {
 
 .header-search-container .dropdown.search-dropdown .dropdown-menu li a {
   color: #777777;
-  padding: 4px 0;
-  font-weight: 500;
 }
 
 .header-search-container .dropdown.search-dropdown .dropdown-menu li a:hover, .header-search-container .dropdown.search-dropdown .dropdown-menu li a:focus {
@@ -4278,13 +4297,13 @@ select.form-control.input-lg {
 }
 
 .header-search-container .dropdown.search-dropdown.open > a, .header-search-container .dropdown.search-dropdown:hover > a, .header-search-container .dropdown.search-dropdown:focus > a {
-  border-radius: 20px 0 0 0;
+  border-radius: 0 0 0 0;
 }
 
 .header-search-container .form-control {
   height: 36px;
   font-size: 13px;
-  padding: 10.5px 66px 7.5px 150px;
+  padding: 10.5px 40px 7.5px 10px;
   color: #666;
   border: none;
   margin: 0;
@@ -4294,7 +4313,7 @@ select.form-control.input-lg {
 
 @media (min-width: 992px) {
   .header-search-container .form-control {
-    padding-left: 190px;
+    padding-left: 10px;
   }
 }
 
