@@ -361,7 +361,7 @@
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
 
 
-<!--START OF ORDERS TABLE -->
+<!--START OF REVIEWS TABLE -->
             <div class="main">
                 <div class="page-header">
                     <div class="container-fluid">
@@ -372,104 +372,22 @@
                         </ol>
                     </div><!-- End .container-fluid -->
                 </div><!-- End .page-header -->
-<br><br>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-10">
+<br>
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered cart-table">
-                                    <thead>
-                                        <tr>
-                                            <th class="product-col">Serial Number</th>
-                                            <th class="code-col">Review ID</th>
-                                            <th class="price-col">Product ID</th>
-                                            <th class="quantity-col">Product Name</th>
-                                            <th class="subtotal-col">Rating</th>
-                                            <th class="delete-col">Review</th>
-                                        </tr>
-                                    </thead>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
 
-                                    <tbody>
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-                                                  <div class="product-price-container">
-                                                    <span class="product-price">1</span>
-                                                </div><!-- End .product-price-container -->
-                                                    </div><!-- End .product -->
-                                            </td>
-                                            <td class="code-col">PR_01</td>
-                                            <td class="price-col">
-                                                <div class="product-price-container">
-                                                    <span class="product-price">P_1</span>
-                                                </div><!-- End .product-price-container -->
-                                            </td>
-                                            <td class="quantity-col">
-                                                To kill a mockingbird
-                                            </td>
-                                            <td class="subtotal-col">4</td>
-                                            <td><span class="product-price">Nice</span></td>
-                                        </tr>
+            <div class="table-responsive">
+                <table class="table table-bordered cart-table" id="reviewsTable" name ="reviewsTable">
 
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-                                                          <div class="product-price-container">
-                                                    <span class="product-price">2</span>
-                                                </div><!-- End .product-price-container -->
-
-                                                    </div><!-- End .product-content-wrapper -->
-                                                </div><!-- End .product -->
-                                            </td>
-                                            <td class="code-col">PR_02</td>
-                                            <td class="price-col">
-                                                <div class="product-price-container">
-                                                    <span class="product-price">P_3</span>
-                                                </div><!-- End .product-price-container -->
-                                            </td>
-                                            <td class="quantity-col">
-                                                Godfather
-                                            </td>
-                                            <td class="subtotal-col">5</td>
-                                            <td><span class="product-price">Great Read</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="product-col">
-                                                <div class="product">
-                                                    <div class="product-price-container">
-                                                    <span class="product-price">3</span>
-                                                </div><!-- End .product-price-container -->
-
-                                                </div><!-- End .product -->
-                                            </td>
-                                            <td class="code-col">PR_03</td>
-                                            <td class="price-col">
-                                                <div class="product-price-container">
-                                                    <span class="product-price">P_6</span>
-                                                </div><!-- End .product-price-container -->
-                                            </td>
-                                            <td class="quantity-col">
-                                                Freakonomics
-                                            </td>
-                                            <td class="subtotal-col">3</td>
-                                            <td><span class="product-price">Interesting</span></td>
-										 </tr>
-                                    </tbody>
-                                </table>
-                            </div><!-- End .table-responsive -->
-
-
-                        </div><!-- End .col-md-9 -->
-
-
-                    </div><!-- End .row -->
-                </div><!-- End .container-fluid -->
-            </div><!-- End .main -->
-
-<!--END OF ORDERS TABLE -->
-
+                </table>
+            </div><!-- End .table-responsive -->
+        </div><!-- End .col-md-9 -->
+    </div><!-- End .row -->
+</div><!-- End .container-fluid -->
+</div><!-- End .main -->
+<!--END OF REVIEWS TABLE -->
 
 
 
@@ -647,6 +565,53 @@
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
+
+
+            var request = $.ajax({
+             url:  "/reviewlist",
+             type: "POST",
+             success: function(data)
+                {
+               var r = new Array(), j = -1;
+               var jsonData = JSON.parse(data);
+
+               r[++j] = '<thead>'
+               r[++j] =   '<tr>'
+               r[++j] =     '<th class="product-col">Review ID</th>'
+               r[++j] =     '<th class="product-col">Product Name</th>'
+               r[++j] =   '<th class="code-col">Rating</th>'
+               r[++j] =   '  <th class="price-col">Review</th>'
+               r[++j] =   '</tr>'
+               r[++j] =   '</thead>'
+
+               for (var i = 0; i < jsonData.length; i++) {
+                   var counter = jsonData[i];
+
+                  //To add book/notes name based of which review is provided
+                   r[++j] ='<tr><td>';
+                   r[++j] = jsonData[i].reviewId;
+                   r[++j] ='</td><td class="">';
+                   r[++j] = jsonData[i].productName;
+                   r[++j] ='</td><td class="">';
+                   r[++j] = jsonData[i].rating;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].review;
+                   r[++j] = '</td></tr>';
+
+               }
+
+             $('#reviewsTable').html(r.join(''));
+             }
+
+           });// rend request
+
+          }); //  end ready
+
+        </script>
+
 
         <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
         (Load Extensions only on Local File Systems !

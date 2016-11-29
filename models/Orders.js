@@ -8,72 +8,49 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
-   timestamps: true
+   timestamps: false // true by default
  }
 });
 
-var bookrecords = sequelize.define('book_records', {
-  bookId: {
+var orderrecords = sequelize.define('orders_records', {
+  orderId:
+   {
       type: Sequelize.INTEGER,
-      field: 'bookID',
+      field: 'orderID',
       primaryKey: true
     },
-  bookName: {
+  buyerId:
+  {
+        type: Sequelize.INTEGER,
+        field: 'buyerID',
+  },
+
+  deliveryDate:
+  {
       type: Sequelize.STRING,
-      field: 'bookName'
-    },
-    author:{
+      field: 'deliveryDate'
+  },
+  orderStatus:
+  {
       type: Sequelize.STRING,
-      field: 'author'
-    },
-    isbn:{
-      type: Sequelize.STRING,
-      field: 'isbn'
-    },
-    price:{
+      field: 'orderStatus'
+  },
+  price:
+  {
       type: Sequelize.INTEGER,
       field: 'price'
-    },
-    quantity:{
-      type: Sequelize.INTEGER,
-      field: 'quantity'
-    },
-    description:{
-      type: Sequelize.STRING,
-      field: 'description'
-    },
-    discountApplicable:{
-      type: Sequelize.STRING,
-      field: 'discountApplicable'
-    },
-    discountRate:{
-      type: Sequelize.INTEGER,
-      field: 'discountRate'
-    },
-    couponCode:{
-      type: Sequelize.STRING,
-      field: 'couponCode'
-    },
-    sellerID:{
-      type: Sequelize.STRING,
-      field: 'sellerID'
-    },
-    category:{
-      type: Sequelize.STRING,
-      field: 'category'
-    },
+  }
+
 });
 
 
 
-exports.insertBookRecords = (req, res) => {
+exports.insertOrderRecords = (req, res) => {
   console.log(''+req.body.name);
   console.log(''+req.body.discountEndDate);
   console.log(''+req.body.discountApplicable1);
-  sequelize.sync({
-    force: true
-  }).then(function() {
-    return bookrecords.create({
+  sequelize.sync().then(function() {
+    return orderrecords.create({
       bookName: req.body.name,
       author: req.body.author,
       description:req.body.description,
@@ -97,10 +74,10 @@ exports.insertBookRecords = (req, res) => {
 
 };
 
-exports.findBookRecords = (req, res) => {
+exports.findOrderRecords = (req, res) => {
   //var x =req.session.bookId;
 //  console.log(x);
-    bookrecords.findById(req.session.bookId).then(function(result) {
+    orderrecords.findById(req.session.bookId).then(function(result) {
       var x = {
     name:result.bookName,
     author:result.author,
@@ -121,10 +98,10 @@ res.json(x);
   });
 }
 
-exports.updateBookRecords = (req, res) => {
+exports.updateOrderRecords = (req, res) => {
 //var check =   JSON.parse(req.body);
 
-  bookrecords.update({
+  orderrecords.update({
     bookName: req.body.name,
     author: req.body.author,
     description:req.body.description,
@@ -148,29 +125,28 @@ exports.updateBookRecords = (req, res) => {
 })
 };
 
-exports.findAllBookRecords = (req, res) => {
-//var check =   JSON.parse(req.body);
-bookrecords.findAll({
-  where: {
-  //  author:req.params.author
-  sellerID : '17'
-  }
-}).then(function(result) {
+exports.findAllOrderRecords = (req, res) => {
+orderrecords.findAll(
+  {
+    where:
+    {
+        buyerID : '1'
+      }
+  })
+  .then(function(result)
+  {
+    var x  = result;
+    console.log(result.length);
 
-  var x  = result;
-  console.log(result.length);
-
-
-   res.json(x);
-});
-
- };
+    res.json(x);
+  });
+};
 
 
  //Deleting a book record
  exports.deleteBookForBookId = (req, res) => {
  //var check =   JSON.parse(req.body);
- bookrecords.destroy({
+ orderrecords.destroy({
    where: {
    //  author:req.params.author
    bookId : req.session.bookId
@@ -182,40 +158,7 @@ res.sendStatus(200);
 
   };
 
-  exports.findNewProducts = (req, res) => {
-  bookrecords.findAll(
-    {
-      where:
-      {
-        createdAt:
-         {
-           $gt: new Date(new Date() - 24 * 60 * 60 * 1000)
-         }
-      }
-    })
-    .then(function(result)
-    {
-      var x  =result;
-      res.json(x);
-    });
-  };
 
-  exports.findNewOffers = (req, res) => {
-  bookrecords.findAll(
-    {
-      where:
-      {
-        discountRate:
-         {
-           $gt: 30
-         }
-      }
-    })
-    .then(function(result)
-    {
-      var x  =result;
-      res.json(x);
-    });
-  };
+
 
 //module.exports=Book;

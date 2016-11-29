@@ -1,3 +1,4 @@
+
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -207,7 +208,7 @@ app.get('/Home_Notes/Science/Sports',all_productController.N_Sports);
 app.get('/CancelOrder', dashboardController.cancelOrder);
 app.get('/ReturnOrder', dashboardController.returnReplace);
 app.get('/AddCard', dashboardController.addCard);
-app.get('/EditCard', dashboardController.editCard);
+app.get('/editcard', dashboardController.editCard);
 app.get('/MyOrders', dashboardController.myOrders);
 app.get('/MySavedCards', dashboardController.mySavedCards);
 app.get('/ReviewRating', dashboardController.reviewRating);
@@ -248,8 +249,8 @@ app.get('/Newsletter', adminDashboardController.newsletter);
 
 app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
 app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
-app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
-app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
+//app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
+//app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
 //app.post('/InventoryAddBooks', inventoryManagementController.confirmAddBooks);
 //app.post('/Login', loginController.confirmLogin);
 app.post('/Registersuccessbuyer', registerBuyerController.confirmRegistrationbuyer);
@@ -284,6 +285,23 @@ app.post('/buyerProfile',dashboardController.getbuyerProfile);
 //Updates the changes made to the buyer profile
 app.put('/updatebuyer',dashboardController.updateBuyer);
 
+// fetches list if all orders for a given buyer id
+app.post('/buyerorderlist',dashboardController.getAllOrders);
+
+// fetches list if all reviews for a given buyer id
+app.post('/reviewlist',dashboardController.getAllReviews);
+
+// fetches list if all payment cards for a given buyer id
+app.post('/carddetailslist',dashboardController.getAllCards);
+
+//inserts new payment card details to database
+app.post('/NewCard', dashboardController.newCard);
+
+//Updates the changes made to the payment card
+app.put('/updatecard',dashboardController.updateCard);
+
+// call to delete selected payment card
+app.delete('/deletecard',dashboardController.deleteCardForCardId);
 
 //fetches admin profile from the database
 app.post('/adminProfile',adminDashboardController.getAdminProfile);
@@ -306,6 +324,8 @@ app.post('/getbookforid', inventoryManagementController.getBook);
 //call to update book with modified details for a given id
 app.put('/modifybook',inventoryManagementController.editBook);
 
+// fetches list if all classnotes for a given seller id
+app.post('/sellerclassnoteslist',inventoryManagementController.getAllClassNotes);
 
 //app.get('/editbook/:id',inventoryManagementController.getEditBookPage );
 
@@ -315,6 +335,30 @@ app.get('/editbook',inventoryManagementController.getEditBookPage);
 // setting selected book id in session
 app.post('/setbookid',inventoryManagementController.setBookIdSession);
 
+// setting selected class notes id in session
+app.post('/setclassnotesid',inventoryManagementController.setClassNotesIdSession);
+
+// setting selected buyer id in session
+app.post('/setbuyerid',dashboardController.setBuyerIdSession);
+
+// setting selected card id in session
+app.post('/setcardid',dashboardController.setCardIdSession);
+
+// setting selected order id in session
+app.post('/setorderid',dashboardController.setOrderIdSession);
+
+// fetches payment record for selected card id to be modified by buyer
+app.post('/getcardforid', dashboardController.getCard);
+
+// fetches Top rated records for newsletter
+app.post('/getTopRated', dashboardController.getTopRated);
+
+// fetches new Records for newsletter
+app.post('/getnewProducts', sellerDashboardController.getnewProducts);
+
+// fetches new Offers with discount > 30% for newsletter
+app.post('/getNewOffers', sellerDashboardController.getNewOffers);
+
 //call to get the confirmation htmls
 app.get('/editbooksuccess',inventoryManagementController.getBookkEditSuccessPage );
 app.get('/addbookimage',inventoryManagementController.getBookAddSuccessPage );
@@ -322,6 +366,28 @@ app.post('/addbooksuccess',inventoryManagementController.uploadImage);
 
 // call to delete selected book id
 app.delete('/deletebook',inventoryManagementController.deleteBookForBookId);
+
+// call to delete selected class notes id
+app.delete('/deleteclassnotes',inventoryManagementController.deleteClassNotesForClassNotesId);
+
+// for adding class notes
+app.get('/addclassnotespage', inventoryManagementController.getAddClassNotesPage);
+app.post('/addclassnotes', inventoryManagementController.addClassNotes);
+app.post('/uploadclassnotes', inventoryManagementController.uploadClassNotes);
+
+//for modifyin classnotes
+app.get('/addclassnotespage', inventoryManagementController.getAddClassNotesPage);
+app.post('/getclassnotesforid', inventoryManagementController.findClassNotesForId);
+app.post('/editclassnotes', inventoryManagementController.editClassNotesForId);
+
+
+app.get('/returnorder', returnController.getReturnOrderFormPage);
+app.get('/returnorderdetails', returnController.getReturnOrderDetails);
+app.post('/returnorderconfirm', returnController.confirmReturnOrder);
+
+app.get('/cancelorder', returnController.getCancelOrderFormPage);
+app.get('/cancelorderdetails', returnController.getCancelOrderDetails);
+app.post('/cancelorderconfirm', returnController.confirmCancelOrder);
 
 
 console.log('Server UP! Go 8080');

@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var seller  = require('../models/Seller.js');
-
+var book  = require('../models/Book.js');
 
 
 
@@ -81,4 +81,12 @@ exports.getsellerProfile = (req, res) => {
 //Update seller profile
 exports.updateSeller = (req, res) => {
   seller.updateSellerRecords(req, res);
+}
+//To get Top rated Products
+exports.getnewProducts = (req, res) => {
+  book.findNewProducts(req, res);
+}
+//To get products with offers more than 30% Products
+exports.getNewOffers = (req, res) => {
+  book.findNewOffers(req, res);
 }
