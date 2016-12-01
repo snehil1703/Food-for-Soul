@@ -270,6 +270,7 @@ app.post('/returnorderconfirm', returnController.confirmReturnOrder);
 app.get('/cancelorder', returnController.getCancelOrderFormPage);
 app.get('/cancelorderdetails', returnController.getCancelOrderDetails);
 app.post('/cancelorderconfirm', returnController.confirmCancelOrder);
+app.post('/pushMail', adminDashboardController.sendEmailToUsers);
 
 
 console.log('Server UP! Go 8080');

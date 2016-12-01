@@ -383,7 +383,7 @@
                                                               <div class="container-fluid">
                                                                   <div class="row">
                                                                       <div class="col-md-10">
-
+                                                                         <form method = "POST" action="/pushMail">
                                                                           <div class="table-responsive">
                                                                               <table class="table table-bordered cart-table">
                                                                                   <thead>
@@ -432,13 +432,13 @@
                                                                               </table>
                                                                           </div><!-- End .table-responsive -->
                                                                           <div>
-                                                                             <textarea id="mailText"placeholder="Enter your mail here" style="width: 100%" rows = "5" columns="10" ></textarea>
+                                                                             <textarea id="mailText" name="mailText"placeholder="Enter your mail here" style="width: 100%" rows = "5" columns="10" ></textarea>
                                                                           </div>
                                                                           <div class="row">
                                                                               <div class="col-xs-6 col-lg-4">
                                                                                   <button onclick="alert('Mail sent to subscribers')" class="btn btn-custom min-width">PUSH</a>
                                                                               </div><!-- End .col-lg-8-->
-
+                                                                            </form>
 
 
                                                                           </div><!-- End .row -->
@@ -639,6 +639,10 @@
                 {
                   url:  "/getTopRated",
                   type: "POST",
+                  data:
+                   {
+                    mailText: $("input[name='mailText").val()
+                   },
                 //  data:
                   success: function(data)
                   {
