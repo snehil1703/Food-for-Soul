@@ -118,7 +118,7 @@ exports.sendEmail = (req, res) =>
       emails = result;
       for(var i = 0; i<emails.length;i++)
         console.log(emails[i].buyerEmail);
-        console.log('mail content  '+document.getElementById('mailText').value);
+        // console.log('mail content  '+document.getElementById('mailText').value);
     });
 
     var transporter = nodemailer.createTransport(
@@ -135,9 +135,9 @@ exports.sendEmail = (req, res) =>
     var mailOptions =
     {
         from: 'foodforsoul.16@gmail.com', // sender address
-        to:    'prasan.ubhi@gmail.com', // list of receivers
-        subject: 'Test Mail', // Subject line
-        text:  'req.body.mailText'//, // plaintext body
+        to:    'prasan.ubhi@gmail.com, csiddartharao@gmail.com',// list of receivers
+        subject: 'Hello From FoodForSoul', // Subject line
+        text:  req.session.mailText//, // plaintext body
         // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
 
     };

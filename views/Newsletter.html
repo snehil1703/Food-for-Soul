@@ -635,15 +635,17 @@
             myRating.onchange = function()
             {
                //mytextbox.value = mytextbox.value  + this.value; //to appened
+
+
                 var request = $.ajax(
                 {
                   url:  "/getTopRated",
                   type: "POST",
                   data:
                    {
-                    mailText: $("input[name='mailText").val()
+                    mailText: $("#mailText").val()
                    },
-                //  data:
+                
                   success: function(data)
                   {
 
@@ -662,6 +664,7 @@
 
                     x = x + '\n \n' + 'Regards, \n' + 'FoodForSoul'
                     $( "#mailText" ).val(x);
+                      console.log('hello '+$("#mailText").val());
                   }
                 });
             };
@@ -669,10 +672,15 @@
             newProd.onchange = function()
             {
                //mytextbox.value = mytextbox.value  + this.value; //to appened
+                console.log('hello'+$("#mailText").val());
                 var request = $.ajax(
                 {
                   url:  "/getnewProducts",
                   type: "POST",
+                  data:
+                   {
+                    mailText: $("#mailText").val()
+                   },
                 //  data:
                   success: function(data)
                   {
@@ -699,10 +707,16 @@
             newOffers.onchange = function()
             {
                //mytextbox.value = mytextbox.value  + this.value; //to appened
+               console.log('hello'+$("#mailText").val());
+
                 var request = $.ajax(
                 {
                   url:  "/getNewOffers",
                   type: "POST",
+                  data:
+                   {
+                    mailText: $("#mailText").val()
+                   },
                 //  data:
                   success: function(data)
                   {

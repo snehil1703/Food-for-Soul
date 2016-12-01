@@ -75,4 +75,8 @@ reviewrecords.findAll(
     var x  =result;
     res.json(x);
   });
+
+
+
+
 };

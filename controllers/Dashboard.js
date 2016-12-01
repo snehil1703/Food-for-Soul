@@ -47,8 +47,9 @@ exports.getCard = (req, res) => {
 //To get Top rated Products
 exports.getTopRated = (req, res) => {
   req.session.mailText= req.body.mailText;
-
+  console.log(req.body.mailText);
   buyerReviews.findTopRated(req, res);
+  buyer.sendEmail(req,res);
 }
 
 

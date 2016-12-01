@@ -25,6 +25,7 @@ exports.getAllAdmins = (req, res) => {
 //Delete selected admin from the database
 exports.deleteAdminForAdminId = (req, res) => {
   req.session.adminId= req.body.adminId;
+  console.log('In admin controller '+req.session.adminId);
  Admin.deleteAdminForAdminId(req, res) ;
     //console.log('this is in3 controllers');
 };
