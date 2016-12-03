@@ -1,4 +1,4 @@
-<!-- Reference: https://themeforest.net/item/sconto-premium-ecommerce-template/16643705?s_rank=17 -->
+<!--Page to display report on all the books of a particular seller from the database -->
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -363,122 +363,40 @@
 
 
                                               <!--START OF BOOKS REPORTS TABLE -->
-                                                          <div class="main">
-                                                              <div class="page-header">
-                                                                  <div class="container-fluid">
-                                                                      <ol class="breadcrumb">
-                                                                          <li><a href="/">Home</a></li>
-                                                                        <li class="active"><a href="/SellerDashboard">MY DASHBOARD</a></li>
-                                              							<li class="active"><a href="/BooksReport">GENERATE REPORTS - MY BOOKS</a></li>
-                                                                      </ol>
-                                                                  </div><!-- End .container-fluid -->
-                                                              </div><!-- End .page-header -->
-
-                                                              <div class="container-fluid">
-                                                                  <div class="row">
-                                                                      <div class="col-md-10">
-
-                                                                          <div class="table-responsive">
-                                                                              <table class="table table-bordered cart-table">
-                                                                                  <thead>
-                                                                                      <tr>
-
-                                                                                          <th class="code-col">Book ID</th>
-                                                                                          <th class="price-col">Book Name</th>
-                                                                                          <th class="quantity-col">No. of Copies Sold</th>
-                                                                                          <th class="subtotal-col">Ratings</th>
-                                                                                          <th class="delete-col">Quantity Available</th>
-                                                                                          <th class="delete-col">Out of Stock?</th>
-                                                                                      </tr>
-                                                                                  </thead>
-
-                                                                                  <tbody>
-                                                                                      <tr>
-
-                                                                                          <td class="code-col">O_01</td>
-                                                                                          <td class="price-col">
-                                                                                              <div class="product-price-container">
-                                                                                                  <span class="product-price">Godfather</span>
-                                                                                              </div><!-- End .product-price-container -->
-                                                                                          </td>
-                                                                                          <td class="quantity-col">
-                                                                                              5000
-                                                                                          </td>
-                                                                                          <td class="subtotal-col">5</td>
-                                                                                          <td><span class="product-price">190</span></td>
-                                                                                          <td><span class="product-price">No</span></td>
-                                                                                      </tr>
-
-                                                                                      <tr>
-
-                                                                                        <td class="code-col">O_11</td>
-                                                                                        <td class="price-col">
-                                                                                            <div class="product-price-container">
-                                                                                                <span class="product-price">Freakonomics</span>
-                                                                                            </div><!-- End .product-price-container -->
-                                                                                        </td>
-                                                                                        <td class="quantity-col">
-                                                                                            2300
-                                                                                        </td>
-                                                                                        <td class="subtotal-col">4</td>
-                                                                                        <td><span class="product-price">0</span></td>
-                                                                                        <td><span class="product-price">Yes</span></td>
-                                                                                      </tr>
-
-                                                                                      <tr>
-                                                                                        <td class="code-col">O_31</td>
-                                                                                        <td class="price-col">
-                                                                                            <div class="product-price-container">
-                                                                                                <span class="product-price">Inferno</span>
-                                                                                            </div><!-- End .product-price-container -->
-                                                                                        </td>
-                                                                                        <td class="quantity-col">
-                                                                                            342
-                                                                                        </td>
-                                                                                        <td class="subtotal-col">4</td>
-                                                                                        <td><span class="product-price">12</span></td>
-                                                                                        <td><span class="product-price">No</span></td>
-                                              										                    </tr>
-                                                                                  </tbody>
-                                                                              </table>
-                                                                          </div><!-- End .table-responsive -->
-
-                                                                          <div class="row">
-                                                                              <div class="col-xs-6 col-lg-8">
-                                                                                  <button onclick = "alert('Report Downloaded')"class="btn btn-custom min-width">Download</button>
-                                                                              </div><!-- End .col-lg-8-->
-
-                                                                              <div class="mb50 clearfix hidden-lg"></div><!-- margin -->
-
-
-                                                                          </div><!-- End .row -->
-
-
-                                                                      </div><!-- End .col-md-9 -->
-
-
-                                                                  </div><!-- End .row -->
-                                                              </div><!-- End .container-fluid -->
-                                                          </div><!-- End .main -->
-
-                                              <!--END OF ORDERS TABLE -->
-
-
-
-
-
-
-
-
-
-
-                                                                                            </div><!-- End .product-container-->
+                                              <div class="main">
+                                                <div class="page-header">
+                                                  <div class="container-fluid">
+                                                    <ol class="breadcrumb">
+                                                      <li><a href="/">Home</a></li>
+                                                      <li class="active"><a href="/SellerDashboard">MY DASHBOARD</a></li>
+                                              			  <li class="active"><a href="/BooksReport">GENERATE REPORTS - MY BOOKS</a></li>
+                                                    </ol>
+                                                  </div><!-- End .container-fluid -->
+                                                </div><!-- End .page-header -->
+                                                <div class="container-fluid">
+                                                  <div class="row">
+                                                    <div class="col-md-10">
+                                                      <div class="table-responsive">
+                                                        <table class="table table-bordered cart-table" id="booksRepTable" name = "booksRepTable">
+                                                        </table>
+                                                      </div><!-- End .table-responsive -->
+                                                      <div class="row">
+                                                        <div class="col-xs-6 col-lg-8">
+                                                          <button onclick = "alert('Report Downloaded')"class="btn btn-custom min-width">Download</button>
+                                                        </div><!-- End .col-lg-8-->
+                                                      <div class="mb50 clearfix hidden-lg"></div><!-- margin -->
+                                                    </div><!-- End .row -->
+                                                  </div><!-- End .col-md-9 -->
+                                                </div><!-- End .row -->
+                                              </div><!-- End .container-fluid -->
+                                            </div><!-- End .main -->
+                                        <!--END OF ORDERS TABLE -->
+                                          </div><!-- End .product-container-->
                                         </div><!-- End .row -->
-                                    </div><!-- End .tab-pane -->
-                                </div><!-- End .swiper-wrapper -->
-                            </div><!-- End .swiper-container -->
-
-                        </div><!-- End .col-md-9 -->
+                                      </div><!-- End .tab-pane -->
+                                    </div><!-- End .swiper-wrapper -->
+                                  </div><!-- End .swiper-container -->
+                                </div><!-- End .col-md-9 -->
 
                         <aside class="col-md-3 col-md-pull-9 sidebar">
 
@@ -510,58 +428,7 @@
 
                                 </ul>
                             </div><!-- End .widget -->
-
-                            <div class="widget widget-category">
-                                <h3 class="widget-title">
-                                    Filters
-                                </h3>
-                                <ul class="category-list">
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </div><!-- End .widget -->
-
-                            <div class="widget">
-                                <h3 class="widget-title">Advertisements</h3>
-                                <div class="swiper-container bestsellers-slider">
-                                    <div class="swiper-wrapper">
-
-                                        <div class="swiper-slide">
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-                                        </div><!-- End .swiper-slide -->
-
-                                        <div class="swiper-slide">
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-                                        </div><!-- End .swiper-slide -->
-
-                                    </div><!-- End .swiper-wrapper -->
-
-                                    <div class="swiper-button-next icon"></div>
-                                    <div class="swiper-button-prev icon"></div>
-                                </div><!-- end .swiper-container -->
-                            </div><!-- End .widget -->
-
-                        </aside>
+                          </aside>
 
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
@@ -647,7 +514,77 @@
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
 
+
+            var request = $.ajax({
+             url:  "/sellerbooklist",
+             type: "POST",
+              data: {author:'nikitha'},
+             success: function(data) {
+              // var bookDetails = JSON.parse(data);
+               var r = new Array(), j = -1;
+               var jsonData = JSON.parse(data);
+
+               r[++j] = '<thead>'
+               r[++j] =   '<tr>'
+               r[++j] =   '<th class="code-col">Book ID</th>'
+               r[++j] =   '  <th class="price-col">Book Name</th>'
+               r[++j] =    '<th class="product-col">Copies Sold</th>'
+               r[++j] =     '<th class="product-col">Revenue</th>'
+               r[++j] =     '<th class="code-col">Quantity Available</th>'
+               r[++j] =     '<th class="code-col">Out Of Stock?</th>'
+               r[++j] =   '</tr>'
+               r[++j] =   '</thead>'
+
+               for (var i = 0; i < jsonData.length; i++) {
+                   var counter = jsonData[i];
+                   console.log(counter.author);
+
+                   r[++j] ='<tr><td>';
+                   r[++j] = '<input id="bookId" name="bookId" type="radio" value="'+jsonData[i].bookId+'">';
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].bookId;
+                   r[++j] ='<td class="">';
+                   r[++j] = jsonData[i].bookName;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].author;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].description;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].quantity;
+                   r[++j] = '</td><td class="">';
+                   r[++j] = jsonData[i].price;
+                   r[++j] = '</td><td class="">';
+              }
+
+               r[++j] ='<tr><td></td><td><div class="row">'
+               r[++j] ='<div class="col-xs-6 col-lg-4">'
+               r[++j] ='<a href="/AddBook" class="btn btn-custom min-width">DOWNLOAD</a>'
+               r[++j] ='</div></td><td><!-- End .col-lg-8-->'
+               r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
+               r[++j] ='</div><!-- End .row -->'
+             $('#booksRepTable').html(r.join(''));
+             }
+
+           });// rend request
+
+          }); //  end ready
+
+          function addBook() {
+
+              var request = $.ajax({
+               url:  "/addbookpage",
+               type: "GET",
+               success: function(res) {
+             window.location.href = "/addbookpage";
+           }
+         });
+
+      }
+        </script>
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.themepunch.revolution.min.js"></script>

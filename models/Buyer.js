@@ -108,6 +108,8 @@ exports.updateBuyerRecords = (req, res) => {
 exports.sendEmail = (req, res) =>
 {
     var emails;
+    var length;
+    var senders = ' ';
 
     buyerRecords.findAll(
     {
@@ -116,9 +118,11 @@ exports.sendEmail = (req, res) =>
     .then(function(result)
     {
       emails = result;
-      for(var i = 0; i<emails.length;i++)
-        console.log(emails[i].buyerEmail);
-        // console.log('mail content  '+document.getElementById('mailText').value);
+      length = emails.length;
+
+      // for(var i = 0; i<emails.length;i++)
+      //   console.log(emails[i].buyerEmail);
+      //   // console.log('mail content  '+document.getElementById('mailText').value);
     });
 
     var transporter = nodemailer.createTransport(
@@ -131,11 +135,15 @@ exports.sendEmail = (req, res) =>
         }
     });
 
+  //  for(var i = 0; i<length;i++)
+    console.log('From model file'+length);
+    //  senders = senders + '\'' +emails[i] + ',' + '\'';
+
 
     var mailOptions =
     {
         from: 'foodforsoul.16@gmail.com', // sender address
-        to:    'prasan.ubhi@gmail.com, csiddartharao@gmail.com',// list of receivers
+        to:    'prasan.ubhi@gmail.com',// list of receivers
         subject: 'Hello From FoodForSoul', // Subject line
         text:  req.session.mailText//, // plaintext body
         // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
