@@ -1,4 +1,4 @@
-<!-- Reference: https://themeforest.net/item/sconto-premium-ecommerce-template/16643705?s_rank=17 -->
+<!--Page to display Newsletter types and allo admin to push email to subscribers -->
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -365,104 +365,82 @@
                                     <div role="tabpanel" class="tab-pane active" id="tab-latest">
                                         <div class="row product-container-row">
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
-
-
-
-                                              <!--START OF NEWSLETTER TABLE -->
-                                                          <div class="main">
-                                                              <div class="page-header">
-                                                                  <div class="container-fluid">
-                                                                      <ol class="breadcrumb">
-                                                                          <li><a href="/">Home</a></li>
-                                                                          <li class="active"><a href="/adminDashboard">MY DASHBOARD</a></li>
-                                              							              <li class="active"><a href="/Newsletter">NEWSLETTER</a></li>
-                                                                      </ol>
-                                                                  </div><!-- End .container-fluid -->
-                                                              </div><!-- End .page-header -->
-
-                                                              <div class="container-fluid">
-                                                                  <div class="row">
-                                                                      <div class="col-md-10">
-
-                                                                          <div class="table-responsive">
-                                                                              <table class="table table-bordered cart-table">
-                                                                                  <thead>
-                                                                                      <tr>
-                                                                                          <th class="product-col">Select Newsletter</th>
-                                                                                          <th class="code-col">Newsletter Type</th>
-                                                                                      </tr>
-                                                                                  </thead>
-
-                                                                                  <tbody>
-                                                                                      <tr>
-                                                                                          <td class="product-col">
-                                                                                              <div class="product">
-
-                                                                                                  <span class="">
-                                              															                        <input type="radio" id = "newOffers" name="radio1" >
-                                              														                        </span>
-                                                                                              </div><!-- End .product -->
-                                                                                          </td>
-                                                                                          <td class="code-col">Offers</td>
-                                                                                      </tr>
-
-                                                                                      <tr>
-                                                                                          <td class="product-col">
-                                                                                              <div class="product">
-
-                                                                                                  <span class="">
-                                                                                                    <input type="radio" id = "topRated" name="radio1" >
-                                                                                                  </span>
-                                                                                              </div><!-- End .product -->
-                                                                                          </td>
-                                                                                          <td class="code-col">Top Rated</td>
-                                                                                      </tr>
-                                                                                      <tr>
-                                                                                          <td class="product-col">
-                                                                                              <div class="product">
-
-                                                                                                  <span class="">
-                                                                                                    <input type="radio" id = "newProducts" name="radio1">
-                                                                                                  </span>
-                                                                                              </div><!-- End .product -->
-                                                                                          </td>
-                                                                                          <td class="code-col">New Products</td>
-                                                                                      </tr>
-                                                                                      </tbody>
-                                                                              </table>
-                                                                          </div><!-- End .table-responsive -->
-                                                                          <div>
-                                                                             <textarea id="mailText"placeholder="Enter your mail here" style="width: 100%" rows = "5" columns="10" ></textarea>
-                                                                          </div>
-                                                                          <div class="row">
-                                                                              <div class="col-xs-6 col-lg-4">
-                                                                                  <button onclick="alert('Mail sent to subscribers')" class="btn btn-custom min-width">PUSH</a>
-                                                                              </div><!-- End .col-lg-8-->
-
-
-
-                                                                          </div><!-- End .row -->
-
-
-                                                                      </div><!-- End .col-md-9 -->
-
-
-                                                                  </div><!-- End .row -->
-                                                              </div><!-- End .container-fluid -->
-                                                          </div><!-- End .main -->
-
-                                              <!--END OF NEWSLETTER TABLE -->
-
-
-
-
-
-                                            </div><!-- End .product-container-->
-                                        </div><!-- End .row -->
+                                            <!--START OF NEWSLETTER TABLE -->
+                                              <div class="main">
+                                                <div class="page-header">
+                                                  <div class="container-fluid">
+                                                    <ol class="breadcrumb">
+                                                      <li><a href="/">Home</a></li>
+                                                      <li class="active"><a href="/adminDashboard">MY DASHBOARD</a></li>
+                          							              <li class="active"><a href="/Newsletter">NEWSLETTER</a></li>
+                                                    </ol>
+                                                  </div><!-- End .container-fluid -->
+                                                </div><!-- End .page-header -->
+                                                <div class="container-fluid">
+                                                  <div class="row">
+                                                    <div class="col-md-10">
+                                                      <form method = "POST" action="/pushMail">
+                                                        <div class="table-responsive">
+                                                          <table class="table table-bordered cart-table">
+                                                            <thead>
+                                                              <tr>
+                                                                <th class="product-col">Select Newsletter</th>
+                                                                <th class="code-col">Newsletter Type</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>
+                                                                <td class="product-col">
+                                                                  <div class="product">
+                                                                    <span class="">
+                															                        <input type="radio" id = "newOffers" name="radio1" >
+                														                        </span>
+                                                                  </div><!-- End .product -->
+                                                                </td>
+                                                                <td class="code-col">Offers</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td class="product-col">
+                                                                  <div class="product">
+                                                                    <span class="">
+                                                                      <input type="radio" id = "topRated" name="radio1" >
+                                                                    </span>
+                                                                  </div><!-- End .product -->
+                                                                </td>
+                                                                <td class="code-col">Top Rated</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td class="product-col">
+                                                                  <div class="product">
+                                                                    <span class="">
+                                                                      <input type="radio" id = "newProducts" name="radio1">
+                                                                    </span>
+                                                                  </div><!-- End .product -->
+                                                                </td>
+                                                                <td class="code-col">New Products</td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table>
+                                                        </div><!-- End .table-responsive -->
+                                                        <div>
+                                                          <textarea id="mailText" name="mailText"placeholder="Enter your mail here" style="width: 100%" rows = "5" columns="10" ></textarea>
+                                                        </div>
+                                                        <div class="row">
+                                                          <div class="col-xs-6 col-lg-4">
+                                                            <button onclick="alert('Mail sent to subscribers')" class="btn btn-custom min-width">PUSH</a>
+                                                        </div><!-- End .col-lg-8-->
+                                                      </form>
+                                                    </div><!-- End .row -->
+                                                  </div><!-- End .col-md-9 -->
+                                                </div><!-- End .row -->
+                                              </div><!-- End .container-fluid -->
+                                            </div><!-- End .main -->
+                                          <!--END OF NEWSLETTER TABLE -->
+                                        </div><!-- End .product-container-->
+                                      </div><!-- End .row -->
                                     </div><!-- End .tab-pane -->
                                 </div><!-- End .swiper-wrapper -->
                             </div><!-- End .swiper-container -->
-
                         </div><!-- End .col-md-9 -->
 
                         <aside class="col-md-3 col-md-pull-9 sidebar">
@@ -487,59 +465,7 @@
                                     </li>
                                   </ul>
                             </div><!-- End .widget -->
-
-                            <div class="widget widget-category">
-                                <h3 class="widget-title">
-                                    Filters
-                                </h3>
-                                <ul class="category-list">
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </div><!-- End .widget -->
-
-                            <div class="widget">
-                                <h3 class="widget-title">Advertisements</h3>
-                                <div class="swiper-container bestsellers-slider">
-                                    <div class="swiper-wrapper">
-
-                                        <div class="swiper-slide">
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-                                        </div><!-- End .swiper-slide -->
-
-                                        <div class="swiper-slide">
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-                                        </div><!-- End .swiper-slide -->
-
-                                    </div><!-- End .swiper-wrapper -->
-
-                                    <div class="swiper-button-next icon"></div>
-                                    <div class="swiper-button-prev icon"></div>
-                                </div><!-- end .swiper-container -->
-                            </div><!-- End .widget -->
-
-                        </aside>
-
+                          </aside>
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
@@ -626,63 +552,66 @@
         <script src="assets/js/main.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
         <script >
+
             var mytextbox = document.getElementById('mailText');
             var myRating = document.getElementById('topRated');
             var newProd = document.getElementById('newProducts');
             var newOffers = document.getElementById('newOffers');
 
-
+            //Function to populate the email text with Top Rated Products
+            //Pre-conditions   -> Admin selects radio button corrosponding to a Top Rated Products in the table
+            //Post-conditions  -> Email Textbox gets populated with the products with rating 4 or higher
             myRating.onchange = function()
             {
-               //mytextbox.value = mytextbox.value  + this.value; //to appened
-                var request = $.ajax(
-                {
-                  url:  "/getTopRated",
-                  type: "POST",
-                //  data:
-                  success: function(data)
-                  {
-
-                    var r = new Array(), j = -1;
-                    var newsLetter = JSON.parse(data);
-
-                    var x = 'Top Rated Products:' +'\n';
-                    for (var i = 0; i < newsLetter.length; i++)
+                var request = $.ajax
+                ({
+                    url:  "/getTopRated",
+                    type: "POST",
+                    data:
                     {
+                        mailText: $("#mailText").val()
+                    },
 
+                    success: function(data)
+                    {
+                        var r = new Array(), j = -1;
+                        var newsLetter = JSON.parse(data);
+                        var x = 'Top Rated Products:' +'\n';
 
-                        r[++j] = newsLetter[i].productName;
+                        for (var i = 0; i < newsLetter.length; i++)
+                        {
+                            r[++j] = newsLetter[i].productName;
+                            x = x + '\n' + r[j];
+                        }
 
-                        x = x + '\n' + r[j];
+                        x = x + '\n \n' + 'Regards, \n' + 'FoodForSoul'
+                        $( "#mailText" ).val(x);
                     }
-
-                    x = x + '\n \n' + 'Regards, \n' + 'FoodForSoul'
-                    $( "#mailText" ).val(x);
-                  }
                 });
             };
 
+            //Function to populate the email text with Newly Added Products
+            //Pre-conditions   -> Admin selects radio button corrosponding to a Newly Added Products in the table
+            //Post-conditions  -> Email Textbox gets populated with the products that are added 1 day ago
             newProd.onchange = function()
             {
-               //mytextbox.value = mytextbox.value  + this.value; //to appened
-                var request = $.ajax(
+                 var request = $.ajax(
                 {
                   url:  "/getnewProducts",
                   type: "POST",
-                //  data:
+                  data:
+                  {
+                    mailText: $("#mailText").val()
+                  },
                   success: function(data)
                   {
-
                     var r = new Array(), j = -1;
                     var newsLetter = JSON.parse(data);
 
                     var x = 'New Products:' +'\n';
                     for (var i = 0; i < newsLetter.length; i++)
                     {
-
-
                         r[++j] = newsLetter[i].bookName;
-
                         x = x + '\n' + r[j];
                     }
 
@@ -692,32 +621,33 @@
                 });
             };
 
+            //Function to populate the email text with Top Discounted Products
+            //Pre-conditions   -> Admin selects radio button corrosponding to a Top Offers in the table
+            //Post-conditions  -> Email Textbox gets populated with the products that have 30% or more discount
             newOffers.onchange = function()
             {
-               //mytextbox.value = mytextbox.value  + this.value; //to appened
                 var request = $.ajax(
                 {
                   url:  "/getNewOffers",
                   type: "POST",
-                //  data:
+                  data:
+                  {
+                      mailText: $("#mailText").val()
+                  },
                   success: function(data)
                   {
+                      var r = new Array(), j = -1;
+                      var newsLetter = JSON.parse(data);
 
-                    var r = new Array(), j = -1;
-                    var newsLetter = JSON.parse(data);
+                      var x = 'Top Discounted Products:' +'\n';
+                      for (var i = 0; i < newsLetter.length; i++)
+                      {
+                          r[++j] = newsLetter[i].bookName;
+                          x = x + '\n' + r[j];
+                      }
 
-                    var x = 'Top Discounted Products:' +'\n';
-                    for (var i = 0; i < newsLetter.length; i++)
-                    {
-
-
-                        r[++j] = newsLetter[i].bookName;
-
-                        x = x + '\n' + r[j];
-                    }
-
-                    x = x + '\n \n' + 'Regards, \n' + 'FoodForSoul'
-                    $( "#mailText" ).val(x);
+                      x =  x + '\n \n' + 'Regards, \n' + 'FoodForSoul'
+                      $( "#mailText" ).val(x);
                   }
                 });
             };

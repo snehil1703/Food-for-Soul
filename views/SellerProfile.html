@@ -1,4 +1,4 @@
-<!-- Reference: https://themeforest.net/item/sconto-premium-ecommerce-template/16643705?s_rank=17 -->
+<!--Page to display/update personal information of the Seller from database -->
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -365,80 +365,72 @@
                                     <div role="tabpanel" class="tab-pane active" id="tab-latest">
                                         <div class="row product-container-row">
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
-
-
-
                                               <!--START OF Personal Information -->
-                                                          <div class="main">
-                                                              <div class="page-header">
-                                                                  <div class="container-fluid">
-                                                                      <ol class="breadcrumb">
-                                                                          <li><a href="/">Home</a></li>
-                                                                          <li class="active"><a href="/SellerDashboard">MY DASHBOARD</a></li>
-                                              							<li class="active"><a href="/SellerProfile">PERSONAL INFORMATION</a></li>
-                                              						</ol>
-                                                                  </div><!-- End .container-fluid -->
-                                                              </div><!-- End .page-header -->
-                                              <br><br>
-                                              				<div class="container-fluid">
-                                                                  <div class="row">
-                                                                      <div class="col-md-9">
-                                                                             <div class="row row-lg">
-                                                                                  <div class="col-sm-6">
-
-                                              										                    <div class="form-group label-overlay form-control">
-                                                                                          <label class="input-desc"><i class="icon input-icon input-user"></i>First Name <span class="input-required">*</span></label>
-                                                                                      </div><!-- End .form-group -->
-                                                                                      <div class="form-group label-overlay form-control">
-                                                                                          <label class="input-desc"><i class="icon input-icon input-user"></i>Last Name<span class="input-required">*</span></label>
-                                                                                      </div><!-- End .form-group -->
-                                                                                      <div class="form-group label-overlay form-control" >
-                                                                                          <label class="input-desc"><i class="icon input-icon input-number"></i>Email<span class="input-required">*</span></label>
-                                                                                      </div><!-- End .form-group -->
-                                              										                    <div class="form-group label-overlay form-control">
-                                                                                          <label class="input-desc"><i class="icon input-icon input-datetime"></i>Phone Number<span class="input-required">*</span></label>
-                                                                                      </div><!-- End .form-group -->
-                                              										                    <div class="form-group label-overlay form-control">
-                                                                                          <label class="input-desc"><i class="icon input-icon input-number"></i>Address<span class="input-required">*</span></label>
-                                                                                      </div><!-- End .form-group -->
-
-                                                                                  </div><!-- End .col-sm-6 -->
-
-                                                                                  <div class="col-sm-6">
-                                                                                     <div class="form-group label-overlay">
-                                                                                       <input type="text" class="form-control" id="sellerFirstName" name="sellerFirstName" required>
-                                                                                       <span class="input-required"></span></label>
-                                                                                     </div><!-- End .form-group -->
-                                                                                     <div class="form-group label-overlay">
-                                                                                       <input type="text" class="form-control" id="sellerLastName" name="sellerLastName" required>
-                                                                                       <span class="input-required"></span></label>
-                                                                                     </div><!-- End .form-group -->
-                                                                                     <div class="form-group label-overlay">
-                                                                                       <input type="text" class="form-control" id="sellerEmail" name="sellerEmail" required>
-                                                                                       <span class="input-required"></span>
-                                                                                     </div><!-- End .form-group -->
-                                                                                     <div class="form-group label-overlay">
-                                                                                       <input type="datetime" class="form-control" id="sellerPhoneNumber" name="sellerPhoneNumber"required>
-                                                                                       <span class="input-required"></span></label>
-                                                                                     </div><!-- End .form-group -->
-                                                                                     <div class="form-group label-overlay">
-                                                                                       <input type="text" class="form-control" id="sellerAddress1" name="sellerAddress1" required>
-                                                                                       <span class="input-required"></span></label>
-                                                                                     </div><!-- End .form-group -->
-                                                                                     <div class="row">
-                                                                                       <div class="col-xs-6 col-lg-4" >
-                                                                                         <button id="updateSellerDetails"onclick="updateSellerFunction()"class="btn btn-custom min-width">SAVE DETAILS</button>
-                                                                                       </div><!-- End .col-lg-8-->
-                                                                                     </div>
-                                                                                  </div><!-- End .col-sm-6 -->
-                                              								            </div>
-                                              							</div>
-                                              					</div>
-                                              				</div>
-                                                          </div><!-- End .main -->
-
+                                                <div class="main">
+                                                  <div class="page-header">
+                                                    <div class="container-fluid">
+                                                      <ol class="breadcrumb">
+                                                        <li><a href="/">Home</a></li>
+                                                        <li class="active"><a href="/SellerDashboard">MY DASHBOARD</a></li>
+                                          							<li class="active"><a href="/SellerProfile">PERSONAL INFORMATION</a></li>
+                                          						</ol>
+                                                   </div><!-- End .container-fluid -->
+                                                </div><!-- End .page-header -->
+                                                <br><br>
+                                        				<div class="container-fluid">
+                                                  <div class="row">
+                                                    <div class="col-md-9">
+                                                       <div class="row row-lg">
+                                                          <div class="col-sm-6">
+                    										                    <div class="form-group label-overlay form-control">
+                                                                <label class="input-desc"><i class="icon input-icon input-user"></i>First Name <span class="input-required">*</span></label>
+                                                            </div><!-- End .form-group -->
+                                                            <div class="form-group label-overlay form-control">
+                                                                <label class="input-desc"><i class="icon input-icon input-user"></i>Last Name<span class="input-required">*</span></label>
+                                                            </div><!-- End .form-group -->
+                                                            <div class="form-group label-overlay form-control" >
+                                                                <label class="input-desc"><i class="icon input-icon input-number"></i>Email<span class="input-required">*</span></label>
+                                                            </div><!-- End .form-group -->
+                    										                    <div class="form-group label-overlay form-control">
+                                                                <label class="input-desc"><i class="icon input-icon input-datetime"></i>Phone Number<span class="input-required">*</span></label>
+                                                            </div><!-- End .form-group -->
+                    										                    <div class="form-group label-overlay form-control">
+                                                                <label class="input-desc"><i class="icon input-icon input-number"></i>Address<span class="input-required">*</span></label>
+                                                            </div><!-- End .form-group -->
+                                                          </div><!-- End .col-sm-6 -->
+                                                        <div class="col-sm-6">
+                                                           <div class="form-group label-overlay">
+                                                               <input type="text" class="form-control" id="sellerFirstName" name="sellerFirstName" required>
+                                                                  <span class="input-required"></span></label>
+                                                           </div><!-- End .form-group -->
+                                                           <div class="form-group label-overlay">
+                                                               <input type="text" class="form-control" id="sellerLastName" name="sellerLastName" required>
+                                                                  <span class="input-required"></span></label>
+                                                           </div><!-- End .form-group -->
+                                                           <div class="form-group label-overlay">
+                                                               <input type="text" class="form-control" id="sellerEmail" name="sellerEmail" required>
+                                                                  <span class="input-required"></span>
+                                                           </div><!-- End .form-group -->
+                                                           <div class="form-group label-overlay">
+                                                               <input type="datetime" class="form-control" id="sellerPhoneNumber" name="sellerPhoneNumber"required>
+                                                                  <span class="input-required"></span></label>
+                                                           </div><!-- End .form-group -->
+                                                           <div class="form-group label-overlay">
+                                                               <input type="text" class="form-control" id="sellerAddress1" name="sellerAddress1" required>
+                                                                  <span class="input-required"></span></label>
+                                                           </div><!-- End .form-group -->
+                                                           <div class="row">
+                                                             <div class="col-xs-6 col-lg-4" >
+                                                               <button id="updateSellerDetails"onclick="updateSellerFunction()"class="btn btn-custom min-width">SAVE DETAILS</button>
+                                                             </div><!-- End .col-lg-8-->
+                                                           </div>
+                                                        </div><!-- End .col-sm-6 -->
+                                              			  </div>
+                                              			</div>
+                                              		</div>
+                                              	</div>
+                                              </div><!-- End .main -->
                                               <!--END OF APERSONAL INFORMATION -->
-
                                           </div><!-- End .product-container-->
                                         </div><!-- End .row -->
                                     </div><!-- End .tab-pane -->
@@ -475,57 +467,6 @@
                                     </li>
                                   </ul>
                             </div><!-- End .widget -->
-
-                            <div class="widget widget-category">
-                                <h3 class="widget-title">
-                                    Filters
-                                </h3>
-                                <ul class="category-list">
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </div><!-- End .widget -->
-
-                            <div class="widget">
-                                <h3 class="widget-title">Advertisements</h3>
-                                <div class="swiper-container bestsellers-slider">
-                                    <div class="swiper-wrapper">
-
-                                        <div class="swiper-slide">
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-                                        </div><!-- End .swiper-slide -->
-
-                                        <div class="swiper-slide">
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-                                        </div><!-- End .swiper-slide -->
-
-                                    </div><!-- End .swiper-wrapper -->
-
-                                    <div class="swiper-button-next icon"></div>
-                                    <div class="swiper-button-prev icon"></div>
-                                </div><!-- end .swiper-container -->
-                            </div><!-- End .widget -->
-
                         </aside>
 
                     </div><!-- End .row -->
@@ -614,28 +555,34 @@
         <script src="assets/js/main.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
         <script>
-          $( document ).ready(function() {
-
-            var request = $.ajax({
-             url:  "/sellerProfile",
-             type: "POST",
-              data: {sellerId:'1'},
-             success: function(data)
-              {
-
-                  var sellerDetails = JSON.parse(data);
-                $( "#sellerFirstName" ).val(sellerDetails['sellerFirstName']);
-                $( "#sellerLastName" ).val(sellerDetails['sellerLastName']);
-                $( "#sellerEmail" ).val(sellerDetails['sellerEmail']);
-                $( "#sellerPhoneNumber" ).val(sellerDetails['sellerPhoneNumber']);
-                $( "#sellerAddress1" ).val(sellerDetails['sellerAddress1']);
-              }
+        //Function to fetch Seller's information from the database
+        //Pre-conditions   -> Seller clicks on My Profile link from SellerDashboard.html page
+        //Post-conditions  -> Seller's information is displayed from the database
+        $( document ).ready(function()
+        {
+            var request = $.ajax
+            ({
+                url:  "/sellerProfile",
+                type: "POST",
+                data:
+                {
+                    sellerId:'1'
+                },
+                success: function(data)
+                {
+                    var sellerDetails = JSON.parse(data);
+                    $( "#sellerFirstName" ).val(sellerDetails['sellerFirstName']);
+                    $( "#sellerLastName" ).val(sellerDetails['sellerLastName']);
+                    $( "#sellerEmail" ).val(sellerDetails['sellerEmail']);
+                    $( "#sellerPhoneNumber" ).val(sellerDetails['sellerPhoneNumber']);
+                    $( "#sellerAddress1" ).val(sellerDetails['sellerAddress1']);
+                }
             });
-
-
           });
 
-          //Update seller details
+          //Function to update Seller's information from the database
+          //Pre-conditions   -> Seller updates desired fields on the SellerProfile.html page and clicks Save button
+          //Post-conditions  -> Seller's information is saved and updated in the database
           function updateSellerFunction()
           {
               var st = window.location + '';
@@ -658,11 +605,8 @@
                   alert('Details Updated');
                   window.location.href = "/SellerProfile";
                  }
-              });
-            }
-
-            //end of update seller Function
-
+             });
+        }
 
         </script>
         <!--CLOSE OF FETCH AND DISPLAY-->

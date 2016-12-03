@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var Admin  = require('../models/Admin.js');
+var buyer  = require('../models/Buyer.js');
 
 exports.siteAnalyticsReport = (req, res) => {
   res.sendFile(path.join(__dirname + '/../views'+'/SiteAnalyticsReport.html'));
@@ -24,6 +25,7 @@ exports.getAllAdmins = (req, res) => {
 //Delete selected admin from the database
 exports.deleteAdminForAdminId = (req, res) => {
   req.session.adminId= req.body.adminId;
+  console.log('In admin controller '+req.session.adminId);
  Admin.deleteAdminForAdminId(req, res) ;
     //console.log('this is in3 controllers');
 };
@@ -51,6 +53,13 @@ exports.newsletter = (req, res) => {
     console.log('Newsletter Page');
 
 };
+
+//To send mail
+exports.sendEmailToUsers = (req, res) => {
+  req.session.mailText= req.body.mailText;
+  buyer.sendEmail(req, res);
+}
+
 //fetch admin profile from database
 exports.getAdminProfile = (req, res) => {
   Admin.findAdminRecord(req, res);

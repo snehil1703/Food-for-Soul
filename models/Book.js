@@ -233,7 +233,7 @@ res.sendStatus(200);
       {
         discountRate:
          {
-           $gt: 30
+           $gte: 30
          }
       }
     })

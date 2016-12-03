@@ -1,4 +1,4 @@
-<!-- Reference: https://themeforest.net/item/sconto-premium-ecommerce-template/16643705?s_rank=17 -->
+<!--Page to view/delete notes of a particular seller -->
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -361,45 +361,33 @@
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
 
                                               <!--START OF classnotes Management TABLE -->
-                                                          <div class="main">
-                                                              <div class="page-header">
-                                                                  <div class="container-fluid">
-                                                                      <ol class="breadcrumb">
-                                                                          <li><a href="/">Home</a></li>
-                                                                          <li class="active"><a href="/SellerDashboard">MY DASHBOARD</a></li>
-                                                            <li class="active"><a href="/ManageNotes">INVENTORY MANAGEMENT - MANAGE NOTES</a></li>
-                                                          </ol>
-                                                                      </ol>
-                                                                  </div><!-- End .container-fluid -->
-                                                              </div><!-- End .page-header -->
-
-                                                              <div class="container-fluid">
-                                                                  <div class="row">
-                                                                      <div class="col-md-11">
-
-                                                                          <div class="table-responsive">
-                                                                              <table class="table table-bordered cart-table" id="classnotesTable" name="classnotesTable">
-                                                                                </table>
-                                                                          </div><!-- End .table-responsive -->
-
-
-
-                                                                      </div><!-- End .col-md-9 -->
-
-
-                                                                  </div><!-- End .row -->
-                                                              </div><!-- End .container-fluid -->
-                                                          </div><!-- End .main -->
-
-                                              <!--END OF classnotes Management TABLE -->
-
-
-                                            </div><!-- End .product-container-->
+                                            <div class="main">
+                                              <div class="page-header">
+                                                <div class="container-fluid">
+                                                  <ol class="breadcrumb">
+                                                     <li><a href="/">Home</a></li>
+                                                     <li class="active"><a href="/SellerDashboard">MY DASHBOARD</a></li>
+                                                     <li class="active"><a href="/ManageNotes">INVENTORY MANAGEMENT - MANAGE NOTES</a></li>
+                                                  </ol>
+                                                </div><!-- End .container-fluid -->
+                                              </div><!-- End .page-header -->
+                                              <div class="container-fluid">
+                                                <div class="row">
+                                                  <div class="col-md-11">
+                                                    <div class="table-responsive">
+                                                      <table class="table table-bordered cart-table" id="classnotesTable" name="classnotesTable">
+                                                      </table>
+                                                    </div><!-- End .table-responsive -->
+                                                  </div><!-- End .col-md-9 -->
+                                                </div><!-- End .row -->
+                                              </div><!-- End .container-fluid -->
+                                            </div><!-- End .main -->
+                                            <!--END OF classnotes Management TABLE -->
+                                          </div><!-- End .product-container-->
                                         </div><!-- End .row -->
                                     </div><!-- End .tab-pane -->
                                 </div><!-- End .swiper-wrapper -->
                             </div><!-- End .swiper-container -->
-
                         </div><!-- End .col-md-9 -->
 
                         <aside class="col-md-3 col-md-pull-9 sidebar">
@@ -430,59 +418,7 @@
                                   </li>
                                 </ul>
                             </div><!-- End .widget -->
-
-                            <div class="widget widget-category">
-                                <h3 class="widget-title">
-                                    Filters
-                                </h3>
-                                <ul class="category-list">
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </div><!-- End .widget -->
-
-                            <div class="widget">
-                                <h3 class="widget-title">Advertisements</h3>
-                                <div class="swiper-container bestsellers-slider">
-                                    <div class="swiper-wrapper">
-
-                                        <div class="swiper-slide">
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-                                        </div><!-- End .swiper-slide -->
-
-                                        <div class="swiper-slide">
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-
-                                            <div class="product product-sm">
-                                            </div><!-- End .product -->
-                                        </div><!-- End .swiper-slide -->
-
-                                    </div><!-- End .swiper-wrapper -->
-
-                                    <div class="swiper-button-next icon"></div>
-                                    <div class="swiper-button-prev icon"></div>
-                                </div><!-- end .swiper-container -->
-                            </div><!-- End .widget -->
-
-                        </aside>
-
+                          </aside>
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
@@ -569,121 +505,102 @@
         <script src="assets/js/main.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
         <script>
-          $( document ).ready(function() {
+        //Function to display all the current notes of a particular seller from the database
+        //Pre-conditions   -> Seller clicks on MAnage Notes link from Inventory Management section of seller Dashboard
+        //Post-conditions  -> All the current notes of the seller are displayed from the database
+        $( document ).ready(function()
+        {
+            var request = $.ajax
+            ({
+                url:  "/sellerclassnoteslist",
+                type: "POST",
+                success: function(data)
+                {
+                    var r = new Array(), j = -1;
+                    var jsonData = JSON.parse(data);
 
+                    r[++j] = '<thead>'
+                    r[++j] =   '<tr>'
+                    r[++j] =     '<th class="product-col">Select Notes</th>'
+                    r[++j] =   '<th class="code-col">Class Notes ID</th>'
+                    r[++j] =   '  <th class="price-col">Name</th>'
+                    r[++j] =    '<th class="product-col">Description</th>'
+                    r[++j] =     '<th class="product-col">Subject</th>'
+                    r[++j] =     '<th class="code-col">Price</th>'
+                    r[++j] =     '<th class="code-col">University</th>'
+                    r[++j] =   '</tr>'
+                    r[++j] =   '</thead>'
 
-            var request = $.ajax({
-             url:  "/sellerclassnoteslist",
-             type: "POST",
-             success: function(data) {
-              // var bookDetails = JSON.parse(data);
-               var r = new Array(), j = -1;
-               var jsonData = JSON.parse(data);
+                    for (var i = 0; i < jsonData.length; i++)
+                    {
+                        var counter = jsonData[i];
+                        r[++j] ='<tr><td>';
+                        r[++j] = '<input id="classnotesId" name="classnotesId" type="radio" value="'+jsonData[i].classnotesId+'">';
+                        r[++j] = '</td><td class="">';
+                        r[++j] = jsonData[i].classnotesId;
+                        r[++j] ='<td class="">';
+                        r[++j] = jsonData[i].name;
+                        r[++j] = '</td><td class="">';
+                        r[++j] = jsonData[i].description;
+                        r[++j] = '</td><td class="">';
+                        r[++j] = jsonData[i].subject;
+                        r[++j] = '</td><td class="">';
+                        r[++j] = jsonData[i].price;
+                        r[++j] = '</td><td class="">';
+                        r[++j] = jsonData[i].university;
+                        r[++j] = '</td></tr>';
+                    }
 
-               r[++j] = '<thead>'
-               r[++j] =   '<tr>'
-               r[++j] =     '<th class="product-col">Select Notes</th>'
-               r[++j] =   '<th class="code-col">Class Notes ID</th>'
-               r[++j] =   '  <th class="price-col">Name</th>'
-               r[++j] =    '<th class="product-col">Description</th>'
-               r[++j] =     '<th class="product-col">Subject</th>'
-               r[++j] =     '<th class="code-col">Price</th>'
-               r[++j] =     '<th class="code-col">University</th>'
-               r[++j] =   '</tr>'
-               r[++j] =   '</thead>'
+                    r[++j] ='<tr><td></td><td><div class="row">'
+                    r[++j] ='<div class="col-xs-6 col-lg-4">'
+                    r[++j] ='<button id="addClassNotes" class="btn btn-custom min-width" onclick="addClassNotesFunction()">ADD NOTES</button>'
+                    r[++j] ='</div></td><td><!-- End .col-lg-8-->'
+                    r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
+                    r[++j] ='<div class="col-xs-6 col-lg-4">'
+                    r[++j] ='<td><button id="deleteClassNotes" class="btn btn-danger min-width " onclick="deleteClassNotesFunction()">REMOVE</button>'
+                    r[++j] ='</div></td></tr><!-- End .col-lg-8-->'
+                    r[++j] ='</div><!-- End .row -->'
+                    $('#classnotesTable').html(r.join(''));
+                }
+              });
+          });
 
-               for (var i = 0; i < jsonData.length; i++) {
-                   var counter = jsonData[i];
-                   console.log(counter.author);
+          //Function to delte selected notes from the database
+          //Pre-conditions   -> Seller selects radio button corrosponding to a classnote in the table and  Clicks on Remove button
+          //Post-conditions  -> All the details of the selected classnote are deleted from the database
+          function deleteClassNotesFunction()
+          {
+              var request = $.ajax
+              ({
+                  url:  "/deleteclassnotes",
+                  type: "DELETE",
+                  data:
+                  {
+                      classnotesId: $("input[name='classnotesId']:checked").val()
+                  },
+                  success: function(res)
+                  {
+                      alert('Class Notes Information Deleted Successfully');
+                      window.location.href = "/ManageNotes";
+                  }
+              });
+          }
 
-                   r[++j] ='<tr><td>';
-                   r[++j] = '<input id="classnotesId" name="classnotesId" type="radio" value="'+jsonData[i].classnotesId+'">';
-                   r[++j] = '</td><td class="">';
-                   r[++j] = jsonData[i].classnotesId;
-                   r[++j] ='<td class="">';
-                   r[++j] = jsonData[i].name;
-                   r[++j] = '</td><td class="">';
-                   r[++j] = jsonData[i].description;
-                   r[++j] = '</td><td class="">';
-                   r[++j] = jsonData[i].subject;
-                   r[++j] = '</td><td class="">';
-                   r[++j] = jsonData[i].price;
-                   r[++j] = '</td><td class="">';
-                   r[++j] = jsonData[i].university;
-                   r[++j] = '</td></tr>';
-
-               }
-
-               r[++j] ='<tr><td></td><td><div class="row">'
-               r[++j] ='<div class="col-xs-6 col-lg-4">'
-               r[++j] ='<button id="addClassNotes" class="btn btn-custom min-width" onclick="addClassNotesFunction()">ADD NOTES</button>'
-               r[++j] ='</div></td><td><!-- End .col-lg-8-->'
-               r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
-               r[++j] ='<div class="col-xs-6 col-lg-4">'
-               r[++j] ='<button id="modifyClassNotes" class="btn btn-custom min-width" onclick="modifyClassNotesFunction()">MODIFY NOTES</button>'
-               r[++j] ='</div></td><!-- End .col-lg-8-->'
-               r[++j] ='</div><!-- End .row -->'
-               r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
-               r[++j] ='<div class="col-xs-6 col-lg-4">'
-               r[++j] ='<td><button id="deleteClassNotes" class="btn btn-danger min-width " onclick="deleteClassNotesFunction()">REMOVE</button>'
-               r[++j] ='</div></td></tr><!-- End .col-lg-8-->'
-               r[++j] ='</div><!-- End .row -->'
-             $('#classnotesTable').html(r.join(''));
-             }
-
-           });// rend request
-
-          }); //  end ready
-
-          function modifyClassNotesFunction() {
-
-            var request = $.ajax({
-             url:  "/setclassnotesid",
-             type: "POST",
-             data:
-             {
-                classnotesId: $("input[name='classnotesId']:checked").val()
-            },
-          success: function(res) {
-                      //console.log(res);
-                        //alert(res);
-               window.location.href = "/editclassnotes";
-                         }
-            });
-          }// end modify click
-
-
-          function deleteClassNotesFunction() {
-
-            console.log($("input[name='classnotesId']:checked").val());
-            var request = $.ajax({
-          //  async:false,
-             url:  "/deleteclassnotes",
-             type: "DELETE",
-             data:
-              {
-                 classnotesId: $("input[name='classnotesId']:checked").val()
-              },
-          success: function(res) {
-                      //console.log(res);
-                        alert('deleted');
-             window.location.href = "/ManageNotes";
-                         }
-            });
-          }// end delete click
-
-
+          //Function to route seller to add a new classnote to the database
+          //Pre-conditions   -> Seller clicks on Add button from ManageNotes.html page
+          //Post-conditions  -> Seller routed to InventoryAddClassNotesPage.html
           function addClassNotesFunction()
           {
-              var request = $.ajax({
-               url:  "/addclassnotespage",
-               type: "GET",
-               success: function(res) {
-             window.location.href = "/addclassnotespage";
-           }
-         });
-
-      }
+              var request = $.ajax
+              ({
+                  url:  "/addclassnotespage",
+                  type: "GET",
+                  success: function(res)
+                  {
+                      window.location.href = "/addclassnotespage";
+                  }
+              });
+          }
         </script>
 
         <!-- REVOLUTION JS FILES -->

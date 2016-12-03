@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
+var nodemailer = require('nodemailer');
+var router = express.Router();
+
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
@@ -99,3 +102,67 @@ exports.updateBuyerRecords = (req, res) => {
      res.sendFile(path.join(__dirname + '/../views'+'/PersonalInformation.html'));
    })
 };
+
+
+//For newsletter email push to subscribers
+exports.sendEmail = (req, res) =>
+{
+    var emails;
+    var length;
+    var senders = ' ';
+
+    buyerRecords.findAll(
+    {
+      attributes: ['buyerEmail']
+    })
+    .then(function(result)
+    {
+      emails = result;
+      length = emails.length;
+
+      // for(var i = 0; i<emails.length;i++)
+      //   console.log(emails[i].buyerEmail);
+      //   // console.log('mail content  '+document.getElementById('mailText').value);
+    });
+
+    var transporter = nodemailer.createTransport(
+    {
+        service: 'Gmail',
+        auth:
+        {
+            user: 'foodforsoul.16@gmail.com', // Your email id
+            pass: 'ffs_nprss' // Your password
+        }
+    });
+
+  //  for(var i = 0; i<length;i++)
+    console.log('From model file'+length);
+    //  senders = senders + '\'' +emails[i] + ',' + '\'';
+
+
+    var mailOptions =
+    {
+        from: 'foodforsoul.16@gmail.com', // sender address
+        to:    'prasan.ubhi@gmail.com',// list of receivers
+        subject: 'Hello From FoodForSoul', // Subject line
+        text:  req.session.mailText//, // plaintext body
+        // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+
+    };
+
+    transporter.sendMail(mailOptions, function(error, info)
+    {
+        if(error)
+        {
+            console.log(error);
+          //  res.json({yo: 'error'});
+        }
+        else
+        {
+            console.log('Message sent: ' + info.response);
+            //res.json({yo: info.response});
+        };
+    });
+
+
+  }
