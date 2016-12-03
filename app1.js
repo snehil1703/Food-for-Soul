@@ -28,6 +28,7 @@ connection.connect(function(err) {
   if (err) throw err
   console.log('You are now connected...')
 })
+
 var dashboardController= require('./controllers/Dashboard');
 var sellerDashboardController= require('./controllers/SellerDashboard');
 var adminDashboardController= require('./controllers/AdminDashboard');
@@ -246,6 +247,10 @@ app.get('/AddRemoveAdmin',adminDashboardController.addRemoveAdmin);
 app.get('/AddAdmin',adminDashboardController.addAdmin);
 app.get('/AdminProfile',adminDashboardController.adminProfile);
 app.get('/Newsletter', adminDashboardController.newsletter);
+
+
+//fetches required products from the database
+app.post('/books_data',all_productController.booksData);
 
 app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
 app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
