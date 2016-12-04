@@ -1,3 +1,6 @@
+//Author - Prasandeep Singh
+//Model file to interact with review_records table in the database using Sequelize
+
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -5,13 +8,20 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+//Declaring a variable of Sequelize
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
-  define: {
-   timestamps: false // true by default
- }
+var sequelize = new Sequelize('foodforsoul', 'root', 'root',
+{
+  //To disable the auto-created columns- createdAt and updatedAt to be populated in the table
+  define:
+  {
+    timestamps: false // true by default
+  }
 });
 
+
+//To define metadata fields for review_records table
 var reviewrecords = sequelize.define('review_records', {
   reviewId:
    {
@@ -44,39 +54,41 @@ var reviewrecords = sequelize.define('review_records', {
 });
 
 
-
-exports.findAllReviewRecords = (req, res) => {
-reviewrecords.findAll(
-  {
-    where:
+//Fetches a list of all reviews posted by a particular buyer from database
+//Pre-conditions   --> Takes input request from the getAllReviews function of Buyer Dashboard Controller
+//Post-conditions  --> Fetches all reviews for a particular buyer from the database and returns the response to success function of ReviewRating.html page
+exports.findAllReviewRecords = (req, res) =>
+{
+    reviewrecords.findAll
+    ({
+      where:
+      {
+          buyerID : '1'
+        }
+    })
+    .then(function(result)
     {
-        buyerID : '1'
-    }
-  })
-  .then(function(result)
-  {
-    var x  = result;
-    res.json(x);
-  });
+      var x  = result;
+      res.json(x);
+    });
 };
 
 
-exports.findTopRated = (req, res) => {
-reviewrecords.findAll(
-  {
-    where:
-    {
-      $or: [{rating :'5'}, {rating :'4'}]
-
-    }
+//Fetches a list of all top Rated products from database
+//Pre-conditions   --> Takes input request from the getTopRated function of Buyer Dashboard Controller
+//Post-conditions  --> Fetches all top rated products from the database and returns the response to success function of NewsLetter.html page
+exports.findTopRated = (req, res) =>
+{
+  reviewrecords.findAll
+  ({
+      where:
+      {
+          $or: [{rating :'5'}, {rating :'4'}]
+      }
   })
   .then(function(result)
   {
-    var x  =result;
-    res.json(x);
+      var x  =result;
+      res.json(x);
   });
-
-
-
-
 };

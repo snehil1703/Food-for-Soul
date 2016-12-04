@@ -424,6 +424,14 @@
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
+            <br><br><br><br>
+            <br><br><br><br>
+            <br><br><br><br>
+            <br><br><br><br>
+            <br><br><br><br>
+            <br><br><br><br>
+            <br><br><br><br>
+            <br><br><br><br>
 
             <footer class="footer footer2">
                 <div class="footer-inner">
@@ -517,6 +525,7 @@
             ({
                 url:  "/sellerbooklist",
                 type: "POST",
+
                 success: function(data)
                 {
                     var r = new Array(), j = -1;
@@ -527,9 +536,8 @@
                     r[++j] =   '<th class="code-col">Book ID</th>'
                     r[++j] =   '  <th class="price-col">Book Name</th>'
                     r[++j] =    '<th class="product-col">Author</th>'
-                    r[++j] =     '<th class="product-col">Product Desciption</th>'
-                    r[++j] =     '<th class="code-col">Price</th>'
                     r[++j] =     '<th class="code-col">Quantity Available</th>'
+                    r[++j] =     '<th class="code-col">Price</th>'
                     r[++j] =     '<th class="code-col">Category</th>'
                     r[++j] =     '<th class="code-col">ISBN</th>'
                     r[++j] =   '</tr>'
@@ -547,8 +555,6 @@
                    r[++j] = '</td><td class="">';
                    r[++j] = jsonData[i].author;
                    r[++j] = '</td><td class="">';
-                   r[++j] = jsonData[i].description;
-                   r[++j] = '</td><td class="">';
                    r[++j] = jsonData[i].quantity;
                    r[++j] = '</td><td class="">';
                    r[++j] = jsonData[i].price;
@@ -561,7 +567,7 @@
 
                r[++j] ='<tr><td></td><td><div class="row">'
                r[++j] ='<div class="col-xs-6 col-lg-4">'
-               r[++j] ='<a href="/AddBook" class="btn btn-custom min-width">ADD BOOK</a>'
+               r[++j] ='<a href="/addbookpage" class="btn btn-custom min-width">ADD BOOK</a>'
                r[++j] ='</div></td><td><!-- End .col-lg-8-->'
                r[++j] ='<div class="mb50 clearfix hidden-lg"></div><!-- margin -->'
                r[++j] ='<div class="col-xs-6 col-lg-4">'

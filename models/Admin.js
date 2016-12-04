@@ -1,93 +1,118 @@
+//Author - Prasandeep Singh
+//Model file to interact with admin_records table in the database using Sequelize
+
+
 var express = require('express');
 var app = express();
 var path = require('path');
 
+//Declaring a variable of Sequelize
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
-  define: {
-   timestamps: false // true by default
- }
+var sequelize = new Sequelize('foodforsoul', 'root', 'root',
+{
+  //To disable the auto-created columns- createdAt and updatedAt to be populated in the table
+  define:
+  {
+    timestamps: false
+  }
 });
 
-var adminRecords = sequelize.define('admin_records', {
-   adminId: {
+
+//To define metadata fields for admin_records table
+var adminRecords = sequelize.define('admin_records',
+{
+   adminId:
+   {
       type: Sequelize.INTEGER,
       field: 'adminID',
       primaryKey: true,
       autoIncrement: true
     },
-  adminFirstName: {
+   adminFirstName:
+   {
       type: Sequelize.STRING,
       field: 'adminFirstName'
     },
-    adminLastName:{
+    adminLastName:
+    {
       type: Sequelize.STRING,
       field: 'adminLastName'
     },
-    adminEmail:{
+    adminEmail:
+    {
       type: Sequelize.STRING,
       field: 'adminEmail',
     },
-    adminPhoneNumber:{
+    adminPhoneNumber:
+    {
       type: Sequelize.STRING,
       field: 'adminPhoneNumber',
     },
-    adminAddress1:{
+    adminAddress1:
+    {
       type: Sequelize.STRING,
       field: 'adminAddress1',
     }
 });
 
 
-//Adds new Admin details to database
-exports.insertNewAdmin = (req, res) => {
-  console.log(''+req.body.adminFirstName);
-  console.log(''+req.body.adminLastName);
-  console.log(''+req.body.adminEmail);
-  sequelize.sync({
-  //  force:true
-  }).then(function() {
-    return adminRecords.create({
-      adminFirstName: req.body.adminFirstName,
-      adminLastName: req.body.adminLastName,
-      adminEmail:req.body.adminEmail
+//Adds new Admin details to
+//Pre-conditions   --> Takes input request from the addAdmin function of AdminDashboard Controller
+//Post-conditions  --> Inserts admin details into the database and returns the response to success function of AddAdmin.html page
+exports.insertNewAdmin = (req, res) =>
+{
+  sequelize.sync().then(function()
+  {
+    return adminRecords.create
+    ({
+        adminFirstName: req.body.adminFirstName,
+        adminLastName: req.body.adminLastName,
+        adminEmail:req.body.adminEmail
     });
-  }).then(function () {
-    res.sendStatus(200);
-    console.log('Admin Added');
-    //res.status(200);
-//  res.sendFile(path.join(__dirname + '/../views'+'/AddRemoveAdmin.html'));
+  }).then(function ()
+  {
+        res.sendStatus(200);
   });
 };
 
+
 //Fetches a list of all admins from database
-exports.findAllAdminRecords = (req, res) => {
-  adminRecords.findAll().then(function(result) {
+//Pre-conditions   --> Takes input request from the getAllAdmins function of AdminDashboard Controller
+//Post-conditions  --> Fetches admin details from the database and returns the response to success function of AddRemoveAdmin.html page
+exports.findAllAdminRecords = (req, res) =>
+{
+  adminRecords.findAll().then(function(result)
+  {
         res.json(result);
   });
 };
 
+
 //Delete the selected admin from database
-//Deleting a book record
-exports.deleteAdminForAdminId = (req, res) => {
-//var check =   JSON.parse(req.body);
-adminRecords.destroy({
-  where: {
-  //  author:req.params.author
-  adminId : req.session.adminId
-  }
-}).then(function(result) {
+//Pre-conditions   --> Takes input request from the deleteAdminForAdminId function of AdminDashboard Controller
+//Post-conditions  --> Deletes admin details from the database and returns the response to success function of AddRemoveAdmin.html page
+exports.deleteAdminForAdminId = (req, res) =>
+{
+  adminRecords.destroy
+  ({
+      where:
+      {
+          adminId : req.session.adminId
+        }
+  }).then(function(result)
+  {
+      res.sendStatus(200);
+  });
+};
 
-res.sendStatus(200);
-});
 
- };
-
-
- //Fetches Admin details from database
- exports.findAdminRecord = (req, res) => {
-   adminRecords.findById(2).then(function(result) {
-
+//Fetches a particular Admin details from database
+//Pre-conditions   --> Takes input request from the getAdminProfile function of AdminDashboard Controller
+//Post-conditions  --> Fetches information of a particular admin from the database and returns the response to success function of adminProfile.html page
+exports.findAdminRecord = (req, res) =>
+{
+   adminRecords.findById(2).then(function(result)
+   {
          var x =
          {
            adminFirstName:result.adminFirstName,
@@ -96,33 +121,32 @@ res.sendStatus(200);
            adminPhoneNumber:result.adminPhoneNumber,
            adminAddress1:result.adminAddress1
          };
-
-         //This is working
-         console.log(result.adminFirstName);
          res.json(x);
    });
  };
 
 
-
- exports.updateAdminRecords = (req, res) => {
-
-   adminRecords.update(
-   {
-     adminFirstName: req.body.adminFirstName,
-     adminLastName: req.body.adminLastName,
-     adminEmail:req.body.adminEmail,
-     adminPhoneNumber:req.body.adminPhoneNumber,
-     adminAddress1:req.body.adminAddress1
-   },
-   {
-     where:
-     {
-       adminId : '2'
-     }
-   })
-   .then(function()
+ //Changes and updates admin profile information of a particular Admin to the database
+ //Pre-conditions   --> Takes input request from the updateAdmin function of AdminDashboard Controller
+ //Post-conditions  --> Updates information of a particular admin to the database and returns the response to success function of adminProfile.html page
+ exports.updateAdminRecords = (req, res) =>
+ {
+   adminRecords.update
+   ({
+      adminFirstName: req.body.adminFirstName,
+      adminLastName: req.body.adminLastName,
+      adminEmail:req.body.adminEmail,
+      adminPhoneNumber:req.body.adminPhoneNumber,
+      adminAddress1:req.body.adminAddress1
+    },
     {
-      res.sendFile(path.join(__dirname + '/../views'+'/PersonalInformation.html'));
+      where:
+      {
+        adminId : '2'
+      }
+    })
+    .then(function()
+    {
+        res.sendFile(path.join(__dirname + '/../views'+'/PersonalInformation.html'));
     })
  };
