@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Initializing the ORM to connect to the database
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
    timestamps: true
  }
@@ -105,9 +105,7 @@ var bookrecords = sequelize.define('book_records', {
 
 //Added by Nikitha for Inventory Management to add new book records
 exports.addBookRecords = (req, res) => {
-   sequelize.sync({
-    force: true
-  }).then(function() {
+   sequelize.sync().then(function() {
     return bookrecords.create({
 
       bookName: req.session.imBookName,

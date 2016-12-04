@@ -66,14 +66,12 @@ exports.getCard = (req, res) =>
 }
 
 
-// To Route user to findTopRated function in the Reviews model file and to sendEmail function in Buyer model class
+// To Route user to findTopRated function in the Reviews model file 
 //Pre-conditions   --> Takes input request from the getTopRated function of app1.js
-//Post-conditions  --> Routes the user to findTopRated function in the Reviews model file and to sendEmail function in Buyer model class
+//Post-conditions  --> Routes the user to findTopRated function in the Reviews model file
 exports.getTopRated = (req, res) =>
 {
-  req.session.mailText= req.body.mailText;
   buyerReviews.findTopRated(req, res);
-  buyer.sendEmail(req,res);
 }
 
 

@@ -570,11 +570,6 @@
                 ({
                     url:  "/getTopRated",
                     type: "POST",
-                    data:
-                    {
-                        mailText: $("#mailText").val()
-                    },
-
                     success: function(data)
                     {
                         var r = new Array(), j = -1;
@@ -602,10 +597,6 @@
                 {
                   url:  "/getnewProducts",
                   type: "POST",
-                  data:
-                  {
-                    mailText: $("#mailText").val()
-                  },
                   success: function(data)
                   {
                     var r = new Array(), j = -1;
@@ -633,10 +624,6 @@
                 {
                   url:  "/getNewOffers",
                   type: "POST",
-                  data:
-                  {
-                      mailText: $("#mailText").val()
-                  },
                   success: function(data)
                   {
                       var r = new Array(), j = -1;
