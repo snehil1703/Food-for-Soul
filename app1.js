@@ -64,8 +64,7 @@ app.use(session
       secret: 'random_string_goes_here',
       duration: 30 * 60 * 1000,
       activeDuration: 5 * 60 * 1000,
-  )
-);
+  }));
 
 
 // To Route user to index.html Page
@@ -432,23 +431,6 @@ app.get('/AdminProfile',adminDashboardController.adminProfile);
 //Post-conditions  --> Routes the user to newsletter function of Admin Dashboard controller
 app.get('/Newsletter', adminDashboardController.newsletter);
 
-
-//fetches required products from the database
-app.post('/books_data',all_productController.booksData);
-
-app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
-app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
-//app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
-//app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
-//app.post('/InventoryAddBooks', inventoryManagementController.confirmAddBooks);
-//app.post('/Login', loginController.confirmLogin);
-app.post('/Registersuccessbuyer', registerBuyerController.confirmRegistrationbuyer);
-app.post('/Registersuccessseller', registerSellerController.confirmRegistration);
-app.post('/Forgotpassword', resetPassword.confirmPasswordreset);
-app.post('/Deletecartitem', deleteCartItem.confirmDelete);
-app.post('/Checkout', confirmCheckout.checkoutConfirm);
->>>>>>> 43d6069e9adba337d078a93ef067e340f60270a8
-
 // To Route user to newAdmin function of Admin Dashboard controller
 //Pre-conditions   --> Takes input request from the user clicks (browser)
 //Post-conditions  --> Routes the user to newAdmin function of Admin Dashboard controller
@@ -489,6 +471,25 @@ app.post('/pushMail', adminDashboardController.sendEmailToUsers);
 
 
 //-----------------------END OF ADMIN DASHBOARD----------------------------//
+
+
+
+
+//fetches required products from the database
+app.post('/books_data',all_productController.booksData);
+
+app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
+app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
+//app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
+//app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
+//app.post('/InventoryAddBooks', inventoryManagementController.confirmAddBooks);
+//app.post('/Login', loginController.confirmLogin);
+app.post('/Registersuccessbuyer', registerBuyerController.confirmRegistrationbuyer);
+app.post('/Registersuccessseller', registerSellerController.confirmRegistration);
+app.post('/Forgotpassword', resetPassword.confirmPasswordreset);
+app.post('/Deletecartitem', deleteCartItem.confirmDelete);
+app.post('/Checkout', confirmCheckout.checkoutConfirm);
+
 
 
 //call to page to fetch books in inventory of the seller

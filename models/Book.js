@@ -105,38 +105,9 @@ var bookrecords = sequelize.define('book_records', {
 
 //Added by Nikitha for Inventory Management to add new book records
 exports.addBookRecords = (req, res) => {
-
-    category1:{
-        type: Sequelize.STRING,
-        field: 'category1'
-    },
-    category2:{
-        type: Sequelize.STRING,
-        field: 'category2'
-    },
-    format:{
-        type: Sequelize.STRING,
-        field: 'format'
-    },
-    condition:{
-        type: Sequelize.STRING,
-        field: 'condition'
-    },
-    createdAt:{
-        type: Sequelize.STRING,
-        field: 'createdAt'
-    }
-});
-
-exports.books_data = (req, res) => {
-    bookrecords.findAll({
-        orderBy: [['createdAt', 'DESC']]
-    }).then(function(result) {
-        res.json(result);
-    });
-}
-
-  sequelize.sync().then(function() {
+   sequelize.sync({
+    force: true
+  }).then(function() {
     return bookrecords.create({
 
       bookName: req.session.imBookName,
