@@ -1,0 +1,486 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/movie.owl#"
+     xml:base="http://www.semanticweb.org/movie.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/movie.owl">
+        <rdfs:comment>Movie Ontology</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#hasPerson -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/movie.owl#hasPerson">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/movie.owl#Movie"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/movie.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#hasType -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/movie.owl#hasType">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/movie.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/movie.owl#Type"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/movie.owl#isTypeOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#isPersonOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/movie.owl#isPersonOf">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/movie.owl#Movie"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/movie.owl#Person"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/movie.owl#hasPerson"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#isTypeOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/movie.owl#isTypeOf">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/movie.owl#Person"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/movie.owl#Type"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#hasNominations -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/movie.owl#hasNominations"/>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#hasWins -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/movie.owl#hasWins"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#AverageRatingMovie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/movie.owl#AverageRatingMovie">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/movie.owl#Movie"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/movie.owl#hasWins"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;integer">10</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/movie.owl#hasWins"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxInclusive rdf:datatype="&xsd;integer">20</xsd:maxInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/movie.owl#Movie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#AverageRatingPerson -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/movie.owl#AverageRatingPerson">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/movie.owl#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/movie.owl#hasNominations"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;integer">11</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/movie.owl#hasNominations"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxInclusive rdf:datatype="&xsd;integer">20</xsd:maxInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/movie.owl#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#HighRatingMovie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/movie.owl#HighRatingMovie">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/movie.owl#Movie"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/movie.owl#hasWins"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minExclusive rdf:datatype="&xsd;integer">20</xsd:minExclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/movie.owl#Movie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#HighRatingPerson -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/movie.owl#HighRatingPerson">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/movie.owl#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/movie.owl#hasNominations"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;integer">21</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/movie.owl#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#LowRatingMovie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/movie.owl#LowRatingMovie">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/movie.owl#Movie"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/movie.owl#hasWins"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxExclusive rdf:datatype="&xsd;integer">10</xsd:maxExclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/movie.owl#Movie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#LowRatingPerson -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/movie.owl#LowRatingPerson">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/movie.owl#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/movie.owl#hasNominations"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxInclusive rdf:datatype="&xsd;integer">10</xsd:maxInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/movie.owl#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Movie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/movie.owl#Movie"/>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/movie.owl#Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Type -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/movie.owl#Type"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://data.linkedmdb.org/resource/actor/755 -->
+
+    <owl:NamedIndividual rdf:about="http://data.linkedmdb.org/resource/actor/755">
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Harrison_Ford"/>
+        <owl:sameAs rdf:resource="http://wikidata.org/entity/Q81328"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/movie.owl#Harrison_Ford"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://data.linkedmdb.org/resource/producer/10020 -->
+
+    <owl:NamedIndividual rdf:about="http://data.linkedmdb.org/resource/producer/10020">
+        <owl:sameAs rdf:resource="http://dbpedia.org/resource/Mark_Hamill"/>
+        <owl:sameAs rdf:resource="http://wikidata.org/entity/Q210447"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/movie.owl#Mark_Hamill"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://dbpedia.org/resource/Harrison_Ford -->
+
+    <owl:NamedIndividual rdf:about="http://dbpedia.org/resource/Harrison_Ford">
+        <owl:sameAs rdf:resource="http://wikidata.org/entity/Q81328"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/movie.owl#Harrison_Ford"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://dbpedia.org/resource/Mark_Hamill -->
+
+    <owl:NamedIndividual rdf:about="http://dbpedia.org/resource/Mark_Hamill">
+        <owl:sameAs rdf:resource="http://wikidata.org/entity/Q210447"/>
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/movie.owl#Mark_Hamill"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wikidata.org/entity/Q210447 -->
+
+    <owl:NamedIndividual rdf:about="http://wikidata.org/entity/Q210447">
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/movie.owl#Mark_Hamill"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://wikidata.org/entity/Q81328 -->
+
+    <owl:NamedIndividual rdf:about="http://wikidata.org/entity/Q81328">
+        <owl:sameAs rdf:resource="http://www.semanticweb.org/movie.owl#Harrison_Ford"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Actor -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/movie.owl#Actor">
+        <rdf:type rdf:resource="http://www.semanticweb.org/movie.owl#Type"/>
+        <isTypeOf rdf:resource="http://www.semanticweb.org/movie.owl#Harrison_Ford"/>
+        <isTypeOf rdf:resource="http://www.semanticweb.org/movie.owl#Mark_Hamill"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#American_Graffiti -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/movie.owl#American_Graffiti">
+        <rdf:type rdf:resource="http://www.semanticweb.org/movie.owl#Movie"/>
+        <hasNominations rdf:datatype="&xsd;integer">12</hasNominations>
+        <hasWins rdf:datatype="&xsd;integer">9</hasWins>
+        <hasPerson rdf:resource="http://www.semanticweb.org/movie.owl#Harrison_Ford"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Blade_Runner -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/movie.owl#Blade_Runner">
+        <rdf:type rdf:resource="http://www.semanticweb.org/movie.owl#Movie"/>
+        <hasWins rdf:datatype="&xsd;integer">10</hasWins>
+        <hasNominations rdf:datatype="&xsd;integer">17</hasNominations>
+        <hasPerson rdf:resource="http://www.semanticweb.org/movie.owl#Harrison_Ford"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Director -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/movie.owl#Director">
+        <rdf:type rdf:resource="http://www.semanticweb.org/movie.owl#Type"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Harrison_Ford -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/movie.owl#Harrison_Ford">
+        <rdf:type rdf:resource="http://www.semanticweb.org/movie.owl#Person"/>
+        <hasWins rdf:datatype="&xsd;integer">29</hasWins>
+        <hasNominations rdf:datatype="&xsd;integer">32</hasNominations>
+        <hasType rdf:resource="http://www.semanticweb.org/movie.owl#Actor"/>
+        <isPersonOf rdf:resource="http://www.semanticweb.org/movie.owl#American_Graffiti"/>
+        <isPersonOf rdf:resource="http://www.semanticweb.org/movie.owl#Blade_Runner"/>
+        <isPersonOf rdf:resource="http://www.semanticweb.org/movie.owl#K-19_The_Widowmaker"/>
+        <hasType rdf:resource="http://www.semanticweb.org/movie.owl#Producer"/>
+        <isPersonOf rdf:resource="http://www.semanticweb.org/movie.owl#Star_Wars"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#K-19_The_Widowmaker -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/movie.owl#K-19_The_Widowmaker">
+        <rdf:type rdf:resource="http://www.semanticweb.org/movie.owl#Movie"/>
+        <hasWins rdf:datatype="&xsd;integer">0</hasWins>
+        <hasNominations rdf:datatype="&xsd;integer">2</hasNominations>
+        <hasPerson rdf:resource="http://www.semanticweb.org/movie.owl#Harrison_Ford"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Mark_Hamill -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/movie.owl#Mark_Hamill">
+        <rdf:type rdf:resource="http://www.semanticweb.org/movie.owl#Person"/>
+        <hasNominations rdf:datatype="&xsd;integer">7</hasNominations>
+        <hasWins rdf:datatype="&xsd;integer">8</hasWins>
+        <hasType rdf:resource="http://www.semanticweb.org/movie.owl#Actor"/>
+        <isPersonOf rdf:resource="http://www.semanticweb.org/movie.owl#Star_Wars"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Producer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/movie.owl#Producer">
+        <rdf:type rdf:resource="http://www.semanticweb.org/movie.owl#Type"/>
+        <isTypeOf rdf:resource="http://www.semanticweb.org/movie.owl#Harrison_Ford"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/movie.owl#Star_Wars -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/movie.owl#Star_Wars">
+        <rdf:type rdf:resource="http://www.semanticweb.org/movie.owl#Movie"/>
+        <hasNominations rdf:datatype="&xsd;integer">26</hasNominations>
+        <hasWins rdf:datatype="&xsd;integer">44</hasWins>
+        <hasPerson rdf:resource="http://www.semanticweb.org/movie.owl#Harrison_Ford"/>
+        <hasPerson rdf:resource="http://www.semanticweb.org/movie.owl#Mark_Hamill"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+

@@ -1,13 +1,6 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var book = require('../models/Book.js');
-
-//fetch all admins from database
-exports.booksData = (req, res) => {
-    book.books_data(req, res);
-};
-
 
 exports.BooksPage = (req, res) => {
     res.sendFile(path.join(__dirname + '/../views/BooksPage.html'));

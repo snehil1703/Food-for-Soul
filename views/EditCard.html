@@ -1,4 +1,4 @@
-<!--Page to update payment card details for a particular card -->
+<!-- Reference: https://themeforest.net/item/sconto-premium-ecommerce-template/16643705?s_rank=17 -->
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -359,57 +359,106 @@
                                     <div role="tabpanel" class="tab-pane active" id="tab-latest">
                                         <div class="row product-container-row">
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
-                                              <!--START OF ADD CARD -->
-                                              <div class="main">
-                                                <div class="page-header">
-                                                  <div class="container-fluid">
-                                                    <ol class="breadcrumb">
-                                                      <li><a href="/">Home</a></li>
-                                                      <li class="active"><a href="/MyDashboard">MY DASHBOARD</a></li>
-							                                        <li class="active"><a href="/MySavedCards">PAYMENTS-My Saved Cards</a></li>
-							                                        <li class="active"><a href="/Edit Card">Edit Card</a></li>
-						                                        </ol>
-                                                  </div><!-- End .container-fluid -->
-                                                </div><!-- End .page-header -->
-                                                <br><br>
-				                                        <div class="container-fluid">
-                                                  <div class="row">
-                                                    <div class="col-md-9">
-                                                      <div class="row row-lg">
-                                                        <div class="col-sm-6">
-										                                      <div class="form-group label-overlay form-control">
-                                                            <label class="input-desc"><i class="icon input-icon input-user"></i>Card Holder's Name <span class="input-required">*</span></label>
-                                                          </div><!-- End .form-group -->
-                                                          <div class="form-group label-overlay form-control" >
-                                                            <label class="input-desc"><i class="icon input-icon input-number"></i>Card Number <span class="input-required">*</span></label>
-                                                          </div><!-- End .form-group -->
-										                                      <div class="form-group label-overlay form-control">
-                                                            <label class="input-desc"><i class="icon input-icon input-datetime"></i>Valid Till<span class="input-required">*</span></label>
-                                                          </div><!-- End .form-group -->
-                                                        </div><!-- End .col-sm-6 -->
-									                                    <div class="col-sm-6">
-									                                      <div class="form-group label-overlay">
-                                                          <input type="text" class="form-control" name="CardHolderName" id ="CardHolderName" required>
-                                                        </div><!-- End .form-group -->
-                                                        <div class="form-group label-overlay">
-                                                          <input type="text" class="form-control" name="CardNumber" id ="CardNumber" required>
-                                                        </div><!-- End .form-group -->
-										                                    <div class="form-group label-overlay">
-                                                          <input type="datetime" class="form-control" name="ValidTill" id ="ValidTill" required>
-                                                        </div><!-- End .form-group -->
-                                                      </div><!-- End .col-sm-6 -->
-								                                    </div><!--row row-lg-->
-              	                                    <div class="row" style="display:inline; text-align:right">
-									                                    <div class="col-xs-6 col-lg-4" >
-										                                    <button id="updateCardDetails" onclick="updateCardFunction()"  class="btn btn-custom min-width">EDIT CARD</button>
-									                                    </div><!-- End .col-lg-8-->
-									                                  </div>
-					                                        </div>
-					                                      </div>
-				                                      </div>
-                                            </div><!-- End .main -->
-                                        <!--END OF ADD CARD -->
-                                            </div><!-- End .product-container-->
+
+
+<!--START OF ADD CARD -->
+
+<!--Portion to be worked on start by Nikitha-->
+<script src="assets/js/plugins.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+        <script>
+          $( document ).ready(function() {
+          //  alert( "ready!" );
+
+            var st = window.location + '';
+            var splits = st.split('/');
+            var cardId = splits[splits.length-1];
+            console.log(cardId);
+
+
+            $.get( "/book/" + cardId, function( data )  //  this function fetchs the database entries from the database in theform of a json and populates the field
+
+            {
+              var cardDetails = JSON.parse(data);
+              console.log(cardDetails);
+              console.log(cardDetails['name']);
+              $( "#cardHolderName" ).val(cardDetails['name']);
+              }, "json" );
+
+          });
+
+
+          function myFunction() {
+              alert( "ready!" );
+          }
+        </script>
+
+
+
+            <div class="main">
+                <div class="page-header">
+                    <div class="container-fluid">
+                        <ol class="breadcrumb">
+                            <li><a href="/">Home</a></li>
+                            <li class="active"><a href="/MyDashboard">MY DASHBOARD</a></li>
+							<li class="active"><a href="/MySavedCards">PAYMENTS-My Saved Cards</a></li>
+							<li class="active"><a href="/Edit Card">Edit Card</a></li>
+						</ol>
+                    </div><!-- End .container-fluid -->
+                </div><!-- End .page-header -->
+<br><br>
+				<div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-9">
+                               <div class="row row-lg">
+                                    <div class="col-sm-6">
+
+										                    <div class="form-group label-overlay form-control">
+                                            <label class="input-desc"><i class="icon input-icon input-user"></i>Card Holder's Name <span class="input-required">*</span></label>
+                                        </div><!-- End .form-group -->
+                                        <div class="form-group label-overlay form-control" >
+                                            <label class="input-desc"><i class="icon input-icon input-number"></i>Card Number <span class="input-required">*</span></label>
+                                        </div><!-- End .form-group -->
+										                    <div class="form-group label-overlay form-control">
+                                            <label class="input-desc"><i class="icon input-icon input-datetime"></i>Valid Till<span class="input-required">*</span></label>
+                                        </div><!-- End .form-group -->
+
+                                    </div><!-- End .col-sm-6 -->
+									                  <div class="col-sm-6">
+
+									                      <div class="form-group label-overlay">
+                                            <input type="text" class="form-control" name="CardHolderName" id ="CardHolderName" required>
+                                        </div><!-- End .form-group -->
+                                        <div class="form-group label-overlay">
+                                            <input type="text" class="form-control" name="CardNumber" id ="CardNumber" required>
+                                        </div><!-- End .form-group -->
+										                    <div class="form-group label-overlay">
+                                            <input type="datetime" class="form-control" name="ValidTill" id ="ValidTill" required>
+                                        </div><!-- End .form-group -->
+
+                                    </div><!-- End .col-sm-6 -->
+								              </div><!--row row-lg-->
+
+              	<div class="row" style="display:inline; text-align:right">
+									<div class="col-xs-6 col-lg-4" >
+										<button id="updateCardDetails" onclick="updateCardFunction()"  class="btn btn-custom min-width">EDIT CARD</button>
+									</div><!-- End .col-lg-8-->
+									</div>
+
+						</div>
+					</div>
+				</div>
+            </div><!-- End .main -->
+
+<!--END OF ADD CARD -->
+
+
+
+
+
+
+                                             </div><!-- End .product-container-->
                                         </div><!-- End .row -->
                                     </div><!-- End .tab-pane -->
                                 </div><!-- End .swiper-wrapper -->
@@ -441,15 +490,62 @@
                                 </ul>
                             </div><!-- End .widget -->
 
+                            <div class="widget widget-category">
+                                <h3 class="widget-title">
+                                    Filters
+                                </h3>
+                                <ul class="category-list">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div><!-- End .widget -->
+
+                            <div class="widget">
+                                <h3 class="widget-title">Advertisements</h3>
+                                <div class="swiper-container bestsellers-slider">
+                                    <div class="swiper-wrapper">
+
+                                        <div class="swiper-slide">
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+                                        </div><!-- End .swiper-slide -->
+
+                                        <div class="swiper-slide">
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+                                        </div><!-- End .swiper-slide -->
+
+                                    </div><!-- End .swiper-wrapper -->
+
+                                    <div class="swiper-button-next icon"></div>
+                                    <div class="swiper-button-prev icon"></div>
+                                </div><!-- end .swiper-container -->
+                            </div><!-- End .widget -->
+
                         </aside>
 
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
-            <br><br><br><br>
-            <br><br><br><br>
-            <br><br><br><br>
-            <br><br><br><br>
+
             <footer class="footer footer2">
                 <div class="footer-inner">
                     <div class="container">
@@ -532,31 +628,27 @@
         <script src="assets/js/main.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
         <script>
-        //Function to display payment card details of the selected card from the database
-        //Pre-conditions   -> User selects a particular payment card from MySavedCards.html page and clicks on Edit card button
-        //Post-conditions  -> Edit card page is populated with details of the selected payment card
-        $( document ).ready(function()
+          $( document ).ready(function()
           {
-            var request = $.ajax
-            ({
-                url:  "/getcardforid",
-                type: "POST",
-                data: {id:'2'},
-                success: function(data)
-                {
-                    var cardDetails = JSON.parse(data);
-                    $( "#CardHolderName" ).val(cardDetails['CardHolderName']);
-                    $( "#CardNumber" ).val(cardDetails['CardNumber']);
-                    $( "#ValidTill" ).val(cardDetails['ValidTill']);
-                }
+            var request = $.ajax(
+            {
+              url:  "/getcardforid",
+              type: "POST",
+              data: {id:'2'},
+              success: function(data)
+              {
+                var cardDetails = JSON.parse(data);
+                $( "#CardHolderName" ).val(cardDetails['CardHolderName']);
+                $( "#CardNumber" ).val(cardDetails['CardNumber']);
+                $( "#ValidTill" ).val(cardDetails['ValidTill']);
+              }
             });
           });
 
-        //Function to update payment card information to the database
-        //Pre-conditions   -> Buyer updates desired fields on the EditCard.html page and clicks Edit Card button
-        //Post-conditions  -> Buyer's payment card information is saved and updated in the database
-        function updateCardFunction()
-        {
+
+          //Update Card details
+          function updateCardFunction()
+          {
               var st = window.location + '';
               var splits = st.split('/');
               var buyerId = splits[splits.length-1];
@@ -567,18 +659,23 @@
                  data:
 
                  {
-                    cardId: $("#cardId").val(),
-                    CardHolderName : $("#CardHolderName").val(),
-                    CardNumber:$("#CardNumber").val(),
-                    ValidTill:$("#ValidTill").val(),
+                   cardId: $("#cardId").val(),
+                   CardHolderName : $("#CardHolderName").val(),
+                   CardNumber:$("#CardNumber").val(),
+                   ValidTill:$("#ValidTill").val(),
                   },
                  success: function(res)
                  {
-                    alert('Card Details Updated');
-                    window.location.href = "/MySavedCards";
+                  alert('Card Details Updated');
+                  window.location.href = "/MySavedCards";
                  }
               });
-          }
+            }
+
+            //end of update Buyer Function
+
+
+
         </script>
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>

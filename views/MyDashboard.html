@@ -1,4 +1,4 @@
-<!--Page to Display Buyer Dashboard -->
+<!-- Reference: https://themeforest.net/item/sconto-premium-ecommerce-template/16643705?s_rank=17 -->
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -12,19 +12,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="assets/images/favicons/ffs-favicon.png">
-        <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/ffs-favicon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/ffs-favicon.png">
+        <link rel="icon" type="image/png" href="../assets/images/favicons/ffs-favicon.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="../images/favicons/ffs-favicon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="../assets/images/favicons/ffs-favicon.png">
 
         <link href='http://fonts.googleapis.com/css?family=Hind:400,700,600,500,300%7CFira+Sans:400,700italic,500italic,400italic,300italic,700,500,300' rel='stylesheet' type='text/css'>
 
         <!-- Fira Sans Fix - Google Fira Sans sometimes fails to load -->
         <link href='http://code.cdn.mozilla.net/fonts/fira.css' rel='stylesheet'>
 
-        <link rel="stylesheet" href="assets/css/plugins.min.css">
-        <link rel="stylesheet" href="assets/css/settings.css">
-        <link rel="stylesheet" href="assets/css/navigation.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/plugins.min.css">
+        <link rel="stylesheet" href="../assets/css/settings.css">
+        <link rel="stylesheet" href="../assets/css/navigation.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
 
     </head>
 
@@ -33,8 +33,8 @@
             <header class="header sticky-header border-less border-gray">
                 <div class="container-fluid">
                     <div class="logo">
-                        <a href="/" title="Food-for-Soul">
-                            <img src="assets/images/ffs-logo-final.png" alt="Food-for-Soul">
+                        <a href="index.html" title="Food-for-Soul">
+                            <img src="../assets/images/ffs-logo-final.png" alt="Food-for-Soul">
                         </a>
                     </div><!-- End .logo -->
 
@@ -87,7 +87,6 @@
                                     <li><a href="register.html">Science & Math</a></li>
                                 </ul>
                             </li>
-
                             <li><a href="#">Notes</a>
                                 <ul>
                                     <li><a href="#">Reference</a>
@@ -107,12 +106,6 @@
                                     <li><a href="single.html">Medical Science</a></li>
                                     <li><a href="single-left-sidebar.html">Politics & Social Sciences</a></li>
                                 </ul>
-                            </li>
-                            <li>
-                            <a href="/SellerDashboard">Seller Dashboard</a>
-                            </li>
-                            <li>
-                            <a href="/AdminDashboard">Admin Dashboard</a>
                             </li>
                         </ul>
 
@@ -215,9 +208,7 @@
                             <button type="submit" class="btn">
                                 <i class="icon icon-header-search"></i>
                             </button>
-
                         </form>
-
                     </div><!-- End .header-search-container -->
 
                     <div class="dropdowns-container">
@@ -231,29 +222,28 @@
                             </span>
                         </button>
                         <div class="dropdowns-wrapper">
-
                             <ul class="header-dropdown account-dropdown">
                                 <li>
-                                    <a href="/MyDashboard" title="Currency/Language">
+                                    <a href="#" title="Currency/Language">
                                         <i class="icon icon-header icon-user"></i>
                                         <span>MY DASHBOARD</span>
                                     </a>
 
                                     <ul>
                                         <li>
-                                            <a href="MyDashboard">
+                                            <a href="#">
                                                 <i class="icon icon-dropdown icon-dropdown-user"></i>
                                                 <span>MY DASHBOARD</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/checkout">
+                                            <a href="#">
                                                 <i class="icon icon-dropdown icon-dropdown-check"></i>
                                                 <span>Checkout</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/login">
+                                            <a href="#">
                                                 <i class="icon icon-dropdown icon-dropdown-lock"></i>
                                                 <span>Login or Register</span>
                                             </a>
@@ -314,8 +304,8 @@
                                         </div><!-- End .dcart-action-info -->
 
                                         <div class="dcart-action">
-                                            <a href="/cart" class="btn btn-gray3 btn-sm">View Cart</a>
-                                            <a href="/checkout" class="btn btn-custom btn-sm">Checkout</a>
+                                            <a href="#" class="btn btn-gray3 btn-sm">View Cart</a>
+                                            <a href="#" class="btn btn-custom btn-sm">Checkout</a>
                                         </div><!-- End .dcart-action -->
                                     </div><!-- End .dcart-action-container -->
                                 </div><!-- End .dropdown-menu -->
@@ -370,7 +360,7 @@
                                         <div class="row product-container-row">
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
 
-                                            </div><!-- End .product-container-->
+                                                                                            </div><!-- End .product-container-->
                                         </div><!-- End .row -->
                                     </div><!-- End .tab-pane -->
                                 </div><!-- End .swiper-wrapper -->
@@ -383,25 +373,77 @@
                             <div class="widget widget-category">
                                 <h3 class="widget-title">
                                     MY DASHBOARD
-                                    <i class="icon cat-title-icon header-dropdown"></i>
+                                    <i class="icon cat-title-icon"></i>
                                 </h3>
                                 <ul class="category-list">
                                     <li>
-                                        <a href="/MyOrders">ORDERS- My Orders</a>
+                                        <a href="MyOrders.html">ORDERS- My Orders</a>
                                     </li>
                                     <li>
-                                        <a href="/MySavedCards">PAYMENTS- My Saved Cards</a>
+                                        <a href="MySavedCards.html">PAYMENTS- My Saved Cards</a>
                                     </li>
                                     <li>
-                                        <a href="/ReviewRating">MY REVIEWS AND RATINGS</a>
+                                        <a href="ReviewRating.html">MY REVIEWS AND RATINGS</a>
                                     </li>
                                     <li>
-                                        <a href="/PersonalInformation">PERSONAL INFORMATION</a>
+                                        <a href="PersonalInformation.html">PERSONAL INFORMATION</a>
                                     </li>
 
                                 </ul>
                             </div><!-- End .widget -->
-                          </aside>
+
+                            <div class="widget widget-category">
+                                <h3 class="widget-title">
+                                    Filters
+                                </h3>
+                                <ul class="category-list">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div><!-- End .widget -->
+
+                            <div class="widget">
+                                <h3 class="widget-title">Advertisements</h3>
+                                <div class="swiper-container bestsellers-slider">
+                                    <div class="swiper-wrapper">
+
+                                        <div class="swiper-slide">
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+                                        </div><!-- End .swiper-slide -->
+
+                                        <div class="swiper-slide">
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+                                        </div><!-- End .swiper-slide -->
+
+                                    </div><!-- End .swiper-wrapper -->
+
+                                    <div class="swiper-button-next icon"></div>
+                                    <div class="swiper-button-prev icon"></div>
+                                </div><!-- end .swiper-container -->
+                            </div><!-- End .widget -->
+
+                        </aside>
+
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
@@ -456,7 +498,7 @@
                                 <div class="widget newsletter-widget">
                                     <h4 class="widget-title">Stay Up To Date</h4>
 
-                                    <p>Sign up to our newsletter for the latest on all things “Food-for-Soul”.</p>
+                                    <p>Sing up to our newsletter for the latest on all things “Food-for-Soul”.</p>
 
                                     <form>
                                         <input type="email" class="form-control" placeholder="your@email.com" required>

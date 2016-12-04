@@ -1,4 +1,4 @@
-<!--Page to Add a new payment card to database -->
+<!-- Reference: https://themeforest.net/item/sconto-premium-ecommerce-template/16643705?s_rank=17 -->
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -359,50 +359,63 @@
                                     <div role="tabpanel" class="tab-pane active" id="tab-latest">
                                         <div class="row product-container-row">
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
-                                              <!--START OF ADD CARD -->
-                                              <div class="main">
-                                                <div class="page-header">
-                                                  <div class="container-fluid">
-                                                    <ol class="breadcrumb">
-                                                      <li><a href="/">Home</a></li>
-                                                      <li class="active"><a href="/MyDashboard">MY DASHBOARD</a></li>
-							                                        <li class="active"><a href="/MySavedCards">PAYMENTS-My Saved Cards</a></li>
-							                                        <li class="active"><a href="/AddCard">Add Card</a></li>
-						                                        </ol>
-                                                  </div><!-- End .container-fluid -->
-                                                </div><!-- End .page-header -->
-                                                <br><br>
-				                                        <div class="container-fluid">
-                                                  <div class="row">
-                                                    <div class="col-md-9">
-                                                      <div class="row row-lg">
-                                                        <div class="col-sm-6">
-                                                          <form method = "GET" action="/MySavedCards" >
-						                                                <div class="form-group label-overlay">
-                                                              <input type="text" class="form-control" placeholder="Card Holder's Name" name="CardHolderName" id = "CardHolderName" required>
-                                                            </div><!-- End .form-group -->
-                                                            <div class="form-group label-overlay">
-                                                              <input type="text" class="form-control" placeholder="Card Number" name="CardNumber" id = "CardNumber" required>
-                                                            </div><!-- End .form-group -->
-						                                                <div class="form-group label-overlay">
-                                                              <input type="datetime" class="form-control" placeholder="Valid Till" name="ValidTill" id = "ValidTill" required>
-                                                            </div><!-- End .form-group -->
-                                                          </div><!-- End .col-sm-6 -->
- 				                                                 </div>
-						                                             <div class="row">
-									                                          <div class="col-xs-6 col-lg-4">
-										                                          <button id="addCardButton "type = "submit"  class="btn btn-custom min-width" onclick="addCardFunction()">ADD CARD</button>
-									                                       </div><!-- End .col-lg-8-->
-                                                         <br>
-                                                       </form>
-						                                         </div>
-						                                      </div>
-					                                     </div>
-				                                     </div>
-                                           </div><!-- End .main -->
-                                           <!--END OF ADD CARD -->
-                                        </div><!-- End .product-container-->
-                                      </div><!-- End .row -->
+
+
+<!--START OF ADD CARD -->
+            <div class="main">
+                <div class="page-header">
+                    <div class="container-fluid">
+                        <ol class="breadcrumb">
+                            <li><a href="/">Home</a></li>
+                            <li class="active"><a href="/MyDashboard">MY DASHBOARD</a></li>
+							<li class="active"><a href="/MySavedCards">PAYMENTS-My Saved Cards</a></li>
+							<li class="active"><a href="/AddCard">Add Card</a></li>
+						</ol>
+                    </div><!-- End .container-fluid -->
+                </div><!-- End .page-header -->
+<br><br>
+				<div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-9">
+                               <div class="row row-lg">
+                                    <div class="col-sm-6">
+                                      <form method = "GET" action="/MySavedCards" >
+
+										                    <div class="form-group label-overlay">
+                                            <input type="text" class="form-control" placeholder="Card Holder's Name" name="CardHolderName" id = "CardHolderName" required>
+
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group label-overlay">
+                                            <input type="text" class="form-control" placeholder="Card Number" name="CardNumber" id = "CardNumber" required>
+                                        </div><!-- End .form-group -->
+										                    <div class="form-group label-overlay">
+                                            <input type="datetime" class="form-control" placeholder="Valid Till" name="ValidTill" id = "ValidTill" required>
+                                        </div><!-- End .form-group -->
+
+                                    </div><!-- End .col-sm-6 -->
+								                </div>
+								<div class="row">
+									<div class="col-xs-6 col-lg-4">
+										<button id="addCardButton "type = "submit"  class="btn btn-custom min-width" onclick="addCardFunction()">ADD CARD</button>
+									</div><!-- End .col-lg-8-->
+                  </form>
+									</div>
+
+						</div>
+					</div>
+				</div>
+            </div><!-- End .main -->
+
+<!--END OF ADD CARD -->
+
+
+
+
+
+
+                                             </div><!-- End .product-container-->
+                                        </div><!-- End .row -->
                                     </div><!-- End .tab-pane -->
                                 </div><!-- End .swiper-wrapper -->
                             </div><!-- End .swiper-container -->
@@ -433,16 +446,62 @@
                                 </ul>
                             </div><!-- End .widget -->
 
+                            <div class="widget widget-category">
+                                <h3 class="widget-title">
+                                    Filters
+                                </h3>
+                                <ul class="category-list">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div><!-- End .widget -->
+
+                            <div class="widget">
+                                <h3 class="widget-title">Advertisements</h3>
+                                <div class="swiper-container bestsellers-slider">
+                                    <div class="swiper-wrapper">
+
+                                        <div class="swiper-slide">
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+                                        </div><!-- End .swiper-slide -->
+
+                                        <div class="swiper-slide">
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+                                        </div><!-- End .swiper-slide -->
+
+                                    </div><!-- End .swiper-wrapper -->
+
+                                    <div class="swiper-button-next icon"></div>
+                                    <div class="swiper-button-prev icon"></div>
+                                </div><!-- end .swiper-container -->
+                            </div><!-- End .widget -->
 
                         </aside>
 
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
-            <br><br><br><br>
-            <br><br><br><br>
-            <br><br><br><br>
-            <br><br><br><br>
+
             <footer class="footer footer2">
                 <div class="footer-inner">
                     <div class="container">
@@ -525,30 +584,26 @@
         <script src="assets/js/main.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
         <script>
+          function addCardFunction() {
 
-        //Function to add a new payment card to the database
-        //Pre-conditions   -> User clicks on Add button from MySavedCards.html page
-        //Post-conditions  -> New payment card details are added to the database
-          function addCardFunction()
-          {
-              var request = $.ajax
-              ({
-                  url:  "/NewCard",
-                  type: "POST",
-                  data:
-                  {
-                    CardHolderName: $("#CardHolderName").val(),
-                    CardNumber: $("#CardNumber").val(),
-                    ValidTill: $("#ValidTill").val()
-                  },
+              var request = $.ajax({
+               url:  "/NewCard",
+               type: "POST",
+               data:
+               {
+                 CardHolderName: $("#CardHolderName").val(),
+                 CardNumber: $("#CardNumber").val(),
+                 ValidTill: $("#ValidTill").val()
+               },
+               success: function(res) {
+                 alert('Card Added');
+             window.location.href = "/MySavedCards";
+           }
+         });
 
-                  success: function(res)
-                  {
-                    alert('Card Added');
-                    window.location.href = "/MySavedCards";
-                  }
-              });
-            }
+        }
+
+
         </script>
 
         <!-- REVOLUTION JS FILES -->

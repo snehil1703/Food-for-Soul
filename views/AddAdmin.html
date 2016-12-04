@@ -1,4 +1,4 @@
-<!--Page to Add a new admin to database -->
+<!-- Reference: https://themeforest.net/item/sconto-premium-ecommerce-template/16643705?s_rank=17 -->
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -352,61 +352,82 @@
             <div class="main">
                 <div class="container-fluid">
                     <div class="row">
+
                         <div class="col-md-9 col-md-push-3">
+
                             <div class="mb35 mb20-sm"></div><!-- margin -->
-                              <div class="products-tab" role="tabpanel">
+
+                            <div class="products-tab" role="tabpanel">
+                                <!-- Nav tabs -->
+
+                                <!-- Tab Panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="tab-latest">
                                         <div class="row product-container-row">
                                             <div class="products-container max-col-3" data-layoutmode="fitRows">
-                                            <!--START OF ADD ADMINS TABLE -->
-                                              <div class="main">
-                                                <div class="page-header">
-                                                  <div class="container-fluid">
-                                                    <ol class="breadcrumb">
-                                                      <li><a href="/">Home</a></li>
-                                                      <li class="active"><a href="/adminDashboard">MY DASHBOARD</a></li>
-                  		                                <li class="active"><a href="/addRemoveAdmin">ADD REMOVE ADMIN</a></li>
-                  	                                  <li class="active"><a href="/addAdmin">ADD  ADMIN</a></li>
-                                                    </ol>
-                                                  </div><!-- End .container-fluid -->
-                                                </div><!-- End .page-header -->
-                                                <div class="container-fluid">
-                                                  <div class="row">
-                                                    <div class="col-md-9">
-                                                      <div class="row row-lg">
-                                                        <div class="col-sm-6">
-                                                          <!--Using enctype= "text/plain" or any other value was not allowing textbox values
-                                                          //to be stored in the databse. Columns were getting added but with null values
-                                                          //After removing 'enctype', everything worked fine-->
-                                                          <div class="form-group label-overlay">
-                                                            <input type="text" placeholder="Enter First Name" class="form-control" name="adminFirstName" id = "adminFirstName" required>
-                                                          </div><!-- End .form-group -->
-                                                          <div class="form-group label-overlay">
-                                                            <input type="text" placeholder="Enter Last Name" class="form-control" name="adminLastName" id = "adminLastName" required>
-                                                          </div><!-- End .form-group -->
-                                                          <div class="form-group label-overlay">
-                                                            <input type="text" placeholder="Enter Email address" class="form-control" name="adminEmail" id = "adminEmail" required>
-                                                          </div><!-- End .form-group -->
-                                                          <div class="mb20"></div><!-- margin -->
-                                                          <div class="form-action">
-                                                            <button id="addAdminButton" class="btn btn-custom" onclick="addAdminFunction()" >Add Admin</button>
-                                                          </div><!-- End .form-action -->
-                                                          <div class="mb20"></div><!-- margin -->
-                                                        </div><!-- End .col-sm-6 -->
-                                                      </div><!-- End row row-lg -->
-                                                    </div><!--end col-md-9-->
-                                                  </div><!-- End .main -->
-                                                  <!--END OF ADD ADMINS TABLE -->
+
+
+
+            <!--START OF ADD ADMINS TABLE -->
+            <div class="main">
+                <div class="page-header">
+                  <div class="container-fluid">
+                    <ol class="breadcrumb">
+                      <li><a href="/">Home</a></li>
+                      <li class="active"><a href="/adminDashboard">MY DASHBOARD</a></li>
+                  		<li class="active"><a href="/addRemoveAdmin">ADD REMOVE ADMIN</a></li>
+                  		<li class="active"><a href="/addAdmin">ADD  ADMIN</a></li>
+                    </ol>
+                  </div><!-- End .container-fluid -->
+                </div><!-- End .page-header -->
+
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-9">
+                       <div class="row row-lg">
+                          <div class="col-sm-6">
+                            <!--Using enctype= "text/plain" or any other value was not allowing textbox values
+                            //to be stored in the databse. Columns were getting added but with null values
+                            //After removing 'enctype', everything worked fine
+                          -->
+
+                                <div class="form-group label-overlay">
+                                    <input type="text" placeholder="Enter First Name" class="form-control" name="adminFirstName" id = "adminFirstName" required>
+                                    <label class="input-desc"><i class="icon input-icon input-user"></i></label>
+                                </div><!-- End .form-group -->
+                                <div class="form-group label-overlay">
+                                    <input type="text" placeholder="Enter Last Name" class="form-control" name="adminLastName" id = "adminLastName" required>
+                                    <label class="input-desc"><i class="icon input-icon input-user"></i></label>
+                                </div><!-- End .form-group -->
+                                <div class="form-group label-overlay">
+                                    <input type="text" placeholder="Enter Email address" class="form-control" name="adminEmail" id = "adminEmail" required>
+                                    <label class="input-desc"><i class="icon input-icon input-number"></i></label>
+                                </div><!-- End .form-group -->
+                            </div><!-- End .col-sm-6 -->
+                          </div><!-- End row row-lg -->
+                       </div><!--end col-md-9-->
+
+                       <div class="mb20"></div><!-- margin -->
+                          <div class="form-action">
+                             <button id="addAdminButton" class="btn btn-custom" onclick="addAdminFunction()" >Add Admin</button>
+                          </div><!-- End .form-action -->
+
+                  </div><!-- End .main -->
+              <!--END OF ADD ADMINS TABLE -->
+
+
+
+
+
                                             </div><!-- End .product-container-->
                                         </div><!-- End .row -->
                                     </div><!-- End .tab-pane -->
                                 </div><!-- End .swiper-wrapper -->
                             </div><!-- End .swiper-container -->
+
                         </div><!-- End .col-md-9 -->
-                      </div>
-                    </div>
-                    <aside class="col-md-3 col-md-pull-9 sidebar">
+
+                        <aside class="col-md-3 col-md-pull-9 sidebar">
 
                             <div class="widget widget-category">
                                 <h3 class="widget-title">
@@ -429,11 +450,62 @@
                                   </ul>
                             </div><!-- End .widget -->
 
+                            <div class="widget widget-category">
+                                <h3 class="widget-title">
+                                    Filters
+                                </h3>
+                                <ul class="category-list">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div><!-- End .widget -->
+
+                            <div class="widget">
+                                <h3 class="widget-title">Advertisements</h3>
+                                <div class="swiper-container bestsellers-slider">
+                                    <div class="swiper-wrapper">
+
+                                        <div class="swiper-slide">
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+                                        </div><!-- End .swiper-slide -->
+
+                                        <div class="swiper-slide">
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+
+                                            <div class="product product-sm">
+                                            </div><!-- End .product -->
+                                        </div><!-- End .swiper-slide -->
+
+                                    </div><!-- End .swiper-wrapper -->
+
+                                    <div class="swiper-button-next icon"></div>
+                                    <div class="swiper-button-prev icon"></div>
+                                </div><!-- end .swiper-container -->
+                            </div><!-- End .widget -->
+
                         </aside>
+
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
-            <br>
+
             <footer class="footer footer2">
                 <div class="footer-inner">
                     <div class="container">
@@ -516,28 +588,26 @@
         <script src="assets/js/main.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
         <script>
-        //Function to add a new admin to the database
-        //Pre-conditions   -> User clicks on Add button from AddRemoveAdmin.html page
-        //Post-conditions  -> New admin details are added to the database
-          function addAdminFunction()
-          {
-              var request = $.ajax(
-              {
-                url:  "/NewAdmin",
-                type: "POST",
-                data:
-                {
-                  adminFirstName: $("#adminFirstName").val(),
-                  adminLastName: $("#adminLastName").val(),
-                  adminEmail: $("#adminEmail").val()
-                },
-                success: function(res)
-                {
-                  alert('Admin Added');
-                  window.location.href = "/addRemoveAdmin";
-                }
-              });
-            }
+          function addAdminFunction() {
+
+              var request = $.ajax({
+               url:  "/NewAdmin",
+               type: "POST",
+               data:
+               {
+                 adminFirstName: $("#adminFirstName").val(),
+                 adminLastName: $("#adminLastName").val(),
+                 adminEmail: $("#adminEmail").val()
+               },
+               success: function(res) {
+                 alert('Admin Added');
+             window.location.href = "/addRemoveAdmin";
+           }
+         });
+
+        }
+
+
         </script>
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
