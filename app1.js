@@ -30,9 +30,11 @@ connection.connect(function(err)
 })
 
 
+
 //Variable declarations to access Controller files
 var returnController= require('./controllers/ReturnAndCancel');
 var inventoryManagementController= require('./controllers/InventoryManagement');
+
 var dashboardController= require('./controllers/Dashboard');
 var sellerDashboardController= require('./controllers/SellerDashboard');
 var adminDashboardController= require('./controllers/AdminDashboard');
@@ -424,10 +426,28 @@ app.get('/AddAdmin',adminDashboardController.addAdmin);
 //Post-conditions  --> Routes the user to adminProfile function of Admin Dashboard controller
 app.get('/AdminProfile',adminDashboardController.adminProfile);
 
+
 // To Route user to newsletter function of Admin Dashboard controller
 //Pre-conditions   --> Takes input request from the user clicks (browser)
 //Post-conditions  --> Routes the user to newsletter function of Admin Dashboard controller
 app.get('/Newsletter', adminDashboardController.newsletter);
+
+
+//fetches required products from the database
+app.post('/books_data',all_productController.booksData);
+
+app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
+app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
+//app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
+//app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
+//app.post('/InventoryAddBooks', inventoryManagementController.confirmAddBooks);
+//app.post('/Login', loginController.confirmLogin);
+app.post('/Registersuccessbuyer', registerBuyerController.confirmRegistrationbuyer);
+app.post('/Registersuccessseller', registerSellerController.confirmRegistration);
+app.post('/Forgotpassword', resetPassword.confirmPasswordreset);
+app.post('/Deletecartitem', deleteCartItem.confirmDelete);
+app.post('/Checkout', confirmCheckout.checkoutConfirm);
+>>>>>>> 43d6069e9adba337d078a93ef067e340f60270a8
 
 // To Route user to newAdmin function of Admin Dashboard controller
 //Pre-conditions   --> Takes input request from the user clicks (browser)

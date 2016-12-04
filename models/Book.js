@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Initializing the ORM to connect to the database
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
   define: {
    timestamps: true
  }
@@ -67,6 +67,7 @@ var bookrecords = sequelize.define('book_records', {
       type: Sequelize.STRING,
       field: 'category'
     },
+
   category1:{
     type: Sequelize.STRING,
     field: 'category1'
@@ -104,6 +105,36 @@ var bookrecords = sequelize.define('book_records', {
 
 //Added by Nikitha for Inventory Management to add new book records
 exports.addBookRecords = (req, res) => {
+
+    category1:{
+        type: Sequelize.STRING,
+        field: 'category1'
+    },
+    category2:{
+        type: Sequelize.STRING,
+        field: 'category2'
+    },
+    format:{
+        type: Sequelize.STRING,
+        field: 'format'
+    },
+    condition:{
+        type: Sequelize.STRING,
+        field: 'condition'
+    },
+    createdAt:{
+        type: Sequelize.STRING,
+        field: 'createdAt'
+    }
+});
+
+exports.books_data = (req, res) => {
+    bookrecords.findAll({
+        orderBy: [['createdAt', 'DESC']]
+    }).then(function(result) {
+        res.json(result);
+    });
+}
 
   sequelize.sync().then(function() {
     return bookrecords.create({
