@@ -1,3 +1,5 @@
+//This Model interfaces with the table classnotes_records in the foodforsouldatabase
+//maintaining the records of books and allowing user to add, modify , fetch classnotes_records
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -5,13 +7,14 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Initializing the ORM to connect to the database
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
    timestamps: true // true by default
  }
 });
-
+//creating object of classnotes_records which will be used to map to database
 var classnotesrecords = sequelize.define('classnotes_records', {
   classnotesId: {
       type: Sequelize.INTEGER,
@@ -19,38 +22,41 @@ var classnotesrecords = sequelize.define('classnotes_records', {
       primaryKey: true
     },
   subject: {
-      type: Sequelize.STRING,
-      field: 'subject'
-    },
-    university:{
-      type: Sequelize.STRING,
-      field: 'university'
-    },
-    description:{
-      type: Sequelize.STRING,
-      field: 'description'
-    },
-    price:{
-      type: Sequelize.INTEGER,
-      field: 'price'
-    },
-    name:{
-      type: Sequelize.STRING,
-      field: 'name'
-    },
-    subcategory: {
-        type: Sequelize.INTEGER,
-        field: 'subcategory'
-    },
-    sellerId: {
-        type: Sequelize.INTEGER,
-        field: 'sellerId'
-
-    }
+    type: Sequelize.STRING,
+    field: 'subject'
+  },
+  subcategory: {
+    type: Sequelize.STRING,
+    field: 'subcategory'
+  },
+  university:{
+    type: Sequelize.STRING,
+    field: 'university'
+  },
+  description:{
+    type: Sequelize.STRING,
+    field: 'description'
+  },
+  price:{
+    type: Sequelize.INTEGER,
+    field: 'price'
+  },
+  name:{
+    type: Sequelize.STRING,
+    field: 'name'
+  },
+  sellerID:{
+    type: Sequelize.INTEGER,
+    field: 'sellerID'
+  },
+  subcategory:{
+    type: Sequelize.STRING,
+    field: 'subcategory'
+  }
 });
 
 
-
+//Added by Nikitha for Inventory Management to add new class notes records
 exports.insertClassNotes = (req, res) => {
 
   sequelize.sync().then(function() {
@@ -59,8 +65,10 @@ exports.insertClassNotes = (req, res) => {
       subject:  req.session.classNotesSubject,
       description:req.session.classNotesDescription,
       university:req.session.classNotesUniversity,
-      price:req.session.classNotesPrice
-  });
+      price:req.session.classNotesPrice,
+      subcategory:req.session.subcategory,
+      sellerID:req.session.sellerID
+    });
   }).then(function () {
 
   res.sendFile(path.join(__dirname + '/../views'+'/InventoryClassNotesAddedConfirmPage.html'));
@@ -117,7 +125,7 @@ exports.updateClassNoteRecords = (req, res) => {
     {
       where:
       {
-        sellerID : '17'
+        sellerID : req.session.sellerID
       }
     })
     .then(function(result)
@@ -148,10 +156,11 @@ exports.updateClassNoteRecords = (req, res) => {
 
 //module.exports=Book;
 
-// SNEHIL
+//Added by Snehil for Home Page to view Notes according to user requirement
+//Pre-conditions   --> Takes filter and category inputs by the user on the home page
+//Post-conditions  --> Returns the Class Notes according to user request
 
 exports.notes_data = (req, res) => {
-    //console.log("Check "+req.body.tabDisplays);
 
     if(req.body.pricemin == 'null')
         d_pricemin = 0;
@@ -207,13 +216,6 @@ exports.notes_data = (req, res) => {
         }
 
     }
-
-    //console.log(d_format);
-    //console.log(d_language);
-    //console.log(d_condition);
-    //console.log(d_pricemin);
-    //console.log(d_pricemax);
-    //console.log(d_rating);
 
     if (req.body.tabDisplays == "tab-latest") {
         classnotesrecords.findAll({

@@ -1,0 +1,216 @@
+CREATE TABLE `admin_records` (
+  `adminID` int(11) NOT NULL AUTO_INCREMENT,
+  `adminFirstName` varchar(255) DEFAULT NULL,
+  `adminLastName` varchar(255) DEFAULT NULL,
+  `adminEmail` varchar(255) DEFAULT NULL,
+  `adminPhoneNumber` varchar(255) DEFAULT NULL,
+  `adminAddress1` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`adminID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `buyer_details` (
+  `user_id` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `address_1` varchar(45) NOT NULL,
+  `address_2` varchar(45) DEFAULT NULL,
+  `role` varchar(45) DEFAULT NULL,
+  `city` varchar(45) NOT NULL,
+  `postcode` varchar(45) NOT NULL,
+  `country` varchar(45) NOT NULL,
+  `state` varchar(45) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `book_records` (
+  `bookID` int(11) NOT NULL AUTO_INCREMENT,
+  `bookName` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `author` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `isbn` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `discountApplicable` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `discountRate` int(11) DEFAULT NULL,
+  `couponcode` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `description` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `category` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `category1` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `language` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `format` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `bookSoldCount` int(11) DEFAULT NULL,
+  `category2` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `condition` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `sellerID` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `source` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `rating` int(11) DEFAULT NULL,
+  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`bookID`)
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+
+
+CREATE TABLE `buyer_records` (
+  `buyerID` int(11) NOT NULL AUTO_INCREMENT,
+  `buyerFirstName` varchar(45) DEFAULT NULL,
+  `buyerLastName` varchar(45) DEFAULT NULL,
+  `buyerEmail` varchar(45) NOT NULL,
+  `buyerAddress1` varchar(45) DEFAULT NULL,
+  `buyerAddress2` varchar(45) DEFAULT NULL,
+  `buyerCity` varchar(45) DEFAULT NULL,
+  `buyerPostcode` varchar(45) DEFAULT NULL,
+  `buyerPassword` varchar(200) DEFAULT NULL,
+  `role` varchar(45) DEFAULT NULL,
+  `buyerPhoneNumber` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`buyerEmail`),
+  UNIQUE KEY `buyerID_UNIQUE` (`buyerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `buyer_reviews` (
+  `reviewID` int(11) NOT NULL AUTO_INCREMENT,
+  `buyerEmail` varchar(255) DEFAULT NULL,
+  `productReview` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`reviewID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `cancelorder_records` (
+  `orderid` int(11) NOT NULL,
+  `reasonforcancel` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`orderid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `cart_details` (
+  `buyerID` varchar(45) NOT NULL,
+  `bookId` varchar(45) NOT NULL,
+  `bookName` varchar(45) NOT NULL,
+  `isbn` varchar(45) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `subtotal` varchar(45) DEFAULT NULL,
+  `total` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=242 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `classnotes_records` (
+  `classnotesId` int(11) NOT NULL AUTO_INCREMENT,
+  `university` varchar(45) DEFAULT NULL,
+  `subject` varchar(45) DEFAULT NULL,
+  `subcategory` varchar(45) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `sellerID` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`classnotesId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `login_details` (
+  `login_id` varchar(45) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `role` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`login_id`),
+  UNIQUE KEY `login_id_UNIQUE` (`login_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `order_details` (
+  `buyerID` varchar(45) NOT NULL,
+  `bookID` varchar(45) DEFAULT NULL,
+  `bookName` varchar(45) DEFAULT NULL,
+  `isbn` varchar(45) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `subtotal` int(11) DEFAULT NULL,
+  `orderStatus` varchar(45) DEFAULT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `deliveryDate` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `product_tabs` (
+  `bookId` int(11) NOT NULL,
+  `bookName` varchar(45) DEFAULT NULL,
+  `isbn` varchar(45) NOT NULL,
+  `price` int(11) DEFAULT NULL,
+  PRIMARY KEY (`isbn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `returnorder_records` (
+  `reasonforreturn` int(11) NOT NULL,
+  `orderid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`reasonforreturn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `reviews` (
+  `reviewID` int(11) NOT NULL AUTO_INCREMENT,
+  `buyerEmail` varchar(45) DEFAULT NULL,
+  `productReview` varchar(45) DEFAULT NULL,
+  `isbn` varchar(45) DEFAULT NULL,
+  `productRating` int(11) DEFAULT NULL,
+  `productName` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`reviewID`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `saved_cards` (
+  `cardId` int(11) NOT NULL AUTO_INCREMENT,
+  `CardHolderName` varchar(45) DEFAULT NULL,
+  `CardNumber` varchar(45) DEFAULT NULL,
+  `ValidTill` varchar(45) DEFAULT NULL,
+  `emailId` varchar(45) NOT NULL,
+  PRIMARY KEY (`cardId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `seller_details` (
+  `seller_id` varchar(45) NOT NULL,
+  `first_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `email_id` varchar(45) NOT NULL,
+  `card_num` varchar(45) DEFAULT NULL,
+  `CVV` varchar(45) DEFAULT NULL,
+  `valid_till` varchar(45) DEFAULT NULL,
+  `address_1` varchar(45) DEFAULT NULL,
+  `address_2` varchar(45) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `postcode` varchar(45) DEFAULT NULL,
+  `country` varchar(45) DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`seller_id`),
+  UNIQUE KEY `seller_id_UNIQUE` (`seller_id`),
+  UNIQUE KEY `email_id_UNIQUE` (`email_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `seller_records` (
+  `sellerID` int(11) NOT NULL AUTO_INCREMENT,
+  `sellerFirstName` varchar(45) DEFAULT NULL,
+  `sellerLastName` varchar(45) DEFAULT NULL,
+  `sellerEmail` varchar(45) NOT NULL,
+  `sellerCardNum` varchar(45) DEFAULT NULL,
+  `sellerCardCVV` varchar(45) DEFAULT NULL,
+  `sellerCardExp` varchar(45) DEFAULT NULL,
+  `sellerAddress1` varchar(45) DEFAULT NULL,
+  `sellerAddress2` varchar(45) DEFAULT NULL,
+  `sellerCity` varchar(45) DEFAULT NULL,
+  `sellerPostcode` varchar(45) DEFAULT NULL,
+  `sellerPassword` varchar(200) DEFAULT NULL,
+  `role` varchar(45) DEFAULT NULL,
+  `sellerPhoneNumber` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`sellerEmail`),
+  UNIQUE KEY `sellerID_UNIQUE` (`sellerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;

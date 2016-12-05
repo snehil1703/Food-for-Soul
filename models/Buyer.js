@@ -1,69 +1,98 @@
+//Author - Prasandeep Singh
+//Model file to interact with buyer_records table in the database using Sequelize
+
+
 var express = require('express');
 var app = express();
 var path = require('path');
 
+
+//Creating an object of nodemailer to send auto-generated emails to users
 var nodemailer = require('nodemailer');
 var router = express.Router();
 
+
+//Declaring a variable of Sequelize
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
-  define: {
-   timestamps: false // true by default
- }
+var sequelize = new Sequelize('foodforsoul', 'root', 'root',
+{
+  //To disable the auto-created columns- createdAt and updatedAt to be populated in the table
+  define:
+  {
+    timestamps: false // true by default
+  }
 });
 
-var buyerRecords = sequelize.define('buyer_records', {
-   buyerId: {
+
+//To define metadata fields for buyer_records table
+var buyerRecords = sequelize.define('buyer_records',
+{
+  buyerId:
+  {
       type: Sequelize.INTEGER,
       field: 'buyerId',
       primaryKey: true,
       autoIncrement: true
-    },
-  buyerFirstName: {
+  },
+  buyerFirstName:
+  {
       type: Sequelize.STRING,
       field: 'buyerFirstName'
-    },
-    buyerLastName:{
+  },
+  buyerLastName:
+  {
       type: Sequelize.STRING,
       field: 'buyerLastName'
-    },
-    buyerEmail:{
+  },
+  buyerEmail:
+  {
       type: Sequelize.STRING,
       field: 'buyerEmail',
-    },
-    buyerAddress1:{
+  },
+  buyerAddress1:
+  {
       type: Sequelize.STRING,
       field: 'buyerAddress1',
-    },
-    buyerAddress2:{
+  },
+  buyerAddress2:
+  {
       type: Sequelize.STRING,
       field: 'buyerAddress2',
-    },
-    buyerCity:{
+  },
+  buyerCity:
+  {
       type: Sequelize.STRING,
       field: 'buyerCity',
-    },
-    buyerPostcode:{
+  },
+  buyerPostcode:
+  {
       type: Sequelize.STRING,
       field: 'buyerPostcode',
-    },
-    buyerPassword:{
+  },
+  buyerPassword:
+  {
       type: Sequelize.STRING,
       field: 'buyerPassword',
-    },
-    buyerPhoneNumber:{
+  },
+  buyerPhoneNumber:
+  {
       type: Sequelize.STRING,
       field: 'buyerPhoneNumber',
-    }
-
+  }
 });
 
 
-
-//Fetches buyer details from database
-exports.findBuyerRecord = (req, res) => {
-  buyerRecords.findById(2).then(function(result) {
-
+//Fetches a particular buyer details from database
+//Pre-conditions   --> Takes input request from the getbuyerProfile function of Buyer Dashboard Controller
+//Post-conditions  --> Fetches information of a particular Buyer from the database and returns the response to success function of PersonalInformation.html page
+exports.findBuyerRecord = (req, res) =>
+ {
+   buyerRecords.findOne({
+     where: {
+     buyerEmail : req.session.emailID
+     }
+   }).then(function(result)
+    {
         var x =
         {
           buyerFirstName:result.buyerFirstName,
@@ -72,97 +101,89 @@ exports.findBuyerRecord = (req, res) => {
           buyerPhoneNumber:result.buyerPhoneNumber,
           buyerAddress1:result.buyerAddress1
         };
-
-        //This is working
-        console.log(result.buyerFirstName);
         res.json(x);
-  });
-};
+    });
+  };
 
 
-
-exports.updateBuyerRecords = (req, res) => {
+//Changes and updates buyer profile information of a particular buyer to the database
+//Pre-conditions   --> Takes input request from the updateBuyer function of Buyer Dashboard Controller
+//Post-conditions  --> Updates information of a particular buyer to the database and returns the response to success function of PersonalInformation.html page
+exports.updateBuyerRecords = (req, res) =>
+{
 
   buyerRecords.update(
   {
-    buyerFirstName: req.body.buyerFirstName,
-    buyerLastName: req.body.buyerLastName,
-    buyerEmail:req.body.buyerEmail,
-    buyerPhoneNumber:req.body.buyerPhoneNumber,
-    buyerAddress1:req.body.buyerAddress1
+      buyerFirstName: req.body.buyerFirstName,
+      buyerLastName: req.body.buyerLastName,
+      buyerEmail:req.body.buyerEmail,
+      buyerPhoneNumber:req.body.buyerPhoneNumber,
+      buyerAddress1:req.body.buyerAddress1
   },
   {
     where:
     {
-      buyerId : '2'
+       buyerEmail : req.session.emailID
     }
   })
   .then(function()
-   {
-     res.sendFile(path.join(__dirname + '/../views'+'/PersonalInformation.html'));
-   })
+  {
+      res.sendFile(path.join(__dirname + '/../views'+'/PersonalInformation.html'));
+  })
 };
 
 
-//For newsletter email push to subscribers
+//Funciton to send auto-generated email to subscribed users
+//Pre-conditions   --> Takes input request from the sendEmailToUsers function of Admin Dashboard Controller
+//Post-conditions  --> Sends email to all the buyers and returns the response to success function of NewsLetter.html page
 exports.sendEmail = (req, res) =>
-{
+  {
     var emails;
     var length;
     var senders = ' ';
 
     buyerRecords.findAll(
-    {
-      attributes: ['buyerEmail']
-    })
-    .then(function(result)
-    {
-      emails = result;
-      length = emails.length;
+      {
+        attributes: ['buyerEmail']
+      })
+      .then(function(result)
+      {
+        emails = result;
+        length = emails.length;
 
-      // for(var i = 0; i<emails.length;i++)
-      //   console.log(emails[i].buyerEmail);
-      //   // console.log('mail content  '+document.getElementById('mailText').value);
-    });
+        // for(var i = 0; i<emails.length;i++)
+        //   console.log(emails[i].buyerEmail);
+        //   // console.log('mail content  '+document.getElementById('mailText').value);
+      });
 
-    var transporter = nodemailer.createTransport(
-    {
-        service: 'Gmail',
-        auth:
-        {
+      var transporter = nodemailer.createTransport
+      ({
+          service: 'Gmail',
+          auth:
+          {
             user: 'foodforsoul.16@gmail.com', // Your email id
             pass: 'ffs_nprss' // Your password
-        }
-    });
+          }
+        });
 
-  //  for(var i = 0; i<length;i++)
-    console.log('From model file'+length);
-    //  senders = senders + '\'' +emails[i] + ',' + '\'';
+      var mailOptions =
+      {
+          from: 'foodforsoul.16@gmail.com', // sender address
+          to:    'prasan.ubhi@gmail.com',// list of receivers
+          subject: 'Hello From FoodForSoul', // Subject line
+          text:  req.session.mailText//, // plaintext body
+      };
 
-
-    var mailOptions =
-    {
-        from: 'foodforsoul.16@gmail.com', // sender address
-        to:    'prasan.ubhi@gmail.com',// list of receivers
-        subject: 'Hello From FoodForSoul', // Subject line
-        text:  req.session.mailText//, // plaintext body
-        // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
-
-    };
-
-    transporter.sendMail(mailOptions, function(error, info)
-    {
-        if(error)
-        {
+      transporter.sendMail(mailOptions, function(error, info)
+      {
+          if(error)
+          {
             console.log(error);
-          //  res.json({yo: 'error'});
-        }
-        else
-        {
+          }
+          else
+          {
             console.log('Message sent: ' + info.response);
-            //res.json({yo: info.response});
-        };
-    });
-
-
-  }
+          };
+        });
+        res.sendFile(path.join(__dirname + '/../views'+'/NewsLetter.html'));
+      }

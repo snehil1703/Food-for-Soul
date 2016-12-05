@@ -1,4 +1,4 @@
-<!--Page to display Newsletter types and allo admin to push email to subscribers -->
+<!--Page to display Newsletter types and allow admin to push email to subscribers -->
 
 <!DOCTYPE html>
 <!--[if IE 9]><html class="ie9"><![endif]-->
@@ -469,7 +469,10 @@
                     </div><!-- End .row -->
                 </div><!-- End .container-fluid -->
             </div><!-- End .main -->
-
+            <br><br><br><br>
+            <br><br><br><br>
+            <br><br><br><br>
+            <br><br><br><br>
             <footer class="footer footer2">
                 <div class="footer-inner">
                     <div class="container">
@@ -567,11 +570,6 @@
                 ({
                     url:  "/getTopRated",
                     type: "POST",
-                    data:
-                    {
-                        mailText: $("#mailText").val()
-                    },
-
                     success: function(data)
                     {
                         var r = new Array(), j = -1;
@@ -584,7 +582,7 @@
                             x = x + '\n' + r[j];
                         }
 
-                        x = x + '\n \n' + 'Regards, \n' + 'FoodForSoul'
+                        x = x + '\n \n' + 'Regards, \n' + 'FoodForSoul';
                         $( "#mailText" ).val(x);
                     }
                 });
@@ -599,10 +597,6 @@
                 {
                   url:  "/getnewProducts",
                   type: "POST",
-                  data:
-                  {
-                    mailText: $("#mailText").val()
-                  },
                   success: function(data)
                   {
                     var r = new Array(), j = -1;
@@ -615,7 +609,7 @@
                         x = x + '\n' + r[j];
                     }
 
-                    x = x + '\n \n' + 'Regards, \n' + 'FoodForSoul'
+                    x = x + '\n \n' + 'Regards, \n' + 'FoodForSoul';
                     $( "#mailText" ).val(x);
                   }
                 });
@@ -630,10 +624,6 @@
                 {
                   url:  "/getNewOffers",
                   type: "POST",
-                  data:
-                  {
-                      mailText: $("#mailText").val()
-                  },
                   success: function(data)
                   {
                       var r = new Array(), j = -1;
@@ -646,7 +636,7 @@
                           x = x + '\n' + r[j];
                       }
 
-                      x =  x + '\n \n' + 'Regards, \n' + 'FoodForSoul'
+                      x =  x + '\n \n' + 'Regards, \n' + 'FoodForSoul';
                       $( "#mailText" ).val(x);
                   }
                 });
