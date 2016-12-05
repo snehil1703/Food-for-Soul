@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
    timestamps: true
  }
@@ -38,9 +38,9 @@ var bookrecords = sequelize.define('book_records', {
       type: Sequelize.INTEGER,
       field: 'quantity'
     },
-    description:{
-      type: Sequelize.STRING,
-      field: 'description'
+    source: {
+        type: Sequelize.STRING,
+        field: 'source'
     },
     discountApplicable:{
       type: Sequelize.STRING,
@@ -53,6 +53,10 @@ var bookrecords = sequelize.define('book_records', {
     couponCode:{
       type: Sequelize.STRING,
       field: 'couponCode'
+    },
+    description:{
+        type: Sequelize.STRING,
+        field: 'description'
     },
     sellerID:{
       type: Sequelize.STRING,
@@ -70,6 +74,10 @@ var bookrecords = sequelize.define('book_records', {
         type: Sequelize.STRING,
         field: 'category2'
     },
+    language:{
+        type: Sequelize.STRING,
+        field: 'language'
+    },
     format:{
         type: Sequelize.STRING,
         field: 'format'
@@ -78,19 +86,15 @@ var bookrecords = sequelize.define('book_records', {
         type: Sequelize.STRING,
         field: 'condition'
     },
-    createdAt:{
-        type: Sequelize.STRING,
-        field: 'createdAt'
+    rating:{
+        type: Sequelize.INTEGER,
+        field: 'rating'
+    },
+    bookSoldCount:{
+        type: Sequelize.INTEGER,
+        field: 'bookSoldCount'
     }
 });
-
-exports.books_data = (req, res) => {
-    bookrecords.findAll({
-        orderBy: [['createdAt', 'DESC']]
-    }).then(function(result) {
-        res.json(result);
-    });
-}
 
 exports.insertBookRecords = (req, res) => {
   console.log(''+req.body.name);
@@ -245,3 +249,327 @@ res.sendStatus(200);
   };
 
 //module.exports=Book;
+
+// SNEHIL
+
+exports.books_data = (req, res) => {
+    //console.log("Check "+req.body.tabDisplays);
+
+    if(req.body.format == 'null')
+        d_format = ["Paperback","Hardcover","Kindle Edition","Large Print","Audible Audio Edition","Printed Access Code","Digital Access Code","Loose Leaf","Audio CD","Board Book"];
+    else
+        d_format = [req.body.format];
+    if(req.body.language == 'null')
+        d_language = ["English","German","French","Spanish","Italian","Arabic","Urdu","Russian","Hindi","Japanese"];
+    else
+        d_language = [req.body.language];
+    if(req.body.condition == 'null')
+        d_condition = ["New","Used","Collectible"];
+    else
+        d_condition = [req.body.condition];
+    if(req.body.pricemin == 'null')
+        d_pricemin = 0;
+    else
+        d_pricemin = req.body.pricemin;
+    if(req.body.pricemax == 'null')
+        d_pricemax = 9999999;
+    else
+        d_pricemax = req.body.pricemax;
+    if(req.body.rating == 'null')
+        d_rating = 0;
+    else
+        d_rating = req.body.rating;
+    if(req.body.search == 'null' || req.body.search.toLowerCase() == '%book%' || req.body.search.toLowerCase() == '%books%')
+        d_search = "%%";
+    else
+        d_search = req.body.search;
+    if(req.body.books_category1 == 'null')
+    {
+        d_books_category1 = ["NULL","GoodReads", "Knowledge", "Lifestyle"];
+        d_books_category2 = ["NULL","Children", "Comics", "Humor", "Mystery", "Romance", "ScienceFiction", "Teen", "Business", "Computers", "Education", "History", "Law", "Literature", "Medical", "Politics", "Reference", "Sciences", "Sports", "Arts", "Biographies", "Food", "Health", "LGBT", "Parenthood", "Philosophy", "Religion", "Travel"];
+    }
+    else
+    {
+        d_books_category1 = [req.body.books_category1];
+        if(req.body.books_category1 == 'GoodReads')
+        {
+            if (req.body.books_category2 == 'null')
+                d_books_category2 = ["NULL","Children", "Comics", "Humor", "Mystery", "Romance", "ScienceFiction", "Teen"];
+            else
+                d_books_category2 = [req.body.books_category2];
+        }
+        else if(req.body.books_category1 == 'Knowledge')
+        {
+            if (req.body.books_category2 == 'null')
+                d_books_category2 = ["NULL","Business", "Computers", "Education", "History", "Law", "Literature", "Medical", "Politics", "Reference", "Sciences", "Sports"];
+            else
+                d_books_category2 = [req.body.books_category2];
+        }
+        else if(req.body.books_category1 == 'Lifestyle')
+        {
+            if (req.body.books_category2 == 'null')
+                d_books_category2 = ["NULL","Arts", "Biographies", "Food", "Health", "LGBT", "Parenthood", "Philosophy", "Religion", "Travel"];
+            else
+                d_books_category2 = [req.body.books_category2];
+        }
+
+    }
+
+    //console.log(d_format);
+    //console.log(d_language);
+    //console.log(d_condition);
+    //console.log(d_pricemin);
+    //console.log(d_pricemax);
+    //console.log(d_rating);
+
+    if (req.body.tabDisplays == "tab-latest") {
+        bookrecords.findAll({
+            where: {
+                format: {
+                    $in: d_format
+                },
+                language: {
+                    $in: d_language
+                },
+                condition: {
+                    $in: d_condition
+                },
+                rating: {
+                    $gte: d_rating
+                },
+                price: {
+                    $gte: d_pricemin,
+                    $lte: d_pricemax
+                },
+                $and: {
+                    $or: {
+                        bookName: {
+                            $like: d_search
+                        },
+                        author: {
+                            $like: d_search
+                        },
+                        description: {
+                            $like: d_search
+                        },
+                        category: {
+                            $like: d_search
+                        },
+                        category1: {
+                            $like: d_search
+                        },
+                        category2: {
+                            $like: d_search
+                        },
+                        format: {
+                            $like: d_search
+                        },
+                        language: {
+                            $like: d_search
+                        },
+                        condition: {
+                            $like: d_search
+                        }
+                    },
+                    category: {
+                        $in: d_books_category1
+                    },
+                    category1: {
+                        $in: d_books_category2
+                    }
+                }
+            },
+            orderBy: [['createdAt', 'DESC']]
+        }).then(function (result) {
+            //console.log(result);
+            res.json(result);
+        });
+    }
+    else if (req.body.tabDisplays == "tab-bestseller") {
+        bookrecords.findAll({
+            where: {
+                format: {
+                    $in: d_format
+                },
+                language: {
+                    $in: d_language
+                },
+                condition: {
+                    $in: d_condition
+                },
+                rating: {
+                    $gte: d_rating
+                },
+                price: {
+                    $gte: d_pricemin,
+                    $lte: d_pricemax
+                },
+                $and: {
+                    $or: {
+                        bookName: {
+                            $like: d_search
+                        },
+                        author: {
+                            $like: d_search
+                        },
+                        description: {
+                            $like: d_search
+                        },
+                        category: {
+                            $like: d_search
+                        },
+                        category1: {
+                            $like: d_search
+                        },
+                        category2: {
+                            $like: d_search
+                        },
+                        format: {
+                            $like: d_search
+                        },
+                        language: {
+                            $like: d_search
+                        },
+                        condition: {
+                            $like: d_search
+                        }
+                    },
+                    category: {
+                        $in: d_books_category1
+                    },
+                    category1: {
+                        $in: d_books_category2
+                    }
+                }
+            },
+            orderBy: [['bookSoldCount', 'DESC']]
+        }).then(function (result) {
+            //console.log(result);
+            res.json(result);
+        });
+    }
+    else if (req.body.tabDisplays == "tab-highestrated") {
+        bookrecords.findAll({
+            where: {
+                format: {
+                    $in: d_format
+                },
+                language: {
+                    $in: d_language
+                },
+                condition: {
+                    $in: d_condition
+                },
+                rating: {
+                    $gte: d_rating
+                },
+                price: {
+                    $gte: d_pricemin,
+                    $lte: d_pricemax
+                },
+                $and: {
+                    $or: {
+                        bookName: {
+                            $like: d_search
+                        },
+                        author: {
+                            $like: d_search
+                        },
+                        description: {
+                            $like: d_search
+                        },
+                        category: {
+                            $like: d_search
+                        },
+                        category1: {
+                            $like: d_search
+                        },
+                        category2: {
+                            $like: d_search
+                        },
+                        format: {
+                            $like: d_search
+                        },
+                        language: {
+                            $like: d_search
+                        },
+                        condition: {
+                            $like: d_search
+                        }
+                    },
+                    category: {
+                        $in: d_books_category1
+                    },
+                    category1: {
+                        $in: d_books_category2
+                    }
+                }
+            },
+            orderBy: [['rating', 'DESC']]
+        }).then(function (result) {
+            //console.log(result);
+            res.json(result);
+        });
+    }
+    else if (req.body.tabDisplays == "tab-under10") {
+        bookrecords.findAll({
+            where: {
+                format: {
+                    $in: d_format
+                },
+                language: {
+                    $in: d_language
+                },
+                condition: {
+                    $in: d_condition
+                },
+                rating: {
+                    $gte: d_rating
+                },
+                price: {
+                    $lte: 10
+                },
+                $and: {
+                    $or: {
+                        bookName: {
+                            $like: d_search
+                        },
+                        author: {
+                            $like: d_search
+                        },
+                        description: {
+                            $like: d_search
+                        },
+                        category: {
+                            $like: d_search
+                        },
+                        category1: {
+                            $like: d_search
+                        },
+                        category2: {
+                            $like: d_search
+                        },
+                        format: {
+                            $like: d_search
+                        },
+                        language: {
+                            $like: d_search
+                        },
+                        condition: {
+                            $like: d_search
+                        }
+                    },
+                    category: {
+                        $in: d_books_category1
+                    },
+                    category1: {
+                        $in: d_books_category2
+                    }
+                }
+            },
+        }).then(function (result) {
+            //console.log(result);
+            res.json(result);
+        });
+    }
+}
