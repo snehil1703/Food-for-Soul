@@ -22,34 +22,33 @@ var sequelize = new Sequelize('foodforsoul', 'root', 'root',
 
 
 //To define metadata fields for review_records table
-var reviewrecords = sequelize.define('review_records', {
-  reviewId:
-   {
-      type: Sequelize.INTEGER,
-      field: 'reviewID',
-      primaryKey: true
-    },
-
-  productName:
-  {
-      type: Sequelize.STRING,
-      field: 'productName'
-  },
-  rating:
-  {
-      type: Sequelize.INTEGER,
-      field: 'rating'
-  },
-  review:
-  {
-      type: Sequelize.STRING,
-      field: 'review'
-  },
-  buyerId:
-  {
-        type: Sequelize.INTEGER,
-        field: 'buyerID',
-  }
+var reviewrecords = sequelize.define('reviews', {
+  reviewID: {
+     type: Sequelize.INTEGER,
+     field: 'reviewID',
+     primaryKey: true,
+     autoIncrement: true
+   },
+ buyerEmail: {
+     type: Sequelize.STRING,
+     field: 'buyerEmail'
+   },
+   productReview:{
+     type: Sequelize.STRING,
+     field: 'productReview'
+   },
+    productRating:{
+       type: Sequelize.INTEGER,
+       field: 'productRating'
+     },
+     productName:{
+        type: Sequelize.STRING,
+        field: 'productName'
+      },
+      isbn:{
+         type: Sequelize.STRING,
+         field: 'isbn'
+       }
 
 });
 
@@ -63,7 +62,7 @@ exports.findAllReviewRecords = (req, res) =>
     ({
       where:
       {
-          buyerID : '1'
+          buyerEmail : req.session.emailID
         }
     })
     .then(function(result)
@@ -83,7 +82,7 @@ exports.findTopRated = (req, res) =>
   ({
       where:
       {
-          $or: [{rating :'5'}, {rating :'4'}]
+          $or: [{productRating :'5'}, {productRating :'4'}]
       }
   })
   .then(function(result)

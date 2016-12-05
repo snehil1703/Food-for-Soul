@@ -535,9 +535,10 @@
                         var counter = jsonData[i];
 
                         r[++j] ='<tr><td>';
-                        r[++j] = '<input id="orderId" name="orderId" type="radio" value="'+jsonData[i].orderId+'">';
+                        r[++j] = '<input id="ID" name="ID" type="radio" value="'+jsonData[i].ID+'">';
                         r[++j] = '</td><td class="">';
-                        r[++j] = jsonData[i].orderId;
+                        r[++j] = jsonData[i].ID;
+                        console.log(jsonData[i].ID);
                         r[++j] ='<td class="">';
                         r[++j] = jsonData[i].deliveryDate;
                         r[++j] = '</td><td class="">';
@@ -573,7 +574,7 @@
                   type: "POST",
                   data:
                   {
-                      orderId: $("input[name='orderId']:checked").val()
+                      orderId: $("input[name='ID']:checked").val()
                   },
                   success: function(res)
                   {
@@ -593,7 +594,7 @@
                   type: "POST",
                   data:
                   {
-                      orderId: $("input[name='orderId']:checked").val()
+                      orderId: $("input[name='ID']:checked").val()
                   },
                   success: function(res)
                   {

@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // creating instance of model
-var Order  = require('../models/Orders.js');
+var Order  = require('../models/PlaceOrder.js');
 
 // Initializing the ORM to connect to the database
 var Sequelize = require('sequelize');

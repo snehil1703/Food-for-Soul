@@ -24,15 +24,15 @@ var sequelize = new Sequelize('foodforsoul', 'root', 'root',
 
 
 //To define metadata fields for orders_records table
-var orderrecords = sequelize.define('orders_records',
+var orderrecords = sequelize.define('order_details',
 {
-  orderId:
+  ID:
    {
       type: Sequelize.INTEGER,
-      field: 'orderID',
+      field: 'ID',
       primaryKey: true
     },
-  buyerId:
+  buyerID:
   {
         type: Sequelize.INTEGER,
         field: 'buyerID',
@@ -56,90 +56,6 @@ var orderrecords = sequelize.define('orders_records',
 });
 
 
-//To define metadata fields for buyer_records table
-exports.insertOrderRecords = (req, res) =>
-{
-    sequelize.sync().then(function()
-    {
-        return orderrecords.create
-        ({
-            bookName: req.body.name,
-            author: req.body.author,
-            description:req.body.description,
-            quantity:req.body.quantity,
-            isbn:req.body.isbn,
-            price:req.body.price,
-            category:req.body.category,
-            discountApplicable:req.body.discountApplicable,
-            discountRate:req.body.discountRate,
-            couponCode:req.body.couponCode,
-            sellerID:req.session.sellerID
-        });
-    })
-    .then(function ()
-    {
-        res.sendStatus(200);
-    });
-};
-
-
-//Fetches all the order details for a particular buyer from database
-//Pre-conditions   --> Takes input request from the getAllOrders function of Buyer Dashboard Controller
-//Post-conditions  --> Fetches information of all orders placed by a  particular Buyer from the database and returns the response to success function of MyOrders.html page
-exports.findOrderRecords = (req, res) =>
-{
-    orderrecords.findById(req.session.bookId).then(function(result)
-    {
-        var x =
-        {
-            name:result.bookName,
-            author:result.author,
-            description:result.description,
-            quantity:result.quantity,
-            category:result.category,
-            isbn:result.isbn,
-            price:result.price ,
-            discountApplicable:result.discountApplicable,
-            discountRate:result.discountRate,
-            couponCode:result.couponCode
-          };
-
-        res.json(x);
-    });
-}
-
-
-//Changes and updates order details information of a particular buyer to the database
-//Pre-conditions   --> Takes input request from the updateOrder function of Buyer Dashboard Controller
-//Post-conditions  --> Updates information of a particular order placed by a  buyer to the database and returns the response to success function of MyOrders.html page
-exports.updateOrderRecords = (req, res) =>
-{
-    orderrecords.update
-    ({
-        bookName: req.body.name,
-        author: req.body.author,
-        description:req.body.description,
-        category:req.body.category,
-        quantity:req.body.quantity,
-        isbn:req.body.isbn,
-        price:req.body.price,
-        discountApplicable:req.body.discountApplicable,
-        discountRate:req.body.discountRate,
-        couponCode:req.body.couponCode
-    },
-    {
-      where:
-      {
-          bookID : req.session.bookId
-        }
-    })
-    .then(function()
-    {
-        res.sendFile(path.join(__dirname + '/../views'+'/InventoryBookModifiedConfirmPage.html'));
-    })
-};
-
-
 //Fetches a list of all orders placed by a particular buyer from database
 //Pre-conditions   --> Takes input request from the getAllOrders function of Buyer Dashboard Controller
 //Post-conditions  --> Fetches order details from the database and returns the response to success function of MyOrders.html page
@@ -150,7 +66,7 @@ exports.findAllOrderRecords = (req, res) =>
     {
       where:
       {
-          buyerID : '1'
+          buyerID : req.session.emailID
       }
   })
 
@@ -255,6 +171,7 @@ exports.findAllOrderRecords = (req, res) =>
 
 //Added by Nikitha Return And Cancel Order to fetch order on buyer selecting a orderId
       exports.findOrderDetailsById = (req, res) => {
+        console.log("this is order in session"+req.session.orderId);
             orderrecords.findById( req.session.orderId).then(function(result) {
             var orderDetails = {
           price:result.price,

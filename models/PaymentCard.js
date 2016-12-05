@@ -20,28 +20,27 @@ var sequelize = new Sequelize('foodforsoul', 'root', 'root',
 //To define metadata fields for saved_cards table
 var savedCards = sequelize.define('saved_cards',
 {
-   cardId:
-   {
-      type: Sequelize.INTEGER,
-      field: 'cardID',
-      primaryKey: true,
-      autoIncrement: true
-    },
-  CardHolderName:
-  {
-      type: Sequelize.STRING,
+   cardId: {
+		type: Sequelize.STRING,
+      field: 'cardId',
+      primaryKey: true
+	},
+  CardHolderName: {
+		type: Sequelize.STRING,
       field: 'CardHolderName'
-  },
-  CardNumber:
-  {
+	},
+   CardNumber: {
       type: Sequelize.STRING,
       field: 'CardNumber'
-  },
-  ValidTill:
-  {
+    },
+    ValidTill:{
       type: Sequelize.STRING,
       field: 'ValidTill'
-  }
+    },
+    emailId: {
+		type: Sequelize.STRING,
+      field: 'emailId'
+	}
 });
 
 
@@ -56,7 +55,8 @@ exports.insertNewCard = (req, res) =>
         ({
             CardHolderName: req.body.CardHolderName,
             CardNumber: req.body.CardNumber,
-            ValidTill:req.body.ValidTill
+            ValidTill:req.body.ValidTill,
+			emailId: req.session.emailID
         });
     })
     .then(function ()
@@ -91,10 +91,7 @@ exports.findAllCardRecords = (req, res) =>
 {
     savedCards.findAll
     ({
-      // where: {
-      // //  author:req.params.author
-      // buyerId : '1'
-      // }
+      emailId: req.session.emailID
     })
     .then(function(result)
     {

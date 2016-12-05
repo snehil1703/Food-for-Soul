@@ -21,3 +21,8 @@ exports.checkout = (req, res) => {
     res.sendFile(path.join(__dirname + '/../views/checkout.html'));
     console.log('this is to checkout');
 };
+
+exports.homepage = (req, res) => {
+    res.sendFile(path.join(__dirname + '/../views/index.html'));
+    console.log('this is to checkout');
+};

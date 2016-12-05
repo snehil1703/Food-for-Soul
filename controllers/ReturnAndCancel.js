@@ -7,7 +7,7 @@ var path = require('path');
 // Creating instances of models
 var ReturnOrder  = require('../models/ReturnOrder.js');
 var CancelOrder  = require('../models/CancelOrder.js');
-var Order  = require('../models/Orders.js');
+var Order  = require('../models/PlaceOrder.js');
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());

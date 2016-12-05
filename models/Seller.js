@@ -20,58 +20,64 @@ var sequelize = new Sequelize('foodforsoul', 'root', 'root',
 //To define metadata fields for seller_records table
 var sellerRecords = sequelize.define('seller_records',
 {
-   sellerId:
-   {
-      type: Sequelize.INTEGER,
-      field: 'sellerId',
-      primaryKey: true,
-      autoIncrement: true
+  sellerID: {
+     type: Sequelize.INTEGER,
+     field: 'sellerID',
+     primaryKey: true,
+     autoIncrement: true
    },
-  sellerFirstName:
-  {
-      type: Sequelize.STRING,
-      field: 'sellerFirstName'
-  },
-  sellerLastName:
-  {
-      type: Sequelize.STRING,
-      field: 'sellerLastName'
-  },
-  sellerEmail:
-  {
-      type: Sequelize.STRING,
-      field: 'sellerEmail',
-  },
-  sellerAddress1:
-  {
-      type: Sequelize.STRING,
-      field: 'sellerAddress1',
-  },
-  sellerAddress2:
-  {
-      type: Sequelize.STRING,
-      field: 'sellerAddress2',
-  },
-  sellerCity:
-  {
-      type: Sequelize.STRING,
-      field: 'sellerCity',
-  },
-  sellerPostcode:
-  {
-      type: Sequelize.STRING,
-      field: 'sellerPostcode',
-  },
-  sellerPassword:
-  {
-      type: Sequelize.STRING,
-      field: 'sellerPassword',
-  },
-  sellerPhoneNumber:
-  {
-      type: Sequelize.STRING,
-      field: 'sellerPhoneNumber',
-  }
+ sellerFirstName: {
+     type: Sequelize.STRING,
+     field: 'sellerFirstName'
+   },
+   sellerLastName:{
+     type: Sequelize.STRING,
+     field: 'sellerLastName'
+   },
+   sellerEmail:{
+     type: Sequelize.STRING,
+     field: 'sellerEmail'
+   },
+   sellerPhoneNumber:{
+     type: Sequelize.STRING,
+     field: 'sellerPhoneNumber'
+   },
+ sellerCardNum:{
+     type: Sequelize.STRING,
+     field: 'sellerCardNum'
+   },
+ sellerCardCVV:{
+     type: Sequelize.STRING,
+     field: 'sellerCardCVV'
+   },
+ sellerCardExp:{
+     type: Sequelize.STRING,
+     field: 'sellerCardExp'
+   },
+ sellerAddress1: {
+     type: Sequelize.STRING,
+     field: 'sellerAddress1'
+   },
+   sellerAddress2:{
+     type: Sequelize.STRING,
+     field: 'sellerAddress2'
+   },
+   sellerCity:{
+     type: Sequelize.STRING,
+     field: 'sellerCity'
+   },
+ sellerPostcode:{
+     type: Sequelize.STRING,
+     field: 'sellerPostcode'
+   },
+ sellerPassword: {
+     type: Sequelize.STRING,
+     field: 'sellerPassword'
+   },
+ role: {
+       type: Sequelize.STRING,
+       field: 'role'
+     }
 });
 
 
@@ -80,7 +86,11 @@ var sellerRecords = sequelize.define('seller_records',
 //Post-conditions  --> Fetches information of a particular seller from the database and returns the response to success function of sellerProfile.html page
 exports.findSellerRecord = (req, res) =>
 {
-  sellerRecords.findById(1).then(function(result)
+  sellerRecords.findOne({
+    where: {
+    sellerEmail : req.session.emailID
+    }
+  }).then(function(result)
   {
         var x =
         {
@@ -105,14 +115,13 @@ exports.updateSellerRecords = (req, res) =>
   ({
       sellerFirstName: req.body.sellerFirstName,
       sellerLastName: req.body.sellerLastName,
-      sellerEmail:req.body.sellerEmail,
       sellerPhoneNumber:req.body.sellerPhoneNumber,
       sellerAddress1:req.body.sellerAddress1
   },
   {
       where:
       {
-        sellerId : '1'
+        sellerEmail : req.session.emailID
       }
   })
   .then(function()

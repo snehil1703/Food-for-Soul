@@ -87,7 +87,11 @@ var buyerRecords = sequelize.define('buyer_records',
 //Post-conditions  --> Fetches information of a particular Buyer from the database and returns the response to success function of PersonalInformation.html page
 exports.findBuyerRecord = (req, res) =>
  {
-    buyerRecords.findById(2).then(function(result)
+   buyerRecords.findOne({
+     where: {
+     buyerEmail : req.session.emailID
+     }
+   }).then(function(result)
     {
         var x =
         {
@@ -119,7 +123,7 @@ exports.updateBuyerRecords = (req, res) =>
   {
     where:
     {
-        buyerId : '2'
+       buyerEmail : req.session.emailID
     }
   })
   .then(function()

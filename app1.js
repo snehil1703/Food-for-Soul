@@ -34,20 +34,25 @@ connection.connect(function(err)
 //Variable declarations to access Controller files
 var returnController= require('./controllers/ReturnAndCancel');
 var inventoryManagementController= require('./controllers/InventoryManagement');
-
 var dashboardController= require('./controllers/Dashboard');
 var sellerDashboardController= require('./controllers/SellerDashboard');
 var adminDashboardController= require('./controllers/AdminDashboard');
 var returnController= require('./controllers/ReturnAndCancel');
 var inventoryManagementController= require('./controllers/InventoryManagement');
+var homeController = require ('./controllers/home');
+var all_productController = require ('./controllers/all_product');
+
+
+//login and payment controllers
+var confirmCheckout = require('./controllers/CheckoutController');
+var placeYourOrder = require ('./controllers/orders');
+var addItemtoCartController = require('./controllers/AddItemCart');
+var productReviewController = require('./controllers/SubmitReview');
+var deleteCartItemController = require('./controllers/DeleteCart');
 var loginController = require('./controllers/Login');
 var registerBuyerController = require('./controllers/Registersuccessbuyer');
 var registerSellerController = require('./controllers/Registersuccessseller');
 var resetPassword = require('./controllers/Resetpassword');
-var deleteCartItem = require('./controllers/DeleteCart');
-var confirmCheckout = require('./controllers/CheckoutController');
-var homeController = require ('./controllers/home');
-var all_productController = require ('./controllers/all_product');
 
 
 //Variable declaration to use file upload API
@@ -483,12 +488,7 @@ app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
 //app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
 //app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
 //app.post('/InventoryAddBooks', inventoryManagementController.confirmAddBooks);
-//app.post('/Login', loginController.confirmLogin);
-app.post('/Registersuccessbuyer', registerBuyerController.confirmRegistrationbuyer);
-app.post('/Registersuccessseller', registerSellerController.confirmRegistration);
-app.post('/Forgotpassword', resetPassword.confirmPasswordreset);
-app.post('/Deletecartitem', deleteCartItem.confirmDelete);
-app.post('/Checkout', confirmCheckout.checkoutConfirm);
+
 
 
 
@@ -506,20 +506,51 @@ app.get('/managebooks', function(req, res) {
 // call to page to enter new book records
 
 app.get('/addbookpage', inventoryManagementController.getAddBookPage);
-app.get('/Register', loginController.register);
-app.get('/RegisterSeller', loginController.registerSeller);
-app.get('/ForgotPassword', loginController.forgotPassword);
-app.get('/login',homeController.login);
+
 
 app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
 app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
 
-app.post('/Registersuccessbuyer', registerBuyerController.confirmRegistrationbuyer);
-app.post('/Registersuccessseller', registerSellerController.confirmRegistration);
-app.post('/Forgotpassword', resetPassword.confirmPasswordreset);
-app.post('/Deletecartitem', deleteCartItem.confirmDelete);
-app.post('/Checkout', confirmCheckout.checkoutConfirm);
 
+//login and payment 'gets'
+app.get('/Register', loginController.register);
+app.get('/RegisterSeller', loginController.registerSeller);
+app.get('/ForgotPassword', loginController.forgotPassword);
+app.get('/Product', loginController.getProductPage);
+app.get('/ViewCart', addItemtoCartController.viewcart);
+app.get('/CartCheckout', confirmCheckout.checkoutcart);
+app.get('/gotoCart', addItemtoCartController.gotocart);
+app.get('/ConfirmOrder', confirmCheckout.checkoutConfirm);
+app.get('/gotoCheckout', confirmCheckout.gotocheckout);
+app.get('/UserLogout', loginController.confirmLogout);
+app.get('/index',homeController.homepage);
+app.get('/ResetPasswordPage', resetPassword.gotoReset);
+///////////////////
+
+
+//login and payment post's
+app.post('/UserLogin', loginController.confirmLogin);
+app.post('/Registersuccessbuyer', registerBuyerController.confirmRegistrationbuyer);
+app.post('/Registersuccessseller', registerSellerController.confirmsellerRegistration);
+app.post('/Addtocart', addItemtoCartController.addingToCart);
+app.post('/Reset', resetPassword.confirmPasswordreset);
+app.post('/CheckPassword', resetPassword.resetPasswordCheck);
+app.post('/Checkout', confirmCheckout.checkoutConfirm);
+//////////////
+
+
+//login and payment delete's
+app.delete('/RemoveItem', deleteCartItemController.confirmDelete);
+app.post('/SubmitReview', productReviewController.submitReview);
+app.post('/cartdetails',addItemtoCartController.getAllItems);
+app.post('/cartAddress',addItemtoCartController.getAddress);
+app.post('/cartCard',addItemtoCartController.getCard);
+app.post('/bookReview',productReviewController.getReview);
+app.put('/cartUpdate',addItemtoCartController.updateCart);
+app.post('/insertOrder', placeYourOrder.myOrders);
+//app.post('/bookselected',addItemtoCartController.addingToCart);
+app.get('/checkuserlogin', loginController.checkuserlogin);
+//////////////////
 
 
 // inserts book to daddclassnotespageatabase

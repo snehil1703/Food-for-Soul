@@ -66,7 +66,7 @@ exports.getCard = (req, res) =>
 }
 
 
-// To Route user to findTopRated function in the Reviews model file 
+// To Route user to findTopRated function in the Reviews model file
 //Pre-conditions   --> Takes input request from the getTopRated function of app1.js
 //Post-conditions  --> Routes the user to findTopRated function in the Reviews model file
 exports.getTopRated = (req, res) =>
@@ -208,7 +208,7 @@ exports.setCardIdSession = (req, res) =>
  //Pre-conditions   --> Takes input request from the setOrderIdSession function of app1.js
  //Post-conditions  --> Stores orderId as a session
 exports.setOrderIdSession = (req, res) =>
-{    req.session.emailID='nikithauc@gmail.com'
+{ 
     req.session.orderId= req.body.orderId;
     res.sendStatus(200);
 };

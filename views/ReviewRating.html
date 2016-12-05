@@ -535,13 +535,13 @@
                     {
                         var counter = jsonData[i];
                         r[++j] ='<tr><td>';
-                        r[++j] = jsonData[i].reviewId;
+                        r[++j] = jsonData[i].reviewID;
                         r[++j] ='</td><td class="">';
                         r[++j] = jsonData[i].productName;
                         r[++j] ='</td><td class="">';
-                        r[++j] = jsonData[i].rating;
+                        r[++j] = jsonData[i].productRating;
                         r[++j] = '</td><td class="">';
-                        r[++j] = jsonData[i].review;
+                        r[++j] = jsonData[i].productReview;
                         r[++j] = '</td></tr>';
                     }
                     $('#reviewsTable').html(r.join(''));

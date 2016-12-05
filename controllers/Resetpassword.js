@@ -1,8 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-
-
+var ResetSuccess  = require('../models/PasswordReset.js');
 
 var bodyParser = require('body-parser');
 
@@ -10,11 +9,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 exports.confirmPasswordreset = (req, res) => {
-      console.log('this is in controllers');
-  res.sendFile(path.join(__dirname + '/../views'+'/index.html'));
- console.log("Password reset Successful");
+  ResetSuccess.reset(req, res);
+  //res.sendFile(path.join(__dirname + '/../views'+'/Reset.html'));
+  console.log("Password reset Successful");
+};
 
 
+exports.resetPasswordCheck = (req, res) => {
+  ResetSuccess.confirmPassword(req, res);
+  //res.sendFile(path.join(__dirname + '/../views'+'/Reset.html'));
+  console.log("Password reset match check");
+};
 
 
+exports.gotoReset = (req, res) => {
+  res.sendFile(path.join(__dirname + '/../views'+'/ResetPasswordPage.html'));
+//  console.log("Password reset match check");
 };
