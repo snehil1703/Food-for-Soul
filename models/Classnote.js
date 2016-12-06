@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
-   timestamps: false // true by default
+   timestamps: true // true by default
  }
 });
 //creating object of classnotes_records which will be used to map to database
@@ -155,3 +155,219 @@ exports.updateClassNoteRecords = (req, res) => {
 
 
 //module.exports=Book;
+
+//Added by Snehil for Home Page to view Notes according to user requirement
+//Pre-conditions   --> Takes filter and category inputs by the user on the home page
+//Post-conditions  --> Returns the Class Notes according to user request
+
+exports.notes_data = (req, res) => {
+
+    if(req.body.pricemin == 'null')
+        d_pricemin = 0;
+    else
+        d_pricemin = req.body.pricemin;
+    if(req.body.pricemax == 'null')
+        d_pricemax = 9999999;
+    else
+        d_pricemax = req.body.pricemax;
+    if(req.body.search == 'null' || req.body.search.toLowerCase() == '%note%' || req.body.search.toLowerCase() == '%notes%')
+        d_search = "%%";
+    else
+        d_search = req.body.search;
+    console.log("First Category"+req.body.notes_category1);
+    console.log("Second Category"+req.body.notes_category2);
+    if(req.body.notes_category1 == 'null')
+    {
+        console.log('Step 1');
+        d_notes_category1 = ["NULL","Arts", "Commerce", "Medicine","Science"];
+        d_notes_category2 = ["NULL","Arts", "Humanities", "Law", "Property", "SocialSciences", "SocialWork","Business", "Commerce", "Education", "Professional", "Teaching","Dentistry", "Health", "Medicine", "Nursing", "Pharmacy", "Veterinary","Agriculture", "Architecture", "Communications", "Engineering", "Information", "Mathematics", "Science", "Sports"];
+    }
+    else
+    {
+        console.log('Step 2');
+        d_notes_category1 = [req.body.notes_category1];
+        if(req.body.notes_category1 == 'Arts')
+        {
+            if (req.body.notes_category2 == 'null')
+                d_notes_category2 = ["NULL","Arts", "Humanities", "Law", "Property", "SocialSciences", "SocialWork"];
+            else
+                d_notes_category2 = [req.body.notes_category2];
+        }
+        else if(req.body.notes_category1 == 'Commerce')
+        {
+            if (req.body.notes_category2 == 'null')
+                d_notes_category2 = ["NULL","Business", "Commerce", "Education", "Professional", "Teaching"];
+            else
+                d_notes_category2 = [req.body.notes_category2];
+        }
+        else if(req.body.notes_category1 == 'Medicine')
+        {
+            if (req.body.notes_category2 == 'null')
+                d_notes_category2 = ["NULL","Dentistry", "Health", "Medicine", "Nursing", "Pharmacy", "Veterinary"];
+            else
+                d_notes_category2 = [req.body.notes_category2];
+        }
+        else if(req.body.notes_category1 == 'Science')
+        {
+            if (req.body.notes_category2 == 'null')
+                d_notes_category2 = ["NULL","Agriculture", "Architecture", "Communications", "Engineering", "Information", "Mathematics", "Science", "Sports"];
+            else
+                d_notes_category2 = [req.body.notes_category2];
+        }
+
+    }
+
+    if (req.body.tabDisplays == "tab-latest") {
+        classnotesrecords.findAll({
+            where: {
+                price: {
+                    $gte: d_pricemin,
+                    $lte: d_pricemax
+                },
+                $and: {
+                    $or: {
+                        name: {
+                            $like: d_search
+                        },
+                        university: {
+                            $like: d_search
+                        },
+                        description: {
+                            $like: d_search
+                        },
+                        subject: {
+                            $like: d_search
+                        },
+                        subcategory: {
+                            $like: d_search
+                        }
+                    },
+                    subject: {
+                        $in: d_notes_category1
+                    },
+                    subcategory: {
+                        $in: d_notes_category2
+                    }
+                }
+            },
+            orderBy: [['createdAt', 'DESC']]
+        }).then(function (result) {
+            console.log(result);
+            res.json(result);
+        });
+    }
+    else if (req.body.tabDisplays == "tab-bestseller") {
+        classnotesrecords.findAll({
+            where: {
+                price: {
+                    $gte: d_pricemin,
+                    $lte: d_pricemax
+                },
+                $and: {
+                    $or: {
+                        name: {
+                            $like: d_search
+                        },
+                        university: {
+                            $like: d_search
+                        },
+                        description: {
+                            $like: d_search
+                        },
+                        subject: {
+                            $like: d_search
+                        },
+                        subcategory: {
+                            $like: d_search
+                        }
+                    },
+                    subject: {
+                        $in: d_notes_category1
+                    },
+                    subcategory: {
+                        $in: d_notes_category2
+                    }
+                }
+            }
+        }).then(function (result) {
+            console.log(result);
+            res.json(result);
+        });
+    }
+    else if (req.body.tabDisplays == "tab-highestrated") {
+        classnotesrecords.findAll({
+            where: {
+                price: {
+                    $gte: d_pricemin,
+                    $lte: d_pricemax
+                },
+                $and: {
+                    $or: {
+                        name: {
+                            $like: d_search
+                        },
+                        university: {
+                            $like: d_search
+                        },
+                        description: {
+                            $like: d_search
+                        },
+                        subject: {
+                            $like: d_search
+                        },
+                        subcategory: {
+                            $like: d_search
+                        }
+                    },
+                    subject: {
+                        $in: d_notes_category1
+                    },
+                    subcategory: {
+                        $in: d_notes_category2
+                    }
+                }
+            }
+        }).then(function (result) {
+            console.log(result);
+            res.json(result);
+        });
+    }
+    else if (req.body.tabDisplays == "tab-under10") {
+        classnotesrecords.findAll({
+            where: {
+                price: {
+                    $lte: 10
+                },
+                $and: {
+                    $or: {
+                        name: {
+                            $like: d_search
+                        },
+                        university: {
+                            $like: d_search
+                        },
+                        description: {
+                            $like: d_search
+                        },
+                        subject: {
+                            $like: d_search
+                        },
+                        subcategory: {
+                            $like: d_search
+                        }
+                    },
+                    subject: {
+                        $in: d_notes_category1
+                    },
+                    subcategory: {
+                        $in: d_notes_category2
+                    }
+                }
+            },
+        }).then(function (result) {
+            console.log(result);
+            res.json(result);
+        });
+    }
+
+}
