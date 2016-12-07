@@ -206,7 +206,7 @@ exports.findAllBookRecords = (req, res) => {
   }).then(function(result) {
 // sends the result containing the database records in json format
     //var x  = result;
-    console.log('sfaffa'+result.length);
+    //console.log('sfaffa'+result.length);
     res.json(result);
   });
 
@@ -272,23 +272,23 @@ exports.deleteBookRecords= (req, res) => {
 exports.books_data = (req, res) => {
 
     if(req.body.format == 'null')
-        d_format = ["Paperback","Hardcover","Kindle Edition","Large Print","Audible Audio Edition","Printed Access Code","Digital Access Code","Loose Leaf","Audio CD","Board Book"];
+        d_format = ["","Paperback","Hardcover","Kindle Edition","Large Print","Audible Audio Edition","Printed Access Code","Digital Access Code","Loose Leaf","Audio CD","Board Book","null"];
     else
         d_format = [req.body.format];
     if(req.body.language == 'null')
-        d_language = ["English","German","French","Spanish","Italian","Arabic","Urdu","Russian","Hindi","Japanese"];
+        d_language = ["","English","German","French","Spanish","Italian","Arabic","Urdu","Russian","Hindi","Japanese","null"];
     else
         d_language = [req.body.language];
     if(req.body.condition == 'null')
-        d_condition = ["New","Used","Collectible"];
+        d_condition = ["","New","Used","Collectible","null"];
     else
         d_condition = [req.body.condition];
     if(req.body.pricemin == 'null')
-        d_pricemin = 0;
+       d_pricemin = 0;
     else
         d_pricemin = req.body.pricemin;
     if(req.body.pricemax == 'null')
-        d_pricemax = 9999999;
+        d_pricemax = 99999;
     else
         d_pricemax = req.body.pricemax;
     if(req.body.rating == 'null')
@@ -301,8 +301,8 @@ exports.books_data = (req, res) => {
         d_search = req.body.search;
     if(req.body.books_category1 == 'null')
     {
-        d_books_category1 = ["NULL","GoodReads", "Knowledge", "Lifestyle"];
-        d_books_category2 = ["NULL","Children", "Comics", "Humor", "Mystery", "Romance", "ScienceFiction", "Teen", "Business", "Computers", "Education", "History", "Law", "Literature", "Medical", "Politics", "Reference", "Sciences", "Sports", "Arts", "Biographies", "Food", "Health", "LGBT", "Parenthood", "Philosophy", "Religion", "Travel"];
+        d_books_category1 = ["","null","GoodReads", "Knowledge", "Lifestyle"];
+        d_books_category2 = ["","null","Children", "Comics", "Humor", "Mystery", "Romance", "ScienceFiction", "Teen", "Business", "Computers", "Education", "History", "Law", "Literature", "Medical", "Politics", "Reference", "Sciences", "Sports", "Arts", "Biographies", "Food", "Health", "LGBT", "Parenthood", "Philosophy", "Religion", "Travel"];
     }
     else
     {
@@ -310,27 +310,30 @@ exports.books_data = (req, res) => {
         if(req.body.books_category1 == 'GoodReads')
         {
             if (req.body.books_category2 == 'null')
-                d_books_category2 = ["NULL","Children", "Comics", "Humor", "Mystery", "Romance", "ScienceFiction", "Teen"];
+                d_books_category2 = ["","null","Children", "Comics", "Humor", "Mystery", "Romance", "ScienceFiction", "Teen"];
             else
                 d_books_category2 = [req.body.books_category2];
         }
         else if(req.body.books_category1 == 'Knowledge')
         {
             if (req.body.books_category2 == 'null')
-                d_books_category2 = ["NULL","Business", "Computers", "Education", "History", "Law", "Literature", "Medical", "Politics", "Reference", "Sciences", "Sports"];
+                d_books_category2 = ["","null","Business", "Computers", "Education", "History", "Law", "Literature", "Medical", "Politics", "Reference", "Sciences", "Sports"];
             else
                 d_books_category2 = [req.body.books_category2];
         }
         else if(req.body.books_category1 == 'Lifestyle')
         {
             if (req.body.books_category2 == 'null')
-                d_books_category2 = ["NULL","Arts", "Biographies", "Food", "Health", "LGBT", "Parenthood", "Philosophy", "Religion", "Travel"];
+                d_books_category2 = ["","null","Arts", "Biographies", "Food", "Health", "LGBT", "Parenthood", "Philosophy", "Religion", "Travel"];
             else
                 d_books_category2 = [req.body.books_category2];
         }
 
     }
-    console.log(req.body);
+    //console.log(d_format,d_language,d_condition,d_pricemin,d_pricemax,d_rating,d_search,d_books_category1,d_books_category2);
+
+    //bookrecords.findAll().then(function (result){console.log(result)});
+
     if (req.body.tabDisplays == "tab-latest") {
         bookrecords.findAll({
             where: {
@@ -365,9 +368,6 @@ exports.books_data = (req, res) => {
                             $like: d_search
                         },
                         category1: {
-                            $like: d_search
-                        },
-                        category2: {
                             $like: d_search
                         },
                         format: {
@@ -430,9 +430,6 @@ exports.books_data = (req, res) => {
                         category1: {
                             $like: d_search
                         },
-                        category2: {
-                            $like: d_search
-                        },
                         format: {
                             $like: d_search
                         },
@@ -493,9 +490,6 @@ exports.books_data = (req, res) => {
                         category1: {
                             $like: d_search
                         },
-                        category2: {
-                            $like: d_search
-                        },
                         format: {
                             $like: d_search
                         },
@@ -553,9 +547,6 @@ exports.books_data = (req, res) => {
                             $like: d_search
                         },
                         category1: {
-                            $like: d_search
-                        },
-                        category2: {
                             $like: d_search
                         },
                         format: {

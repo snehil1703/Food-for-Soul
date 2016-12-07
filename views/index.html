@@ -1512,7 +1512,9 @@
                 $('#currency_under10').html("Under $"+Number((fx.convert(10)).toFixed(2)));
                 $('#min-label').html("$");
                 $('#max-label').html("$");
-                console.log(books_category1, books_category2, b_format, b_language, b_condition);
+
+                console.log(b_format, b_language, b_rating, b_condition, b_pricemin, b_pricemax,b_search, books_category1, books_category2);
+
                 var request = $.ajax({
                     url:  "/books_data",
                     type: "POST",
@@ -1534,6 +1536,7 @@
                         for (var i = 0; i < jsonData.length; i++) {
                             var counter = jsonData[i];
                             console.log(jsonData[i]);
+                            console.log(counter);
                             r[++j] = '<div class="product-column">';
                             r[++j] = '<div class="product product2">';
                             if (jsonData[i].code != null) {
