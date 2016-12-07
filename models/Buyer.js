@@ -88,8 +88,9 @@ var buyerRecords = sequelize.define('buyer_records',
 exports.findBuyerRecord = (req, res) =>
  {
    buyerRecords.findOne({
-     where: {
-     buyerEmail : req.session.emailID
+     where:
+     {
+       buyerEmail : req.session.emailID
      }
    }).then(function(result)
     {

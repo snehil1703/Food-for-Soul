@@ -330,7 +330,7 @@ exports.books_data = (req, res) => {
         }
 
     }
-
+    console.log(req.body);
     if (req.body.tabDisplays == "tab-latest") {
         bookrecords.findAll({
             where: {
@@ -390,7 +390,7 @@ exports.books_data = (req, res) => {
             },
             orderBy: [['createdAt', 'DESC']]
         }).then(function (result) {
-            //console.log(result);
+            console.log(result);
             res.json(result);
         });
     }
@@ -453,7 +453,7 @@ exports.books_data = (req, res) => {
             },
             orderBy: [['bookSoldCount', 'DESC']]
         }).then(function (result) {
-            //console.log(result);
+            console.log(result);
             res.json(result);
         });
     }
@@ -516,7 +516,7 @@ exports.books_data = (req, res) => {
             },
             orderBy: [['rating', 'DESC']]
         }).then(function (result) {
-            //console.log(result);
+            console.log(result);
             res.json(result);
         });
     }
@@ -577,7 +577,7 @@ exports.books_data = (req, res) => {
                 }
             },
         }).then(function (result) {
-            //console.log(result);
+            console.log(result);
             res.json(result);
         });
     }

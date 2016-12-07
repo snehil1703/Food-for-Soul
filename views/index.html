@@ -34,7 +34,7 @@
             <header class="header sticky-header border-less border-gray">
                 <div class="container-fluid">
                     <div class="logo">
-                        <a href="#" title="Food-for-Soul">
+                        <a href="/" title="Food-for-Soul">
                             <img src="assets/images/ffs-logo-final.png" alt="Food-for-Soul">
                         </a>
                     </div>
@@ -1512,7 +1512,7 @@
                 $('#currency_under10').html("Under $"+Number((fx.convert(10)).toFixed(2)));
                 $('#min-label').html("$");
                 $('#max-label').html("$");
-
+                console.log(books_category1, books_category2, b_format, b_language, b_condition);
                 var request = $.ajax({
                     url:  "/books_data",
                     type: "POST",
@@ -1533,7 +1533,7 @@
                         var jsonData = JSON.parse(data);
                         for (var i = 0; i < jsonData.length; i++) {
                             var counter = jsonData[i];
-
+                            console.log(jsonData[i]);
                             r[++j] = '<div class="product-column">';
                             r[++j] = '<div class="product product2">';
                             if (jsonData[i].code != null) {

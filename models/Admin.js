@@ -111,7 +111,7 @@ exports.deleteAdminForAdminId = (req, res) =>
 //Post-conditions  --> Fetches information of a particular admin from the database and returns the response to success function of adminProfile.html page
 exports.findAdminRecord = (req, res) =>
 {
-   adminRecords.findById(2).then(function(result)
+   adminRecords.findById(1).then(function(result)
    {
          var x =
          {
@@ -142,7 +142,7 @@ exports.findAdminRecord = (req, res) =>
     {
       where:
       {
-        adminId : '2'
+        adminID : '1'
       }
     })
     .then(function()

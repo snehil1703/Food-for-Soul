@@ -30,316 +30,340 @@
 
     <body>
         <div id="wrapper">
-            <header class="header sticky-header border-less border-gray">
-                <div class="container-fluid">
-                    <div class="logo">
-                        <a href="/" title="Food-for-Soul">
-                            <img src="assets/images/ffs-logo-final.png" alt="Food-for-Soul">
-                        </a>
-                    </div><!-- End .logo -->
+          <header class="header sticky-header border-less border-gray">
+              <div class="container-fluid">
+                  <div class="logo">
+                      <a href="#" title="Food-for-Soul">
+                          <img src="assets/images/ffs-logo-final.png" alt="Food-for-Soul">
+                      </a>
+                  </div>
 
-                    <nav class="menu-container">
-                        <ul class="menu">
-                            <li><a href="#">Books</a>
-                                <ul>
-                                    <li><a href="#">Arts</a></li>
-                                    <li><a href="#">Business</a>
-                                        <ul>
-                                            <li><a href="category.html">Category</a></li>
-                                            <li><a href="category-2col.html">Two Columns</a></li>
-                                            <li><a href="category-3col.html">Three Columns</a></li>
-                                            <li><a href="category-left-sidebar.html">Category - Left Sidebar</a></li>
-                                            <li><a href="category-left-sidebar-2col.html">Left Sidebar Two Col</a></li>
-                                            <li><a href="category-left-sidebar-3col.html">Left Sidebar Three Col</a></li>
-                                            <li><a href="category-fullwidth-3col.html">Fullwidth Three Col</a></li>
-                                            <li><a href="category-fullwidth-4col.html">Fullwidth Four Col</a></li>
-                                            <li><a href="category-fullwidth-5col.html">Fullwidth Five Col</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Children's Books</a>
-                                        <ul>
-                                            <li><a href="category-list.html">Category List</a></li>
-                                            <li><a href="category-list-left-sidebar.html">List - Left Sidebar</a></li>
-                                            <li><a href="category-list-right-sidebar.html">List - Right Sidebar</a></li>
-                                            <li><a href="category-list-box.html">Category ListBox</a></li>
-                                            <li><a href="category-list-box-left-sidebar.html">ListBox - Left Sidebar</a></li>
-                                            <li><a href="category-list-box-right-sidebar.html">ListBox - Right Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Computers & Technology</a>
-                                        <ul>
-                                            <li><a href="product.html">Product Version 1</a></li>
-                                            <li><a href="product2.html">Product Version 2</a></li>
-                                            <li><a href="product3.html">Product Version 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="cart.html">Food & Drinks</a></li>
-                                    <li><a href="compare.html">History</a></li>
-                                    <li><a href="checkout.html">Literature & Fiction</a></li>
-                                    <li><a href="#">Medical Books</a>
-                                        <ul>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="contact2.html">Contact Us 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="404.html">Religion & Spirituality</a></li>
-                                    <li><a href="login.html">Romance</a></li>
-                                    <li><a href="register.html">Science & Math</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Notes</a>
-                                <ul>
-                                    <li><a href="#">Reference</a>
-                                        <ul>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-left-sidebar.html">Blog - Left Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Programming</a>
-                                        <ul>
-                                            <li><a href="blog-masonry-4col.html">Four Columns</a></li>
-                                            <li><a href="blog-masonry-3col.html">Three Columns</a></li>
-                                            <li><a href="blog-masonry-2col.html">Two Columns</a></li>
-                                            <li><a href="blog-masonry-2col-left-sidebar.html">Two Col - Left Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="single.html">Medical Science</a></li>
-                                    <li><a href="single-left-sidebar.html">Politics & Social Sciences</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                  <nav class="menu-container">
+                      <ul class="menu">
+                          <li><a href="#" onclick="books()">Books</a>
+                              <ul>
+                                  <li>
+                                      <a href="#" onclick="goodreads()">Good Reads</a>
+                                      <ul>
+                                          <li><a href="#" onclick="goodreads_children()">Children's Books</a></li>
+                                          <li><a href="#" onclick="goodreads_comics()">Comics</a>
+                                          </li>
+                                          <li><a href="#" onclick="goodreads_humor()">Humor & Entertainment</a></li>
+                                          <li><a href="#" onclick="goodreads_mystery()">Mystery, Thriller & Suspense</a>
+                                          </li>
+                                          <li><a href="#" onclick="goodreads_romance()">Romance</a></li>
+                                          <li><a href="#" onclick="goodreads_science()">Science Fiction & Fantasy</a>
+                                          </li>
+                                          <li><a href="#" onclick="goodreads_teen()">Teen & Young Adult</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="knowledge()">Knowledge</a>
+                                      <ul>
+                                          <li><a href="#" onclick="knowledge_business()">Business</a></li>
+                                          <li><a href="#" onclick="knowledge_computer()">Computers & Technology</a>
+                                          </li>
+                                          <li><a href="#" onclick="knowledge_education()">Education & Teaching</a></li>
+                                          <li><a href="#" onclick="knowledge_history()">History</a></li>
+                                          <li><a href="#" onclick="knowledge_law()">Law</a></li>
+                                          <li><a href="#" onclick="knowledge_literature()">Literature & Fiction</a></li>
+                                          <li><a href="#" onclick="knowledge_medical()">Medical Books</a>
+                                          </li>
+                                          <li><a href="#" onclick="knowledge_politics()">Politics & Social Sciences</a></li>
+                                          <li><a href="#" onclick="knowledge_references()">Reference</a></li>
+                                          <li><a href="#" onclick="knowledge_sciences()">Sciences & Mathematics</a></li>
+                                          <li><a href="#" onclick="knowledge_sports()">Sports</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="lifestyle()">Lifestyle</a>
+                                      <ul>
+                                          <li><a href="#" onclick="lifestyle_arts()">Arts & Photography</a>
+                                          </li>
+                                          <li><a href="#" onclick="lifestyle_biographies()">Biographies</a>
+                                          </li>
+                                          <li><a href="#" onclick="lifestyle_food()">Food & Drinks</a></li>
+                                          <li><a href="#" onclick="lifestyle_health()">Health</a></li>
+                                          <li><a href="#" onclick="lifestyle_lgbt()">LGBT</a></li>
+                                          <li><a href="#" onclick="lifestyle_parenthood()">Parenthood & Relationships</a></li>
+                                          <li><a href="#" onclick="lifestyle_philosophy()">Philosophy & Learning</a></li>
+                                          <li><a href="#" onclick="lifestyle_religion()">Religion & Spirituality</a></li>
+                                          <li><a href="#" onclick="lifestyle_travel()">Travel</a></li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li><a href="#" onclick="notes()">Notes</a>
+                              <ul>
+                                  <li>
+                                      <a href="#" onclick="arts()">Arts & Humanities</a>
+                                      <ul>
+                                          <li><a href="#" onclick="arts_arts()">Arts</a></li>
+                                          <li><a href="#" onclick="arts_humanities()">Humanities & Media Studies</a></li>
+                                          <li><a href="#" onclick="arts_law()">Law</a></li>
+                                          <li><a href="#" onclick="arts_property()">Property</a></li>
+                                          <li><a href="#" onclick="arts_socialsciences()">Social Sciences</a></li>
+                                          <li><a href="#" onclick="arts_socialwork()">Social Work</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="commerce()">Commerce & Education</a>
+                                      <ul>
+                                          <li><a href="#" onclick="commerce_business()">Business</a></li>
+                                          <li><a href="#" onclick="commerce_commerce()">Commerce</a></li>
+                                          <li><a href="#" onclick="commerce_education()">Education</a></li>
+                                          <li><a href="#" onclick="commerce_professional()">Professional Qualifications</a></li>
+                                          <li><a href="#" onclick="commerce_teaching()">Teaching & Training</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="medicine()">Medicine</a>
+                                      <ul>
+                                          <li><a href="#" onclick="medicine_dentistry()">Dentistry</a></li>
+                                          <li><a href="#" onclick="medicine_health()">Health</a></li>
+                                          <li><a href="#" onclick="medicine_medicine()">Medicine</a></li>
+                                          <li><a href="#" onclick="medicine_nursing()">Nursing</a></li>
+                                          <li><a href="#" onclick="medicine_pharmacy()">Pharmacy</a></li>
+                                          <li><a href="#" onclick="medicine_veterinary()">Veterinary Science</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="science()">Science & Engineering</a>
+                                      <ul>
+                                          <li><a href="#" onclick="science_agriculture()">Agriculture & Environmental Studies</a></li>
+                                          <li><a href="#" onclick="science_architecture()">Architecture, Design & Planning</a></li>
+                                          <li><a href="#" onclick="science_communications()">Communications</a></li>
+                                          <li><a href="#" onclick="science_engineering()">Engineering & Project Management</a></li>
+                                          <li><a href="#" onclick="science_information()">Information Technologies</a></li>
+                                          <li><a href="#" onclick="science_mathematics()">Mathematics</a></li>
+                                          <li><a href="#" onclick="science_science()">Science & Technology</a></li>
+                                          <li><a href="#" onclick="science_sports()">Sports Sciences</a></li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
 
-                        <ul class="mobile-menu">
-                            <li><a href="#">Books</a>
-                                <ul>
-                                    <li><a href="#">Arts</a></li>
-                                    <li><a href="#">Business</a>
-                                        <ul>
-                                            <li><a href="category.html">Category</a></li>
-                                            <li><a href="category-2col.html">Two Columns</a></li>
-                                            <li><a href="category-3col.html">Three Columns</a></li>
-                                            <li><a href="category-left-sidebar.html">Category - Left Sidebar</a></li>
-                                            <li><a href="category-left-sidebar-2col.html">Left Sidebar Two Col</a></li>
-                                            <li><a href="category-left-sidebar-3col.html">Left Sidebar Three Col</a></li>
-                                            <li><a href="category-fullwidth-3col.html">Fullwidth Three Col</a></li>
-                                            <li><a href="category-fullwidth-4col.html">Fullwidth Four Col</a></li>
-                                            <li><a href="category-fullwidth-5col.html">Fullwidth Five Col</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Children's Books</a>
-                                        <ul>
-                                            <li><a href="category-list.html">Category List</a></li>
-                                            <li><a href="category-list-left-sidebar.html">List - Left Sidebar</a></li>
-                                            <li><a href="category-list-right-sidebar.html">List - Right Sidebar</a></li>
-                                            <li><a href="category-list-box.html">Category ListBox</a></li>
-                                            <li><a href="category-list-box-left-sidebar.html">ListBox - Left Sidebar</a></li>
-                                            <li><a href="category-list-box-right-sidebar.html">ListBox - Right Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Computers & Technology</a>
-                                        <ul>
-                                            <li><a href="product.html">Product Version 1</a></li>
-                                            <li><a href="product2.html">Product Version 2</a></li>
-                                            <li><a href="product3.html">Product Version 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="cart.html">Food & Drinks</a></li>
-                                    <li><a href="compare.html">History</a></li>
-                                    <li><a href="checkout.html">Literature & Fiction</a></li>
-                                    <li><a href="#">Medical Books</a>
-                                        <ul>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="contact2.html">Contact Us 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="404.html">Religion & Spirituality</a></li>
-                                    <li><a href="login.html">Romance</a></li>
-                                    <li><a href="register.html">Science & Math</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Notes</a>
-                                <ul>
-                                    <li><a href="#">Reference</a>
-                                        <ul>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-left-sidebar.html">Blog - Left Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Programming</a>
-                                        <ul>
-                                            <li><a href="blog-masonry-4col.html">Four Columns</a></li>
-                                            <li><a href="blog-masonry-3col.html">Three Columns</a></li>
-                                            <li><a href="blog-masonry-2col.html">Two Columns</a></li>
-                                            <li><a href="blog-masonry-2col-left-sidebar.html">Two Col - Left Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="single.html">Medical Science</a></li>
-                                    <li><a href="single-left-sidebar.html">Politics & Social Sciences</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
+                      <ul class="mobile-menu">
+                          <li><a href="#" onclick="books()">Books</a>
+                              <ul>
+                                  <li>
+                                      <a href="#" onclick="goodreads()">Good Reads</a>
+                                      <ul>
+                                          <li><a href="#" onclick="goodreads_children()">Children's Books</a></li>
+                                          <li><a href="#" onclick="goodreads_comics()">Comics</a>
+                                          </li>
+                                          <li><a href="#" onclick="goodreads_humor()">Humor & Entertainment</a></li>
+                                          <li><a href="#" onclick="goodreads_mystery()">Mystery, Thriller & Suspense</a>
+                                          </li>
+                                          <li><a href="#" onclick="goodreads_romance()">Romance</a></li>
+                                          <li><a href="#" onclick="goodreads_science()">Science Fiction & Fantasy</a>
+                                          </li>
+                                          <li><a href="#" onclick="goodreads_teen()">Teen & Young Adult</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="knowledge()">Knowledge</a>
+                                      <ul>
+                                          <li><a href="#" onclick="knowledge_business()">Business</a></li>
+                                          <li><a href="#" onclick="knowledge_computer()">Computers & Technology</a>
+                                          </li>
+                                          <li><a href="#" onclick="knowledge_education()">Education & Teaching</a></li>
+                                          <li><a href="#" onclick="knowledge_history()">History</a></li>
+                                          <li><a href="#" onclick="knowledge_law()">Law</a></li>
+                                          <li><a href="#" onclick="knowledge_literature()">Literature & Fiction</a></li>
+                                          <li><a href="#" onclick="knowledge_medical()">Medical Books</a>
+                                          </li>
+                                          <li><a href="#" onclick="knowledge_politics()">Politics & Social Sciences</a></li>
+                                          <li><a href="#" onclick="knowledge_references()">Reference</a></li>
+                                          <li><a href="#" onclick="knowledge_sciences()">Sciences & Mathematics</a></li>
+                                          <li><a href="#" onclick="knowledge_sports()">Sports</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="lifestyle()">Lifestyle</a>
+                                      <ul>
+                                          <li><a href="#" onclick="lifestyle_arts()">Arts & Photography</a>
+                                          </li>
+                                          <li><a href="#" onclick="lifestyle_biographies()">Biographies</a>
+                                          </li>
+                                          <li><a href="#" onclick="lifestyle_food()">Food & Drinks</a></li>
+                                          <li><a href="#" onclick="lifestyle_health()">Health</a></li>
+                                          <li><a href="#" onclick="lifestyle_lgbt()">LGBT</a></li>
+                                          <li><a href="#" onclick="lifestyle_parenthood()">Parenthood & Relationships</a></li>
+                                          <li><a href="#" onclick="lifestyle_philosophy()">Philosophy & Learning</a></li>
+                                          <li><a href="#" onclick="lifestyle_religion()">Religion & Spirituality</a></li>
+                                          <li><a href="#" onclick="lifestyle_travel()">Travel</a></li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li><a href="#" onclick="notes()">Notes</a>
+                              <ul>
+                                  <li>
+                                      <a href="#" onclick="arts()">Arts & Humanities</a>
+                                      <ul>
+                                          <li><a href="#" onclick="arts_arts()">Arts</a></li>
+                                          <li><a href="#" onclick="arts_humanities()">Humanities & Media Studies</a></li>
+                                          <li><a href="#" onclick="arts_law()">Law</a></li>
+                                          <li><a href="#" onclick="arts_property()">Property</a></li>
+                                          <li><a href="#" onclick="arts_socialsciences()">Social Sciences</a></li>
+                                          <li><a href="#" onclick="arts_socialwork()">Social Work</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="commerce()">Commerce & Education</a>
+                                      <ul>
+                                          <li><a href="#" onclick="commerce_business()">Business</a></li>
+                                          <li><a href="#" onclick="commerce_commerce()">Commerce</a></li>
+                                          <li><a href="#" onclick="commerce_education()">Education</a></li>
+                                          <li><a href="#" onclick="commerce_professional()">Professional Qualifications</a></li>
+                                          <li><a href="#" onclick="commerce_teaching()">Teaching & Training</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="medicine()">Medicine</a>
+                                      <ul>
+                                          <li><a href="#" onclick="medicine_dentistry()">Dentistry</a></li>
+                                          <li><a href="#" onclick="medicine_health()">Health</a></li>
+                                          <li><a href="#" onclick="medicine_medicine()">Medicine</a></li>
+                                          <li><a href="#" onclick="medicine_nursing()">Nursing</a></li>
+                                          <li><a href="#" onclick="medicine_pharmacy()">Pharmacy</a></li>
+                                          <li><a href="#" onclick="medicine_veterinary()">Veterinary Science</a></li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                      <a href="#" onclick="science()">Science & Engineering</a>
+                                      <ul>
+                                          <li><a href="#" onclick="science_agriculture()">Agriculture & Environmental Studies</a></li>
+                                          <li><a href="#" onclick="science_architecture()">Architecture, Design & Planning</a></li>
+                                          <li><a href="#" onclick="science_communications()">Communications</a></li>
+                                          <li><a href="#" onclick="science_engineering()">Engineering & Project Management</a></li>
+                                          <li><a href="#" onclick="science_information()">Information Technologies</a></li>
+                                          <li><a href="#" onclick="science_mathematics()">Mathematics</a></li>
+                                          <li><a href="#" onclick="science_science()">Science & Technology</a></li>
+                                          <li><a href="#" onclick="science_sports()">Sports Sciences</a></li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </nav>
 
-                    <div class="header-search-container search-dropdown-fix">
-                        <a href="#" class="search-dropdown-btn" title="Search Form">
-                            <i class="icon icon-header-search"></i>
-                        </a>
+                  <div class="header-search-container">
+                      <form id="searching" onclick="searchbar()" class="header-search-form">
+                          <input id="searchval" type="search" class="form-control">
+                          <button type="submit" class="btn">
+                              <i class="icon icon-header-search"></i>
+                          </button>
+                      </form>
+                  </div><!-- End .header-search-container -->
 
-                        <form action="#" class="header-search-form">
-                            <div class="dropdown search-dropdown">
-                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    All Categories
-                                    <i class="icon icon-search-arrow"></i>
-                                </a>
+                  <div class="dropdowns-container">
+                      <button type="button" class="navbar-toggle">
+                          <span class="toggle-wrapper">
+                              <span class="toggle-text">Menu</span>
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                          </span>
+                      </button>
+                      <div class="dropdowns-wrapper">
+                          <ul class="header-dropdown account-dropdown">
+                              <li>
+                                  <a href="/MyDashboard">
+                                      <i class="icon icon-header icon-user"></i>
+                                      <span>My Dashboard</span>
+                                  </a>
 
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Computers</a></li>
-                                    <li><a href="#">Software</a></li>
-                                    <li><a href="#">Televisions</a></li>
-                                    <li><a href="#">Audio &amp; Video</a></li>
-                                    <li><a href="#">Cell Phones</a></li>
-                                    <li><a href="#">home appliance</a></li>
-                                    <li><a href="#">Cameras &amp; Photo</a></li>
-                                    <li><a href="#">Featured Sales</a></li>
-                                    <li><a href="#">Liquidations</a></li>
-                                </ul><!-- End .dropdown -->
-                            </div><!-- End .dropdown -->
-                            <input type="search" class="form-control" required>
-                            <button type="submit" class="btn">
-                                <i class="icon icon-header-search"></i>
-                            </button>
-                        </form>
-                    </div><!-- End .header-search-container -->
+                                  <ul>
+                                      <li>
+                                          <a href="/PersonalInformation">
+                                              <i class="icon icon-dropdown icon-dropdown-user"></i>
+                                              <span>My Account</span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="/MyOrders">
+                                              <i class="icon icon-dropdown icon-dropdown-wishlist"></i>
+                                              <span>My Orders</span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="/MySavedCards">
+                                              <i class="icon icon-dropdown icon-dropdown-check"></i>
+                                              <span>My Saved Cards</span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="/logout">
+                                              <i class="icon icon-dropdown icon-dropdown-lock"></i>
+                                              <span>Logout</span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="/login">
+                                              <i class="icon icon-dropdown icon-dropdown-lock"></i>
+                                              <span>Register/Login</span>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
 
-                    <div class="dropdowns-container">
-                        <button type="button" class="navbar-toggle">
-                            <span class="toggle-wrapper">
-                                <span class="toggle-text">Menu</span>
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </span>
-                        </button>
-                        <div class="dropdowns-wrapper">
-                            <ul class="header-dropdown account-dropdown">
-                                <li>
-                                    <a href="/MyDashboard" title="Currency/Language">
-                                        <i class="icon icon-header icon-user"></i>
-                                        <span>MY DASHBOARD</span>
-                                    </a>
+                          <ul class="header-dropdown">
+                              <li>
+                                  <a href="/cart">
+                                      <i class="icon icon-header icon-cart"></i>
+                                      <span>My Cart</span>
+                                  </a>
 
-                                    <ul>
-                                        <li>
-                                            <a href="/MyDashboard">
-                                                <i class="icon icon-dropdown icon-dropdown-user"></i>
-                                                <span>MY DASHBOARD</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/checkout">
-                                                <i class="icon icon-dropdown icon-dropdown-check"></i>
-                                                <span>Checkout</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/login">
-                                                <i class="icon icon-dropdown icon-dropdown-lock"></i>
-                                                <span>Login or Register</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                  <ul>
+                                      <li>
+                                          <a href="/cart">
+                                              <span>View Cart</span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="/checkout">
+                                              <span>Checkout</span>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
 
-                            <div class="dropdown header-dropdown cart-dropdown">
-                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon icon-header icon-cart"></i>
-                                    <span class="dcart-total-count">2</span>
-                                </a>
+                          <ul class="header-dropdown">
+                              <li>
+                                  <a title="Currency">
+                                      <i class="icon icon-header icon-globe"></i>
+                                      <span>Currency</span>
+                                  </a>
 
-                                <div class="dropdown-menu">
-                                    <p>2 item(s) in your cart - <span>$665.00</span></p>
-                                    <div class="dcart-products">
-                                        <div class="product product-sm">
-                                            <figure>
-                                                <a href="#">
-                                                    <img src="assets/images/products/thumbs/product1.jpg" alt="Product">
-                                                </a>
-                                            </figure>
-                                            <div class="product-meta">
-                                                <h5 class="product-title">
-                                                    <a href="#">Draped sleeve detail shirt</a>
-                                                </h5>
-                                                <div class="product-price-container">
-                                                    <span class="product-price">$280.00</span>
-                                                </div><!-- End .product-price-container -->
-                                            </div><!-- End .product-meta -->
-                                            <a href="#" class="icon delete-btn lighter" title="Delete Product"><span class="sr-only">Delete product</span></a>
-                                        </div><!-- End .product -->
-                                        <div class="product product-sm">
-                                            <figure>
-                                                <a href="#">
-                                                    <img src="assets/images/products/thumbs/product2.jpg" alt="Product">
-                                                </a>
-                                            </figure>
-                                            <div class="product-meta">
-                                                <h5 class="product-title">
-                                                    <a href="#">Draped wrap white blouse</a>
-                                                </h5>
-                                                <div class="product-price-container">
-                                                    <span class="product-old-price">$1500.00</span>
-                                                    <span class="product-price">$750.00</span>
-                                                </div><!-- End .product-price-container -->
-                                            </div><!-- End .product-meta -->
-                                            <a href="#" class="icon delete-btn lighter" title="Delete Product"><span class="sr-only">Delete product</span></a>
-                                        </div><!-- End .product -->
-                                    </div><!-- End .dcart-products -->
+                                  <ul>
+                                      <li>
+                                          <a>
+                                              <i class="icon icon-dropdown icon-currency"></i>
+                                              <span>Currency</span>
+                                          </a>
 
-                                    <div class="dcart-action-container">
-                                        <div class="dcart-action-info">
-                                            <p>Shipping: <span>$7.00</span></p>
-                                            <p>Tax: <span>Free</span></p>
-                                            <p>Total: <span>$665.00</span></p>
-                                        </div><!-- End .dcart-action-info -->
+                                          <ul>
+                                              <li><a onclick="currency_INR()">INR</a></li>
+                                              <li><a onclick="currency_USD()">US Dollar</a></li>
+                                              <li><a onclick="currency_EUR()">Euro</a></li>
+                                              <li><a onclick="currency_GBP()">Pound</a></li>
+                                              <li><a onclick="currency_CNY()">Yuan</a></li>
+                                          </ul>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </div><!-- End .dropdowns-wrapper -->
+                  </div><!-- End .dropdowns-container -->
 
-                                        <div class="dcart-action">
-                                            <a href="/cart" class="btn btn-gray3 btn-sm">View Cart</a>
-                                            <a href="/checkout" class="btn btn-custom btn-sm">Checkout</a>
-                                        </div><!-- End .dcart-action -->
-                                    </div><!-- End .dcart-action-container -->
-                                </div><!-- End .dropdown-menu -->
-                            </div><!-- End .header-dropdown -->
-                            <ul class="header-dropdown">
-                                <li>
-                                    <a href="#" title="Currency">
-                                        <i class="icon icon-header icon-globe"></i>
-                                        <span>Currency</span>
-                                    </a>
-
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon icon-dropdown icon-currency"></i>
-                                                <span>Currency</span>
-                                            </a>
-
-                                            <ul>
-                                                <li><a href="#">Us Dollar</a></li>
-                                                <li><a href="#">Euro</a></li>
-                                                <li><a href="#">Pound St</a></li>
-                                                <li><a href="#">Yuan</a></li>
-
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div><!-- End .dropdowns-wrapper -->
-                    </div><!-- End .dropdowns-container -->
-
-                </div><!-- End .container-fluid -->
-            </header><!-- End .header -->
+              </div><!-- End .container-fluid -->
+          </header><!-- End .header -->
 
             <div class="mb30"></div><!-- margin -->
 
@@ -428,9 +452,10 @@
                                 <div class="widget">
                                     <h4 class="widget-title">Your Profile</h4>
                                     <ul class="links">
-                                        <li><a href="#">Account</a></li>
-                                        <li><a href="#">Orders</a></li>
-                                        <li><a href="#">Sign Out</a></li>
+                                        <li><a href="/MyDashboard">Dashboard</a></li>
+                                        <li><a href="/PersonalInformation">Account</a></li>
+                                        <li><a href="/MyOrders">Orders</a></li>
+                                        <li><a href="/MySavedCards">Saved Cards</a></li>
                                     </ul>
                                 </div><!-- End .widget -->
                             </div><!-- End .col-md-3 -->
@@ -440,22 +465,11 @@
                                     <h4 class="widget-title">Follow Us</h4>
 
                                     <div class="social-icons smaller">
-                                        <a href="#" class="social-icon icon facebook" title="Facebook"><span class="sr-only">Facebook</span></a>
-                                        <a href="#" class="social-icon icon twitter" title="Twitter"><span class="sr-only">Twitter</span></a>
-                                        <a href="#" class="social-icon icon instagram" title="Instagram"><span class="sr-only">Instagram</span></a>
-                                        <a href="mailto:#" class="social-icon icon email" title="Email"><span class="sr-only">Email</span></a>
+                                        <a href="https://www.facebook.com/ffs.foodforsoul" class="social-icon icon facebook" title="Facebook"><span class="sr-only">Facebook</span></a>
+                                        <a href="https://twitter.com/ffs_foodforsoul" class="social-icon icon twitter" title="Twitter"><span class="sr-only">Twitter</span></a>
+                                        <a href="https://www.instagram.com/foodforsoul.16" class="social-icon icon instagram" title="Instagram"><span class="sr-only">Instagram</span></a>
+                                        <a href="mailto:foodforsoul.16@gmail.com" class="social-icon icon email" title="Email"><span class="sr-only">Email</span></a>
                                     </div><!-- End .social-icons -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-md-3 -->
-
-                            <div class="col-sm-6 col-md-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">About Us</h4>
-                                    <ul class="links">
-                                        <li><a href="#">History</a></li>
-                                        <li><a href="#">Testimonials</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                    </ul>
                                 </div><!-- End .widget -->
                             </div><!-- End .col-md-3 -->
 
@@ -463,19 +477,16 @@
                                 <div class="widget">
                                     <h4 class="widget-title">Contact Us</h4>
                                     <ul class="links">
-                                        <li><a href="#">Help &amp; Support</a></li>
-                                        <li><a href="#">FAQs</a></li>
+                                        <li><a href="/faq">FAQs</a></li>
                                     </ul>
                                 </div><!-- End .widget -->
+                            </div><!-- End .col-md-3 -->
+
+                            <div class="col-sm-6 col-md-3">
                                 <div class="widget newsletter-widget">
-                                    <h4 class="widget-title">Stay Up To Date</h4>
-
-                                    <p>Sign up to our newsletter for the latest on all things “Food-for-Soul”.</p>
-
-                                    <form>
-                                        <input type="email" class="form-control" placeholder="your@email.com" required>
-                                        <button type="submit" class="btn btn-custom">Sign Up</button>
-                                    </form>
+                                    <h4 class="widget-title">Copyright</h4>
+                                    <p>Food-For-Soul © 2016</p>
+                                    <p>All Rights Reserved. Except as permitted by the copyright law applicable to you, you may not reproduce or communicate any of the content on this website, including files downloadable from this website, without the permission of the copyright owner.</p>
                                 </div><!-- End .widget -->
                             </div><!-- End .col-md-3 -->
 
