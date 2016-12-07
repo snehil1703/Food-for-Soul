@@ -1,4 +1,4 @@
-//This Model interfaces with the table cancelorder_table in the foodforsouldatabase
+//This Model interfaces with the table cancelorder_table in the foodforsoul1database
 //maintaining the records of cancelled orders allowing to insert new cancelled orders
 var express = require('express');
 var app = express();
@@ -11,7 +11,7 @@ var Order  = require('../models/PlaceOrder.js');
 
 // Initializing the ORM to connect to the database
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
   define: {
    timestamps: false // true by default
  }

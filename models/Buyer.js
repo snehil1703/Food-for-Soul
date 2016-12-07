@@ -14,7 +14,7 @@ var router = express.Router();
 
 //Declaring a variable of Sequelize
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',
+var sequelize = new Sequelize('foodforsoul1', 'root', 'root',
 {
   //To disable the auto-created columns- createdAt and updatedAt to be populated in the table
   define:

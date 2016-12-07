@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Initializing the ORM to connect to the database
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
   define: {
    timestamps: true
  }

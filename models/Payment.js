@@ -4,7 +4,7 @@ var app = express();
 var path = require('path');
 
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
   define: {
    timestamps: false // true by default
  }
@@ -21,7 +21,7 @@ exports.confirmPayment = (req, res) => {
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'foodforsoul.16@gmail.com', // Your email id
+            user: 'foodforsoul1.16@gmail.com', // Your email id
             pass: 'ffs_nprss' // Your password
         }
     });
