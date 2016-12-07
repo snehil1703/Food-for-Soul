@@ -21,7 +21,7 @@ exports.confirmPayment = (req, res) => {
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'foodforsoul1.16@gmail.com', // Your email id
+            user: 'foodforsoul.16@gmail.com', // Your email id
             pass: 'ffs_nprss' // Your password
         }
     });

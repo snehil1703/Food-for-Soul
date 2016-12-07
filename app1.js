@@ -21,7 +21,7 @@ var connection = mysql.createConnection
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'foodforsoul1'
+    database: 'foodforsoul'
 });
 
 connection.connect(function(err)

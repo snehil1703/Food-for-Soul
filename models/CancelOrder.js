@@ -1,4 +1,4 @@
-//This Model interfaces with the table cancelorder_table in the foodforsoul1database
+//This Model interfaces with the table cancelorder_table in the foodforsouldatabase
 //maintaining the records of cancelled orders allowing to insert new cancelled orders
 var express = require('express');
 var app = express();
