@@ -830,9 +830,6 @@
 
             var isnotes = false;
 
-            //ISBN+SellerID
-            var info;
-
             function singlecall()
             {
                 if($(".active.tab-pane").attr('id') == "tab-latest")
@@ -1538,9 +1535,7 @@
                     success: function(data) {
                         var r = new Array(), j = -1;
                         var jsonData = JSON.parse(data);
-                        info = [];
                         for (var i = 0; i < jsonData.length; i++) {
-                            info.push(jsonData[i].isbn +',' + jsonData[i].sellerID);
                             //var counter = jsonData[i];
                             //console.log(counter);
                             var counter = jsonData[i];
@@ -1641,13 +1636,13 @@
                             r[++j] = '</div>';
                             r[++j] = '<div class="product-meta">';
                             r[++j] = '<div class="product-brand">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].classnotesId +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].university;
                             r[++j] = '</a>';
                             r[++j] = '</div>';
                             r[++j] = '</div>';
                             r[++j] = '<h3 class="product-title">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].classnotesId +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].name;
                             r[++j] = '</a>';
                             r[++j] = '</h3>';
@@ -1715,20 +1710,20 @@
                             }
                             r[++j] = '<div class="product-top">';
                             r[++j] = '<figure>';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = '<img src="' + jsonData[i].source + '" style="height:300px;" alt="Image">';
                             r[++j] = '</a>';
                             r[++j] = '</figure>';
                             r[++j] = '</div>';
                             r[++j] = '<div class="product-meta">';
                             r[++j] = '<div class="product-brand">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].author;
                             r[++j] = '</a>';
                             r[++j] = '</div>';
                             r[++j] = '</div>';
                             r[++j] = '<h3 class="product-title">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].bookName;
                             r[++j] = '</a>';
                             r[++j] = '</h3>';
@@ -1789,13 +1784,13 @@
                             r[++j] = '</div>';
                             r[++j] = '<div class="product-meta">';
                             r[++j] = '<div class="product-brand">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].classnotesId +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].university;
                             r[++j] = '</a>';
                             r[++j] = '</div>';
                             r[++j] = '</div>';
                             r[++j] = '<h3 class="product-title">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].classnotesId +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].name;
                             r[++j] = '</a>';
                             r[++j] = '</h3>';
@@ -1863,20 +1858,20 @@
                             }
                             r[++j] = '<div class="product-top">';
                             r[++j] = '<figure>';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = '<img src="' + jsonData[i].source + '" style="height:300px;" alt="Image">';
                             r[++j] = '</a>';
                             r[++j] = '</figure>';
                             r[++j] = '</div>';
                             r[++j] = '<div class="product-meta">';
                             r[++j] = '<div class="product-brand">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].author;
                             r[++j] = '</a>';
                             r[++j] = '</div>';
                             r[++j] = '</div>';
                             r[++j] = '<h3 class="product-title">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].bookName;
                             r[++j] = '</a>';
                             r[++j] = '</h3>';
@@ -1937,13 +1932,13 @@
                             r[++j] = '</div>';
                             r[++j] = '<div class="product-meta">';
                             r[++j] = '<div class="product-brand">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].classnotesId +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].university;
                             r[++j] = '</a>';
                             r[++j] = '</div>';
                             r[++j] = '</div>';
                             r[++j] = '<h3 class="product-title">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].classnotesId +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].name;
                             r[++j] = '</a>';
                             r[++j] = '</h3>';
@@ -2011,20 +2006,20 @@
                             }
                             r[++j] = '<div class="product-top">';
                             r[++j] = '<figure>';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = '<img src="' + jsonData[i].source + '" style="height:300px;" alt="Image">';
                             r[++j] = '</a>';
                             r[++j] = '</figure>';
                             r[++j] = '</div>';
                             r[++j] = '<div class="product-meta">';
                             r[++j] = '<div class="product-brand">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].author;
                             r[++j] = '</a>';
                             r[++j] = '</div>';
                             r[++j] = '</div>';
                             r[++j] = '<h3 class="product-title">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].bookName;
                             r[++j] = '</a>';
                             r[++j] = '</h3>';
@@ -2085,13 +2080,13 @@
                             r[++j] = '</div>';
                             r[++j] = '<div class="product-meta">';
                             r[++j] = '<div class="product-brand">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].classnotesId +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].university;
                             r[++j] = '</a>';
                             r[++j] = '</div>';
                             r[++j] = '</div>';
                             r[++j] = '<h3 class="product-title">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].classnotesId +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].name;
                             r[++j] = '</a>';
                             r[++j] = '</h3>';
@@ -2159,20 +2154,20 @@
                             }
                             r[++j] = '<div class="product-top">';
                             r[++j] = '<figure>';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = '<img src="' + jsonData[i].source + '" style="height:300px;" alt="Image">';
                             r[++j] = '</a>';
                             r[++j] = '</figure>';
                             r[++j] = '</div>';
                             r[++j] = '<div class="product-meta">';
                             r[++j] = '<div class="product-brand">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].author;
                             r[++j] = '</a>';
                             r[++j] = '</div>';
                             r[++j] = '</div>';
                             r[++j] = '<h3 class="product-title">';
-                            r[++j] = '<a href="#">';
+                            r[++j] = '<a data-myinfo="'+jsonData[i].isbn +',' + jsonData[i].sellerID+'" onclick="product_book(this.dataset.myinfo)">';
                             r[++j] = jsonData[i].bookName;
                             r[++j] = '</a>';
                             r[++j] = '</h3>';
