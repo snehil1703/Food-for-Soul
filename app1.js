@@ -81,6 +81,7 @@ app.use(session
 //Post-conditions  --> Routes the user to index.html Page
 app.get('/', function(req, res)
 {
+    req.session.emailID = 'prasan.ubhi@gmail.com';
     res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 

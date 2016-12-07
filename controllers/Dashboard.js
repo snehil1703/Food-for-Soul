@@ -107,6 +107,7 @@ exports.reviewRating = (req, res) =>
 //Post-conditions  --> Routes the user to PersonalInformation.html Page
 exports.personalInformation = (req, res) =>
 {
+  console.log('In Dashboard'+req.session.emailD);
   res.sendFile(path.join(__dirname + '/../views'+'/PersonalInformation.html'));
 };
 
@@ -208,7 +209,7 @@ exports.setCardIdSession = (req, res) =>
  //Pre-conditions   --> Takes input request from the setOrderIdSession function of app1.js
  //Post-conditions  --> Stores orderId as a session
 exports.setOrderIdSession = (req, res) =>
-{ 
+{
     req.session.orderId= req.body.orderId;
     res.sendStatus(200);
 };

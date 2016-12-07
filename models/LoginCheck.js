@@ -46,6 +46,14 @@ exports.login = (req, res) => {
       if (bcrypt.compareSync(req.body.password, hash)) {
       //console.log("PASSWORDS MATCH");
       req.session.emailID = req.body.emailID;
+
+
+
+      console.log('body email:::'+req.body.emailID);
+      console.log('session email'+req.session.emailID);
+
+
+
       if(result.role == "buyer"){
       req.session.isUserLoggedIn= 'true';
       //console.log(result.role+'sdsds');
