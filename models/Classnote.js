@@ -250,7 +250,7 @@ exports.notes_data = (req, res) => {
                     }
                 }
             },
-            orderBy: [['createdAt', 'DESC']]
+            order: [['createdAt', 'DESC']]
         }).then(function (result) {
             console.log(result);
             res.json(result);
