@@ -283,14 +283,16 @@ exports.books_data = (req, res) => {
         d_condition = ["","New","Used","Collectible","null"];
     else
         d_condition = [req.body.condition];
-    if(req.body.pricemin == 'null')
-       d_pricemin = 0;
-    else
-        d_pricemin = req.body.pricemin;
-    if(req.body.pricemax == 'null')
-        d_pricemax = 99999;
-    else
-        d_pricemax = req.body.pricemax;
+    d_pricemin = req.body.pricemin;
+    d_pricemax = req.body.pricemax;
+    //if(req.body.pricemin == 'null')
+      // d_pricemin = 0;
+    //else
+     //   d_pricemin = req.body.pricemin;
+    //if(req.body.pricemax == 'null')
+     //   d_pricemax = 99999;
+    //else
+      //  d_pricemax = req.body.pricemax;
     if(req.body.rating == 'null')
         d_rating = 0;
     else
@@ -390,7 +392,7 @@ exports.books_data = (req, res) => {
             },
             order: [['createdAt', 'DESC']]
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             res.json(result);
         });
     }
@@ -450,7 +452,7 @@ exports.books_data = (req, res) => {
             },
             order: [['bookSoldCount', 'DESC']]
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             res.json(result);
         });
     }
@@ -510,7 +512,7 @@ exports.books_data = (req, res) => {
             },
             order: [['rating', 'DESC']]
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             res.json(result);
         });
     }
@@ -568,7 +570,7 @@ exports.books_data = (req, res) => {
                 }
             },
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             res.json(result);
         });
     }

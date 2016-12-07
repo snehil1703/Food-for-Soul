@@ -815,9 +815,9 @@
             var b_format = null;
             var b_language = null;
             var b_condition = null;
-            var b_pricemin = null;
-            var b_pricemax = null;
-            var b_rating = null;
+            var b_pricemin = 0;
+            var b_pricemax = 99999;
+            var b_rating = 0;
             var b_search = null;
             var b_currency = ["INR","USD","EUR","GBP","CNY"];
             var b_currency_index = 1;
@@ -1333,9 +1333,9 @@
                 b_format = null;
                 b_language = null;
                 b_condition = null;
-                b_pricemin = null;
-                b_pricemax = null;
-                b_rating = null;
+                b_pricemin = 0;
+                b_pricemax = 99999;
+                b_rating = 0;
                 document.getElementById("format").value = "---";
                 document.getElementById("language").value = "---";
                 document.getElementById("condition").value = "---";
@@ -1447,21 +1447,23 @@
 
             function selectPrice(){
                 var t = document.getElementById("price-low").value;
-                if (t != "min")
-                    b_pricemin = t;
+                //console.log("Min: "+t);
+                if (t == 'min')
+                    b_pricemin = 0;
+                else
+                    b_pricemin = parseInt(t);
                 t = document.getElementById("price-high").value;
-                if (t != "max")
+                //console.log("Max: "+t);
+                if(t == 'max')
+                    b_pricemax = 99999;
+                else
+                    b_pricemax = parseInt(t);
+                if (b_pricemin > b_pricemax)
                 {
-                    if (b_pricemin == null)
-                        b_pricemax = t;
-                    else if (t >= b_pricemin)
-                        b_pricemax = t;
-                    else {
-                        alert("Max price should be greater than Min price");
-                        resetPrice();
-                    }
+                    alert("Max price should be greater than Min price");
+                    resetPrice();
                 }
-                if(b_pricemin != null || b_pricemax != null)
+                else
                 {
                     if (isnotes)
                         singlecall_Notes();
@@ -1469,9 +1471,10 @@
                         singlecall();
                 }
             }
+
             function resetPrice(){
-                b_pricemin = null;
-                b_pricemax = null;
+                b_pricemin = 0;
+                b_pricemax = 99999;
                 document.getElementById("price-low").value = "min";
                 document.getElementById("price-high").value = "max";
             }
@@ -1481,7 +1484,7 @@
                 if(k1 < 1)
                     b_rating = 0;
                 else
-                    b_rating = k1;
+                    b_rating = parseInt(k1);
                 if (isnotes)
                     singlecall_Notes();
                 else
@@ -1515,7 +1518,7 @@
                 $('#min-label').html("$");
                 $('#max-label').html("$");
 
-                console.log(b_format, b_language, b_rating, b_condition, b_pricemin, b_pricemax,b_search, books_category1, books_category2);
+                //console.log(b_format, b_language, b_rating, b_condition, b_pricemin, b_pricemax,b_search, books_category1, books_category2);
 
                 var request = $.ajax({
                     url:  "/books_data",
@@ -1539,8 +1542,8 @@
                             //var counter = jsonData[i];
                             //console.log(counter);
                             var counter = jsonData[i];
-                            console.log(jsonData[i]);
-                            console.log(counter);
+                            //console.log(jsonData[i]);
+                            //console.log(counter);
                             r[++j] = '<div class="product-column">';
                             r[++j] = '<div class="product product2">';
                             if (jsonData[i].code != null) {
