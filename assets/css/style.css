@@ -4166,24 +4166,25 @@ select.form-control.input-lg {
     float: left;
     margin-top: 29px;
     margin-left: 30px;
+    width: 180px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .header-search-container {
-    width: 300px;
+    width: 240px;
   }
 }
 
 @media (min-width: 992px) {
   .header-search-container {
-    width: auto;
+    width: 360px;
   }
 }
 
 @media (min-width: 1600px) {
   .header-search-container {
-    width: 380px;
+    width: 540px;
     margin-left: 50px;
   }
 }
@@ -4191,6 +4192,7 @@ select.form-control.input-lg {
 @media (min-width: 1920px) {
   .header-search-container {
     margin-left: 140px;
+    width: 650px;
   }
 }
 
@@ -4232,30 +4234,29 @@ select.form-control.input-lg {
   position: relative;
   border-radius: 20px 0 0 20px;
   background-color: #51cdeb;
-  padding: 13px 20px 10.5px 15px;
   color: #fff;
   font-size: 11px;
   line-height: 1.5;
-  width: 140px;
+  width: 10px;
   font-weight: 600;
   transition: all 0.4s;
 }
 
 @media (min-width: 992px) {
   .header-search-container .dropdown.search-dropdown > a {
-    width: 176px;
+    width: 10px;
     font-size: 13px;
     padding: 12px 30px 9px 22px;
   }
 }
 
 .header-search-container .dropdown.search-dropdown .dropdown-menu {
-  width: 100%;
+  width: 1%;
   border: 1px solid #51cdeb;
   font-size: 11px;
   padding: 10px 20px 7px;
   box-shadow: none;
-  min-width: 140px;
+  min-width: 10px;
 }
 
 .header-search-container .dropdown.search-dropdown .dropdown-menu li {
@@ -4284,7 +4285,7 @@ select.form-control.input-lg {
 .header-search-container .form-control {
   height: 36px;
   font-size: 13px;
-  padding: 10.5px 66px 7.5px 150px;
+  padding: 10.5px 66px 7.5px 10px;
   color: #666;
   border: none;
   margin: 0;
@@ -4294,7 +4295,7 @@ select.form-control.input-lg {
 
 @media (min-width: 992px) {
   .header-search-container .form-control {
-    padding-left: 190px;
+    padding-left: 10px;
   }
 }
 
@@ -4343,21 +4344,7 @@ select.form-control.input-lg {
   background-position: 0px -644px;
 }
 
-.header-search-container .search-dropdown-btn {
-  display: none;
-  padding: 10px 10px 6px;
-  line-height: 1;
-}
 
-.header-search-container .search-dropdown-btn .icon-header-search {
-  background-position: 0px -614px;
-}
-
-@media (min-width: 992px) and (max-width: 1599px) {
-  .header-search-container .search-dropdown-btn {
-    display: block;
-  }
-}
 
 .header-search-container.search-dropdown-fix {
   position: relative;

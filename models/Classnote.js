@@ -135,7 +135,7 @@ exports.updateClassNoteRecords = (req, res) => {
     .then(function(result)
     {
       var x  = result;
-      console.log(result.length);
+      //console.log(result.length);
        res.json(x);
      });
 
@@ -178,17 +178,17 @@ exports.notes_data = (req, res) => {
         d_search = "%%";
     else
         d_search = req.body.search;
-    console.log("First Category"+req.body.notes_category1);
-    console.log("Second Category"+req.body.notes_category2);
+    //console.log("First Category"+req.body.notes_category1);
+    //console.log("Second Category"+req.body.notes_category2);
     if(req.body.notes_category1 == 'null')
     {
-        console.log('Step 1');
+        //console.log('Step 1');
         d_notes_category1 = ["NULL","Arts", "Commerce", "Medicine","Science"];
         d_notes_category2 = ["NULL","Arts", "Humanities", "Law", "Property", "SocialSciences", "SocialWork","Business", "Commerce", "Education", "Professional", "Teaching","Dentistry", "Health", "Medicine", "Nursing", "Pharmacy", "Veterinary","Agriculture", "Architecture", "Communications", "Engineering", "Information", "Mathematics", "Science", "Sports"];
     }
     else
     {
-        console.log('Step 2');
+        //console.log('Step 2');
         d_notes_category1 = [req.body.notes_category1];
         if(req.body.notes_category1 == 'Arts')
         {
@@ -256,7 +256,7 @@ exports.notes_data = (req, res) => {
             },
             order: [['createdAt', 'DESC']]
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             res.json(result);
         });
     }
@@ -294,7 +294,7 @@ exports.notes_data = (req, res) => {
                 }
             }
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             res.json(result);
         });
     }
@@ -332,7 +332,7 @@ exports.notes_data = (req, res) => {
                 }
             }
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             res.json(result);
         });
     }
@@ -369,7 +369,7 @@ exports.notes_data = (req, res) => {
                 }
             },
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             res.json(result);
         });
     }

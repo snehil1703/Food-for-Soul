@@ -1,8 +1,10 @@
 <!-- Reference: https://themeforest.net/item/sconto-premium-ecommerce-template/16643705?s_rank=17 -->
 
 <!DOCTYPE html>
-<!--[if IE 9]><html class="ie9"><![endif]-->
-<!--[if !IE]><!--><html><!--<![endif]-->
+<!--[if IE 9]>
+<html class="ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html><!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <title>Food-For-Soul</title>
@@ -30,7 +32,9 @@
 </head>
 <body>
   <div id="wrapper">
+
     <header class="header sticky-header border-less border-gray">
+
         <div class="container-fluid">
             <div class="logo">
                 <a href="/" title="Food-for-Soul">
@@ -142,6 +146,7 @@
                             </li>
                         </ul>
                     </li>
+
                 </ul>
 
                 <ul class="mobile-menu">
@@ -358,6 +363,43 @@
                                 </li>
                             </ul>
                         </li>
+
+                <ul>
+                  <li>
+                    <a href="/cart">
+                      <span>View Cart</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/checkout">
+                      <span>Checkout</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <ul class="header-dropdown">
+              <li>
+                <a title="Currency">
+                  <i class="icon icon-header icon-globe"></i>
+                  <span>Currency</span>
+                </a>
+
+                <ul>
+                  <li>
+                    <a>
+                      <i class="icon icon-dropdown icon-currency"></i>
+                      <span>Currency</span>
+                    </a>
+
+                    <ul>
+                      <li><a onclick="currency_INR()">INR</a></li>
+                      <li><a onclick="currency_USD()">US Dollar</a></li>
+                      <li><a onclick="currency_EUR()">Euro</a></li>
+                      <li><a onclick="currency_GBP()">Pound</a></li>
+                      <li><a onclick="currency_CNY()">Yuan</a></li>
+
                     </ul>
                 </div><!-- End .dropdowns-wrapper -->
             </div><!-- End .dropdowns-container -->
@@ -749,6 +791,7 @@
 
 
             <footer class="footer footer2">
+<<<<<<< HEAD
                 <div class="footer-inner">
                     <div class="container">
                         <div class="row">
@@ -808,6 +851,7 @@
 
                     </div><!-- End .container -->
                 </div><!-- End .footer-bottom -->
+
             </footer><!-- End .footer -->
           </div><!-- End /wrapper -->
 
@@ -955,6 +999,26 @@
 
           <script>
           $( document ).ready(function() {
+
+            /* Receiving "ISBN,SellerID" */
+            var info;
+            if (document.URL.indexOf('?') === -1)
+            {
+              alert("No product found! Select a product from the home page");
+              window.location.href="/";
+            }
+            else
+            {
+              var pos = document.URL.indexOf('?id=');
+              console.log(pos);
+              if (pos !== -1) {
+                info = document.URL.substring(pos+4).split(',');
+                console.log(info[0],info[1]);
+              }
+            }
+            /* Received "ISBN,SellerID" in "info[0],info[1]" */
+
+
             $("#logout").hide();
             $("#login").show();
             var request = $.ajax({
