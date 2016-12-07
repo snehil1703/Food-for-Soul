@@ -398,7 +398,7 @@
                         <div class="container-fluid">
                           <div class="row">
                             <div class="col-md-10">
-                              <form method="POST" action="/returnorderconfirm">
+
                                 <div class="input-group input-group-sm">
                                   <span class="input-group-addon">Order ID</span>
                                   <input type="text" required="" name="orderid" id="orderid" class="form-control" placeholder="Order ID" disabled>
@@ -680,9 +680,9 @@
           type: "GET",
           success: function(data) {
             var orderDetails = JSON.parse(data);
-            $( "/orderid" ).val(orderDetails['orderid']);
-            $( "/price" ).val(orderDetails['price']);
-            $( "/deliveryStatus" ).val(orderDetails['deliveryStatus']);
+            $( "#orderid" ).val(orderDetails['orderid']);
+            $( "#price" ).val(orderDetails['price']);
+            $( "#deliveryStatus" ).val(orderDetails['deliveryStatus']);
           }
         });
       });
@@ -698,7 +698,7 @@
           success: function(res) {
 
             alert('Your order has been cancelled!! The details have been mailed to the registed emailId');
-            window.location.href = "/myorders";
+            window.location.href = "/MyOrders";
           }
         });
       }

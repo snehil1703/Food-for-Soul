@@ -68,7 +68,7 @@ exports.findAllOrderRecords = (req, res) =>
     {
       where:
       {
-          buyerID : req.session.buyerID
+          buyerID : req.session.emailID
       }
   })
 

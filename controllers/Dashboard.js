@@ -107,7 +107,8 @@ exports.reviewRating = (req, res) =>
 //Post-conditions  --> Routes the user to PersonalInformation.html Page
 exports.personalInformation = (req, res) =>
 {
-  console.log('In Dashboard'+req.session.emailD);
+  console.log('In Dashboard-----------------------'+req.session.emailID);
+  console.log('User session -----------------------'+req.session.isUserLoggedIn);
   res.sendFile(path.join(__dirname + '/../views'+'/PersonalInformation.html'));
 };
 

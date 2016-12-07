@@ -87,6 +87,8 @@ var buyerRecords = sequelize.define('buyer_records',
 //Post-conditions  --> Fetches information of a particular Buyer from the database and returns the response to success function of PersonalInformation.html page
 exports.findBuyerRecord = (req, res) =>
  {
+
+   console.log('in buyer model-------------');
    buyerRecords.findOne({
      where:
      {

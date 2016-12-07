@@ -81,7 +81,7 @@ app.use(session
 //Post-conditions  --> Routes the user to index.html Page
 app.get('/', function(req, res)
 {
-    req.session.emailID = 'prasan.ubhi@gmail.com';
+
     res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
@@ -392,18 +392,13 @@ app.post('/pushMail', adminDashboardController.sendEmailToUsers);
 
 //-----------------------END OF ADMIN DASHBOARD----------------------------//
 
-app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
-app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
-//app.post('/InventoryAddNotes', inventoryManagementController.confirmAddNotes);
-//app.post('/InventoryModifyClassNotes', inventoryManagementController.confirmModifyNotes);
-//app.post('/InventoryAddBooks', inventoryManagementController.confirmAddBooks);
 
 
 
 
 //call to page to fetch books in inventory of the seller
 app.get('/managebooks', function(req, res) {
-                        req.session.emailID=  'nikithauc@gmail.com';
+                        //req.session.emailID=  'nikithauc@gmail.com';
  req.session.sellerID=  req.session.emailID;
 //  req.session.sdOrderId='51';
 
@@ -417,8 +412,6 @@ app.get('/managebooks', function(req, res) {
 app.get('/addbookpage', inventoryManagementController.getAddBookPage);
 
 
-app.post('/ReturnOrderConfirmPage', returnController.confirmReturnOrder);
-app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
 
 
 //login and payment 'gets'
