@@ -32,9 +32,11 @@ var orderrecords = sequelize.define('order_details',
       field: 'ID',
       primaryKey: true
     },
+
+// should be email id .lessConfusion
   buyerID:
   {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         field: 'buyerID',
   },
 
@@ -66,7 +68,7 @@ exports.findAllOrderRecords = (req, res) =>
     {
       where:
       {
-          buyerID : req.session.emailID
+          buyerID : req.session.buyerID
       }
   })
 
@@ -81,7 +83,7 @@ exports.findAllOrderRecords = (req, res) =>
 //Added by Nikitha function called when buyer returns order to change  status of order
     exports.updateOrderStatusOnReturn = (req, res) => {
       orderrecords.update({
-        orderStatus: 'Returned'
+          orderStatus: 'Returned'
       },
     {
       where:
@@ -94,8 +96,8 @@ exports.findAllOrderRecords = (req, res) =>
       var transporter = nodemailer.createTransport({
           service: 'Gmail',
           auth: {
-              user: 'rerajitha.mittai@gmail.com', // Your email id
-              pass: 'mittai123' // Your password
+              user: 'foodforsoul.16@gmail.com', // Your email id
+              pass: 'ffs_nprss' // Your password
           }
       });
       var message = 'Dear Customer, your order return is being processed. The order will be picked from your address!' ;
@@ -139,8 +141,8 @@ exports.findAllOrderRecords = (req, res) =>
       var transporter = nodemailer.createTransport({
           service: 'Gmail',
           auth: {
-              user: 'rerajitha.mittai@gmail.com', // Your email id
-              pass: 'mittai123' // Your password
+              user: 'foodforsoul.16@gmail.com', // Your email id
+              pass: 'ffs_nprss' // Your password
           }
       });
       var message = 'Dear Customer, your order has been cancelled. The amount will be refunded to your account. Thank you !' ;

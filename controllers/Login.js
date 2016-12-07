@@ -16,6 +16,7 @@ exports.confirmLogin = (req, res) => {
       LoginSuccess.login(req, res);
       console.log('this is in controllers');
       console.log("Login Successful");
+        
 };
 
 exports.confirmLogout = (req, res) => {

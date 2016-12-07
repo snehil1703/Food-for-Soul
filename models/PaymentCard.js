@@ -56,7 +56,7 @@ exports.insertNewCard = (req, res) =>
             CardHolderName: req.body.CardHolderName,
             CardNumber: req.body.CardNumber,
             ValidTill:req.body.ValidTill,
-			emailId: req.session.emailID
+			      emailId: req.session.emailID
         });
     })
     .then(function ()
@@ -71,7 +71,7 @@ exports.insertNewCard = (req, res) =>
 //Post-conditions  --> Fetches information of a particular payment card from the database and returns the response to success function of MySavedCards.html page
 exports.findCardRecords = (req, res) =>
 {
-    savedCards.findById(req.session.cardId).then(function(result)
+    savedCards.findById('2').then(function(result)
     {
         var x =
         {

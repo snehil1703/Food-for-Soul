@@ -52,7 +52,11 @@ var classnotesrecords = sequelize.define('classnotes_records', {
   subcategory:{
     type: Sequelize.STRING,
     field: 'subcategory'
-  }
+  },
+  source: {
+      type: Sequelize.STRING,
+      field: 'source'
+  },
 });
 
 

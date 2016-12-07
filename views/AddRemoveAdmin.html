@@ -507,7 +507,7 @@
                 </div><!-- End .footer-bottom -->
             </footer><!-- End .footer -->
 
-        </div><!-- End #wrapper -->
+        </div><!-- End /wrapper -->
 
         <!-- End -->
         <script src="assets/js/plugins.min.js"></script>
@@ -566,7 +566,7 @@
                       r[++j] ='</div></td></tr><!-- End .col-lg-8-->'
                       r[++j] ='</div><!-- End .row -->'
 
-                      $('#adminTable').html(r.join(''));
+                      $('/adminTable').html(r.join(''));
                   }
                 });// rend request
               }); //  end ready
@@ -620,7 +620,7 @@
                 $(document).ready(function() {
                     var revapi;
                     if ($("#rev_slider").revolution == undefined) {
-                        revslider_showDoubleJqueryError("#rev_slider");
+                        revslider_showDoubleJqueryError("/rev_slider");
                     } else {
                         revapi = $("#rev_slider").show().revolution({
                             sliderType:"standard",
