@@ -6,7 +6,7 @@ var bcrypt = require('bcryptjs');
 
 var Sequelize = require('sequelize');
 var bcrypt = require('bcryptjs');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
   define: {
    timestamps: false // true by default
  }
