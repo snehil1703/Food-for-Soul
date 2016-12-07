@@ -40,6 +40,15 @@ exports.checkout = (req, res) => {
     console.log('this is to checkout');
 };
 
+// To route to the Product Information page
+//Pre-conditions   --> Need to be on Home Page
+//Post-conditions  --> Routes to the Product Page
+
+exports.product = (req, res) => {
+    res.sendFile(path.join(__dirname + '/../views/product.html'));
+    console.log('this is to product');
+};
+
 exports.homepage = (req, res) => {
     res.sendFile(path.join(__dirname + '/../views/index.html'));
     console.log('this is to home');

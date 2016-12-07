@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Creating an object of nodemailer to send auto-generated emails to users
 var Sequelize = require('sequelize');
   //To disable the auto-created columns- createdAt and updatedAt to be populated in the table
-var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
    timestamps: false // true by default
  }

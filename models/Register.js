@@ -5,7 +5,7 @@ var path = require('path');
 
 var Sequelize = require('sequelize');
 var bcrypt = require('bcryptjs');
-var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
    timestamps: false // true by default
  }

@@ -135,6 +135,12 @@ app.get('/cart',homeController.cart);
 
 app.get('/checkout',homeController.checkout);
 
+// To Route user to Product Information Page
+//Pre-conditions   --> Takes input request from the user clicks (browser)
+//Post-conditions  --> Routes the user to the product information
+
+app.get('/product',homeController.product);
+
 
 
 
@@ -418,7 +424,7 @@ app.post('/CancelOrderConfirmPage', returnController.confirmReturnOrder);
 app.get('/Register', loginController.register);
 app.get('/RegisterSeller', loginController.registerSeller);
 app.get('/ForgotPassword', loginController.forgotPassword);
-app.get('/Product', loginController.getProductPage);
+app.get('/product', loginController.getProductPage);
 app.get('/ViewCart', addItemtoCartController.viewcart);
 app.get('/CartCheckout', confirmCheckout.checkoutcart);
 app.get('/gotoCart', addItemtoCartController.gotocart);
