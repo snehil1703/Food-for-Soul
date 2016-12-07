@@ -166,14 +166,8 @@ exports.updateClassNoteRecords = (req, res) => {
 
 exports.notes_data = (req, res) => {
 
-    if(req.body.pricemin == 'null')
-        d_pricemin = 0;
-    else
-        d_pricemin = req.body.pricemin;
-    if(req.body.pricemax == 'null')
-        d_pricemax = 9999999;
-    else
-        d_pricemax = req.body.pricemax;
+    d_pricemin = req.body.pricemin;
+    d_pricemax = req.body.pricemax;
     if(req.body.search == 'null' || req.body.search.toLowerCase() == '%note%' || req.body.search.toLowerCase() == '%notes%')
         d_search = "%%";
     else
