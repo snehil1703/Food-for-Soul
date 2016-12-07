@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Initializing the ORM to connect to the database
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul1', 'root', 'root',{
+var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
   define: {
    timestamps: true
  }
@@ -390,7 +390,7 @@ exports.books_data = (req, res) => {
             },
             order: [['createdAt', 'DESC']]
         }).then(function (result) {
-            //console.log(result);
+            console.log(result);
             res.json(result);
         });
     }
@@ -450,7 +450,7 @@ exports.books_data = (req, res) => {
             },
             order: [['bookSoldCount', 'DESC']]
         }).then(function (result) {
-            //console.log(result);
+            console.log(result);
             res.json(result);
         });
     }
@@ -510,7 +510,7 @@ exports.books_data = (req, res) => {
             },
             order: [['rating', 'DESC']]
         }).then(function (result) {
-            //console.log(result);
+            console.log(result);
             res.json(result);
         });
     }
@@ -568,7 +568,7 @@ exports.books_data = (req, res) => {
                 }
             },
         }).then(function (result) {
-            //console.log(result);
+            console.log(result);
             res.json(result);
         });
     }
