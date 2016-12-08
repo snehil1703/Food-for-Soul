@@ -74,7 +74,8 @@ exports.placeMyOrder = (req, res) => {
       buyerID:req.session.emailID,
       total:req.body.totalsum,
     subtotal:req.body.total,
-      orderStatus:'confirm'
+      orderStatus:'Confirmed',
+      deliveryDate: '12/18/2016'
     });
   }).then(function () {
   res.send("placeyourorder");

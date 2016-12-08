@@ -46,7 +46,7 @@ exports.login = (req, res) => {
       var hash = result.password;
       if (bcrypt.compareSync(req.body.password, hash)) {
       //console.log("PASSWORDS MATCH");
-  //    req.session.emailID = req.body.emailID;
+     req.session.emailID = req.body.emailID;
 
 
 
