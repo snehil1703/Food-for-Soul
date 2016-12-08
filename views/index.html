@@ -280,34 +280,34 @@
 
                                     <ul>
                                         <li>
-                                            <a href="/PersonalInformation">
+                                            <a href="/PersonalInformation" id = "account" name="account">
                                                 <i class="icon icon-dropdown icon-dropdown-user"></i>
                                                 <span>My Account</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/MyOrders">
+                                            <a href="/MyOrders" id = "orders" name="orders">
                                                 <i class="icon icon-dropdown icon-dropdown-wishlist"></i>
                                                 <span>My Orders</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/MySavedCards">
+                                            <a href="/MySavedCards" id = "cards" name="cards">
                                                 <i class="icon icon-dropdown icon-dropdown-check"></i>
                                                 <span>My Saved Cards</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/logout">
-                                                <i class="icon icon-dropdown icon-dropdown-lock"></i>
-                                                <span>Logout</span>
-                                            </a>
+                                          <a href="/UserLogout" id = "logout" name="logout">
+                                              <i class="icon icon-dropdown icon-dropdown-lock"></i>
+                                              <span>Logout</span>
+                                          </a>
                                         </li>
                                         <li>
-                                            <a href="/login">
-                                                <i class="icon icon-dropdown icon-dropdown-lock"></i>
-                                                <span>Register/Login</span>
-                                            </a>
+                                          <a href="/login" id = "login" name="login">
+                                              <i class="icon icon-dropdown icon-dropdown-lock"></i>
+                                              <span>Register/Login</span>
+                                          </a>
                                         </li>
                                     </ul>
                                 </li>
@@ -2206,6 +2206,32 @@
                 });
             }
 
+        </script>
+        <script>
+        $( document ).ready(function() {
+
+          var request = $.ajax({
+            url:  "/checkuserlogin",
+            type: "GET",
+            success: function(result) {
+              console.log('user is logged in' + result);
+              if(result=='true')
+              {
+                $("#logout").show();
+                $("#account").show();
+                $("#orders").show();
+                $("#cards").show();
+                $("#login").hide();
+              }else{
+                $("#logout").hide();
+                $("#account").hide();
+                $("#orders").hide();
+                $("#cards").hide();
+                $("#login").show();
+              }
+            }
+          });
+        });
         </script>
     </body>
 </html>
