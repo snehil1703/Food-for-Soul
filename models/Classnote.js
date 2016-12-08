@@ -53,10 +53,6 @@ var classnotesrecords = sequelize.define('classnotes_records', {
     type: Sequelize.STRING,
     field: 'subcategory'
   },
-  source: {
-      type: Sequelize.STRING,
-      field: 'source'
-  },
 });
 
 
@@ -368,4 +364,21 @@ exports.notes_data = (req, res) => {
         });
     }
 
+}
+
+exports.notesInfo = (req, res) => {
+    classnotesrecords.findAll({
+        where: {
+            $and: {
+                classnotesId: {
+                    $like: req.body.classnotesId
+                },
+                sellerID: {
+                    $like: req.body.sellerID
+                }
+            }
+        }
+    }).then(function (result) {
+        res.json(result);
+    });
 }

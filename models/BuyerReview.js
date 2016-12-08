@@ -44,12 +44,13 @@ var reviewRecords = sequelize.define('reviews', {
 
 // this method inserts review into database
 exports.insertNewReview = (req, res) => {
+    console.log('checkkkk');
   sequelize.sync().then(function() {
     return reviewRecords.create({
       buyerEmail: req.session.emailID,
       productReview: req.body.productReview,
       productRating: req.body.productRating,
-      isbn:'1', //use session
+      isbn: req.body.bookIsbn, //use session
       productName:'Harry Potter' //session
 
     });
@@ -64,7 +65,7 @@ exports.insertNewReview = (req, res) => {
 exports.findReview = (req, res) => {
 reviewRecords.findAll({
   where: {
-  isbn : '1'
+  isbn : req.body.bookIsbn
   }
 }).then(function(result) {
   var x  = result;

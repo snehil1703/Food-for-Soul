@@ -522,6 +522,12 @@ app.post('/books_data',all_productController.booksData);
 //Snehil: fetches required class notes from the database
 app.post('/notes_data',all_productController.notesData);
 
+//Snehil: fetches required books for PRODUCT.html from the database
+app.post('/bookInfo',all_productController.bookInfo);
+
+//Snehil: fetches required class notes for PRODUCT.html from the database
+app.post('/notesInfo',all_productController.notesInfo);
+
 console.log('Server UP! Go 8080');
 app.listen(8080);
 

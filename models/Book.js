@@ -575,3 +575,21 @@ exports.books_data = (req, res) => {
         });
     }
 }
+
+
+exports.bookInfo = (req, res) => {
+    bookrecords.findAll({
+        where: {
+            $and: {
+                isbn: {
+                $like: req.body.isbn
+                },
+                sellerID: {
+                $like: req.body.sellerID
+                }
+            }
+        }
+    }).then(function (result) {
+        res.json(result);
+    });
+}
