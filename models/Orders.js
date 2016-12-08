@@ -54,7 +54,15 @@ var orderrecords = sequelize.define('order_details',
   {
       type: Sequelize.INTEGER,
       field: 'price'
-  }
+  },
+  subtotal:{
+    type: Sequelize.STRING,
+    field: 'subtotal'
+  },
+  bookName: {
+      type: Sequelize.STRING,
+      field: 'bookName'
+    }
 });
 
 

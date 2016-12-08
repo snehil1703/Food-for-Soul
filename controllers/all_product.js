@@ -23,3 +23,8 @@ exports.booksData = (req, res) => {
 exports.notesData = (req, res) => {
     notes.notes_data(req, res);
 }
+
+// product html
+exports.bookInfo = (req,res) => {
+    book.bookInfo (req,res);
+}

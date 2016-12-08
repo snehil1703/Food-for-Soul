@@ -524,3 +524,7 @@ app.get('/faq', function(req, res) {
     //req.session.checkingSomethin="this is the session data";
 
 });
+
+
+//add for product html
+app.post('/bookInfo',all_productController.bookInfo);
