@@ -534,7 +534,7 @@
                     r[++j] = '<thead>'
                     r[++j] =   '<tr>'
                     r[++j] =     '<th class="product-col">Select Order</th>'
-                    r[++j] =   '<th class="code-col">Order ID</th>'
+                    r[++j] =   '<th class="code-col">Product Name</th>'
                     r[++j] =   '  <th class="price-col">Delivery Date</th>'
                     r[++j] =    '<th class="product-col">Order Status</th>'
                     r[++j] =     '<th class="code-col">Price</th>'
@@ -548,14 +548,14 @@
                         r[++j] ='<tr><td>';
                         r[++j] = '<input id="ID" name="ID" type="radio" value="'+jsonData[i].ID+'">';
                         r[++j] = '</td><td class="">';
-                        r[++j] = jsonData[i].ID;
+                        r[++j] = jsonData[i].bookName;
                         console.log(jsonData[i].ID);
                         r[++j] ='<td class="">';
                         r[++j] = jsonData[i].deliveryDate;
                         r[++j] = '</td><td class="">';
                         r[++j] = jsonData[i].orderStatus;
                         r[++j] = '</td><td class="">';
-                        r[++j] = jsonData[i].price;
+                        r[++j] = jsonData[i].subtotal;
                         r[++j] = '</td></tr>';
                     }
 
@@ -568,7 +568,7 @@
                     r[++j] ='<button id="cancelorder" class="btn btn-danger min-width" onclick="cancelOrderFunction()">CANCEL</button>'
                     r[++j] ='</div></td></tr><!-- End .col-lg-8-->'
                     r[++j] ='</div><!-- End .row -->'
-                    $('/ordersTable').html(r.join(''));
+                    $('#ordersTable').html(r.join(''));
                   }
 
               });

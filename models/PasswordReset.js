@@ -52,24 +52,31 @@ exports.reset = (req, res) => {
 
 //this method validates the password provided by the customer in database
 exports.confirmPassword = (req, res) => {
-      if (req.body.password1 == req.body.password2) {
-      //deferred.resolve(result.body);
-      //console.log("PASSWORDS MATCH");
-      loginDetails.update({
-        password: req.body.password1,
-      },
+  loginDetails.findById(req.body.email).then(function(result) {
+    if(!result) {
+      console.log('email not found');
+      res.send('emailnotfound');
+      //res.sendFile(path.join(__dirname + '/../views'+'/login.html'));
+  }
+ else {
+    if (req.body.password1 == req.body.password2) {
+    loginDetails.update({
+      password: req.body.password1,
+    },
+  {
+    where:
     {
-      where:
-      {
-        login_id : req.body.email
-      }
-    }).then(function() {
-    //  res.sendStatus(200);
-    //  console.log('Trying to redirect');
-     res.sendFile(path.join(__dirname + '/../views'+'/login.html'));
-    })
-    } else {
-      //console.log("PASSWORDS NOT MATCH");
-
+      login_id : req.body.email
     }
-		};
+  }).then(function() {
+   res.send('updated');
+   res.sendFile(path.join(__dirname + '/../views'+'/login.html'));
+ });
+  } else {
+    res.send('notmatch');
+
+  }
+
+  }
+}
+		)};

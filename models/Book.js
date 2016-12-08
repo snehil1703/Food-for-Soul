@@ -592,4 +592,5 @@ exports.bookInfo = (req, res) => {
     }).then(function (result) {
         res.json(result);
     });
+
 }

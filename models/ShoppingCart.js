@@ -91,22 +91,23 @@ res.json(x);
 
 //this method on button click addtocart insert item into cart
 exports.toCart = (req,res) => {
+  console.log(req.body.bookIsbn+'dssds');
   products.findOne({
     where:{
-      isbn:'1234'
+      isbn:req.body.bookIsbn
     }
   }).then(function(result) {
     cartrecords.findOne({
       where: {
         buyerID : req.session.emailID,
-        isbn:'1234'
+        isbn:req.body.bookIsbn
       }
     }).then(function (result2){
     		if(!result2) {
     cartrecords.create({
       bookId: result.bookId,
       bookName:result.bookName,
-      isbn: '1234', // use it from sessionID
+      isbn: req.body.bookIsbn, // use it from sessionID
     price: result.price,
       quantity: req.body.productQuantity,
       buyerID:req.session.emailID//use it from session
@@ -122,7 +123,7 @@ exports.toCart = (req,res) => {
     where:
     {
       buyerID : req.session.emailID,
-      isbn : '1234'//use session
+      isbn : req.body.bookIsbn//use session
     }
   })
 

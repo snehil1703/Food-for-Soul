@@ -568,10 +568,10 @@
             ({
                 url:  "/buyerProfile",
                 type: "POST",
-                data:
-                {
-                    buyerId: "1"
-                },
+                // data:
+                // {
+                //     emailID: req.session.emailID
+                // },
                 success: function(data)
                 {
                     var buyerDetails = JSON.parse(data);

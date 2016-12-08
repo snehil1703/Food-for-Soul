@@ -16,14 +16,16 @@ exports.confirmLogin = (req, res) => {
       LoginSuccess.login(req, res);
       console.log('this is in controllers');
       console.log("Login Successful");
-        
+
 };
 
 exports.confirmLogout = (req, res) => {
     req.session.destroy();
-    res.sendFile(path.join(__dirname + '/../views'+'/index.html'));
+  //  res.sendFile(path.join(__dirname + '/../views'+'/index.html'));
     console.log(req.session.emailID);
     console.log("Logout Successful");
+    res.sendFile(path.join(__dirname + '/../views'+'/login.html'));
+
 };
 
 exports.register = (req, res) => {

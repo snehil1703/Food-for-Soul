@@ -385,31 +385,7 @@
                                 </a>
                             </li>
                         </ul>
-                        </li>
                     </ul>
-
-                    <ul class="header-dropdown">
-                        <li>
-                            <a title="Currency">
-                                <i class="icon icon-header icon-globe"></i>
-                                <span>Currency</span>
-                            </a>
-
-                            <ul>
-                                <li>
-                                    <a>
-                                        <i class="icon icon-dropdown icon-currency"></i>
-                                        <span>Currency</span>
-                                    </a>
-
-                                    <ul>
-                                        <li><a onclick="currency_INR()">INR</a></li>
-                                        <li><a onclick="currency_USD()">US Dollar</a></li>
-                                        <li><a onclick="currency_EUR()">Euro</a></li>
-                                        <li><a onclick="currency_GBP()">Pound</a></li>
-                                        <li><a onclick="currency_CNY()">Yuan</a></li>
-
-                                    </ul>
                 </div><!-- End .dropdowns-wrapper -->
             </div><!-- End .dropdowns-container -->
 
@@ -426,6 +402,7 @@
                 </ol>
             </div><!-- End .container-fluid -->
         </div><!-- End .page-header -->
+<
 
         <div class="container-fluid">
             <div class="row">
@@ -441,25 +418,25 @@
                     <div class="tab-carousel-container" role="tabpanel">
                         <!-- Nav tabs -->
                         <ul class="nav nav-pills nav-justified text-uppercase" role="tablist">
-                            <!--<li role="presentation">
-                            <a href="/tab-description" aria-controls="tab-description" role="tab" data-toggle="tab">
-                            Description
-                          </a>
-                        </li>-->
+                  <!--<li role="presentation">
+                  <a href="#tab-description" aria-controls="tab-description" role="tab" data-toggle="tab">
+                  Description
+                </a>
+              </li>-->
 
-                            <li role="presentation">
-                                <a href="/tab-details" aria-controls="tab-details" role="tab" data-toggle="tab">
-                                    REVIEWS
+              <li role="presentation">
+                <a href="#tab-details" onclick="displayReview()" aria-controls="tab-details" role="tab" data-toggle="tab">
+                  REVIEWS
 
-                                </a>
-                            </li>
+                </a>
+              </li>
 
-                            <li role="presentation" class="active">
-                                <a href="/tab-comments" aria-controls="tab-comments" role="tab" data-toggle="tab">
-                                    WRITE A REVIEW
-                                </a>
-                            </li>
-                        </ul>
+              <li role="presentation" class="active">
+                <a href="#tab-comments" aria-controls="tab-comments" role="tab" data-toggle="tab">
+                  WRITE A REVIEW
+                </a>
+              </li>
+            </ul>
 
                         <!-- Tab Panes -->
                         <div class="tab-content">
@@ -505,16 +482,15 @@
 
                                             <div class="form-group textarea-group mb35 label-overlay">
                                                 <input type="textbox" class="form-control" name="productRating"
-                                                       id="productRating" required></input>
+                                                       id="productRating" required> </input>
                                                 <label class="input-desc"><i class="icon input-icon input-message"></i>Rate
                                                     out of 5 <span class="input-required">*</span></label>
                                             </div><!-- End .form-group -->
 
                                             <div class="form-group textarea-group mb35 label-overlay">
                                                 <textarea cols="30" rows="5" class="form-control -height"
-                                                          name="productReview" id="productReview" required></textarea>
-                                                <label class="input-desc"><i class="icon input-icon input-message"></i>Write
-                                                    your review <span class="input-required">*</span></label>
+                                                          name="productReview" id="productReview" placeholder="Write your review"required></textarea>
+                                                <label class="input-desc"><span class="input-required" ></span></label>
                                             </div><!-- End .form-group -->
 
                                             <button type="submit" onclick="reviewSubmit()"
@@ -622,8 +598,69 @@
 
 <script>
 
-    var info;
+    (function($) {
+        "use strict";
 
+        // Product Gallery Carousel - product.html
+        var productGalleryCarousel = new Swiper('.product-gallery-carousel', {
+            pagination: '',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 4,
+            spaceBetween: 22,
+            breakpoints: {
+                1200: {
+                    spaceBetween: 14
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 14
+                },
+                580: {
+                    slidesPerView: 3,
+                    spaceBetween: 14
+                },
+                320: {
+                    slidesPerView: 2,
+                    spaceBetween: 14
+                }
+            }
+        });
+
+        if ($.fn.elevateZoom) {
+            console.log('OMG');
+            $('#product-zoom').elevateZoom({
+                responsive: true, // simple solution for zoom plugin down here // it can cause bugs at resize
+                zoomType: 'inner', // you can use 'inner' or 'window' // change inner and go to product.html page and see zoom plugin differances
+                cursor: "crosshair",
+                borderSize: 1,
+                borderColour: '#e7e7e7',
+                lensSize : 180,
+                lensBorder: 4,
+                lensOpacity: 1,
+                lensColour: 'rgba(255, 255, 255, 0.18)'
+            });
+
+            /* swap images for zoom on click event */
+            $('.product-gallery-carousel').find('a').on('click', function (e) {
+                var ez = $('#product-zoom').data('elevateZoom'),
+                        smallImg = $(this).data('image'),
+                        bigImg = $(this).data('zoom-image');
+
+                ez.swaptheimage(smallImg, bigImg);
+                e.preventDefault();
+            });
+        }
+
+    })( jQuery)
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+
+<script>
+
+    var info;
+    var isbn,sellerid,bookname;
     $(document).ready(function () {
         /* Receiving "ISBN,SellerID" */
         if (document.URL.indexOf('?') === -1) {
@@ -632,14 +669,15 @@
         }
         else {
             var pos = document.URL.indexOf('?id=');
-            //console.log(pos);
+            console.log(pos);
             if (pos !== -1) {
-                info = document.URL.substring(pos + 4).split(',');console.log(info[0], info[1],info[2]);
+                info = document.URL.substring(pos + 4).split(',');
+                console.log(info[0], info[1],info[2]);
             }
         }
-        /* Received "ISBN,SellerID" in "info[0],info[1]" */
+      /*Received "ISBN,SellerID" in "info[0],info[1]" */
 
-        /*
+
          $("#logout").hide();
          $("#login").show();
 
@@ -650,14 +688,13 @@
          console.log('user is logged in' + result);
          if(result=='true')
          {
-         $("#logout").show();
+         $("#logout").show
          $("#login").hide();
          }
          }
          });
-         */
 
-        if(info[2] == "0") {
+        if(info[2]=="0") {
             var request = $.ajax({
                 url: "/bookInfo",
                 type: "POST",
@@ -673,6 +710,9 @@
                         //console.log(counter);
                         //var counter = jsonData[i];
                         console.log(jsonData[i]);
+                        isbn = jsonData[i].isbn;
+                        bookname = jsonData[i].bookName;
+                        sellerid = jsonData[i].sellerID;
                         //console.log(counter);
                         r[++j] = '<div class="col-sm-7">';
                         r[++j] = '<div class="product-gallery-container">';
@@ -822,7 +862,6 @@
             });
         }
 
-
         var request = $.ajax({
             url: "/bookReview",
             type: "POST",
@@ -858,7 +897,8 @@
             url: "/Addtocart",
             type: "POST",
             data: {
-                productQuantity: $("#productQuantity").val()
+                productQuantity: $("#productQuantity").val(),
+                bookIsbn: info[0]
             },
             success: function (result) {
                 if (result == 'notloggedin') {
@@ -866,7 +906,7 @@
                 }
                 else {
                     alert("Added to cart");
-                    window.location.href = "/Product";
+                     window.location.href = "/Product?id="+info[0]+","+info[1];
                 }
             }
         });
@@ -874,22 +914,25 @@
 
     function reviewSubmit() {
         console.log("Checking reviewSubmit");
+        console.log($("#productReview").val()+'This is review');
+            console.log($("#productRating").val()+'This is review');
         var request = $.ajax({
             url: "/SubmitReview",
             type: "POST",
             data: {
                 productReview: $("#productReview").val(),
                 productRating: $("#productRating").val(),
-                bookIsbn: info[0]
+                bookIsbn: isbn,
+                bookName: bookname
             },
             success: function (result) {
-                /* if(result=='notloggedin'){
+                 if(result=='notloggedin'){
                  alert("Please log in");
                  }
                  else {
-                 alert("Review Submitted");
-                 window.location.href = "/Product";
-                 }*/
+               alert("Review Submitted");
+                 window.location.href = "/Product?id="+info[0]+","+info[1];
+                 }
                 //window.location.href = "/Product?id="+info[0]+","+info[1];
             }
         });
@@ -923,64 +966,36 @@
             }
         });
     }
-</script>
 
-<script>
-    (function($) {
-        "use strict";
-
-        // Product Gallery Carousel - product.html
-        var productGalleryCarousel = new Swiper('.product-gallery-carousel', {
-            pagination: '',
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            slidesPerView: 4,
-            spaceBetween: 22,
-            breakpoints: {
-                1200: {
-                    spaceBetween: 14
-                },
-                992: {
-                    slidesPerView: 3,
-                    spaceBetween: 14
-                },
-                580: {
-                    slidesPerView: 3,
-                    spaceBetween: 14
-                },
-                320: {
-                    slidesPerView: 2,
-                    spaceBetween: 14
-                }
-            }
-        });
-
-        if ($.fn.elevateZoom) {
-            console.log('OMG');
-            $('#product-zoom').elevateZoom({
-                responsive: true, // simple solution for zoom plugin down here // it can cause bugs at resize
-                zoomType: 'inner', // you can use 'inner' or 'window' // change inner and go to product.html page and see zoom plugin differances
-                cursor: "crosshair",
-                borderSize: 1,
-                borderColour: '#e7e7e7',
-                lensSize : 180,
-                lensBorder: 4,
-                lensOpacity: 1,
-                lensColour: 'rgba(255, 255, 255, 0.18)'
-            });
-
-            /* swap images for zoom on click event */
-            $('.product-gallery-carousel').find('a').on('click', function (e) {
-                var ez = $('#product-zoom').data('elevateZoom'),
-                        smallImg = $(this).data('image'),
-                        bigImg = $(this).data('zoom-image');
-
-                ez.swaptheimage(smallImg, bigImg);
-                e.preventDefault();
-            });
-        }
-
-    })( jQuery)
+    function displayReview()
+    {
+      console.log('in display review');
+      var request = $.ajax({
+          url: "/bookReview",
+          type: "POST",
+          data: {
+              bookIsbn: isbn
+          },
+          success: function (result) {
+              // var bookDetails = JSON.parse(data);
+              console.log(result);
+              var r = new Array(), j = -1;
+              var jsonData = JSON.parse(result);
+              r[++j] = '<tr>';
+              r[++j] = '<th style="text-align:center">Rating</th>';
+              r[++j] = '<th style="text-align:center">Review</th>';
+              r[++j] = '</tr>';
+              for (var i = 0; i < jsonData.length; i++) {
+                  r[++j] = '<tr><td>';
+                  r[++j] = jsonData[i].productRating;
+                  r[++j] = '</td><td>';
+                  r[++j] = jsonData[i].productReview;
+                  r[++j] = '</td></tr>';
+              }
+              $('#dataReview').html(r.join(''));
+          }
+      });// rend request
+    }
 </script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>

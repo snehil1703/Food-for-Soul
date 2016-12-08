@@ -10,6 +10,7 @@ var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
    timestamps: false // true by default
  }
 });
+var Book  = require('../models/Book.js');
 
 //To define metadata fields for review_records table
 var reviewRecords = sequelize.define('reviews', {
@@ -44,14 +45,15 @@ var reviewRecords = sequelize.define('reviews', {
 
 // this method inserts review into database
 exports.insertNewReview = (req, res) => {
-    console.log('checkkkk');
+  req.session.isbn = req.body.bookIsbn;
+  
   sequelize.sync().then(function() {
     return reviewRecords.create({
       buyerEmail: req.session.emailID,
       productReview: req.body.productReview,
       productRating: req.body.productRating,
-      isbn: req.body.bookIsbn, //use session
-      productName:'Harry Potter' //session
+      isbn:req.body.bookIsbn,
+      productName:req.body.bookName
 
     });
   }).then(function () {

@@ -13,6 +13,7 @@ var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
  }
 });
 
+
 var loginDetails = sequelize.define('login_details', {
    login_id: {
       type: Sequelize.STRING,
@@ -45,11 +46,20 @@ exports.login = (req, res) => {
       var hash = result.password;
       if (bcrypt.compareSync(req.body.password, hash)) {
       //console.log("PASSWORDS MATCH");
-      req.session.emailID = req.body.emailID;
+     req.session.emailID = req.body.emailID;
+
+
+
+      console.log('body email:::'+req.body.emailID);
+      console.log('session email'+req.session.emailID);
+
+
+
       if(result.role == "buyer"){
       req.session.isUserLoggedIn= 'true';
       //console.log(result.role+'sdsds');
       //res.sendFile(path.join(__dirname + '/../views'+'/SellerDashboard.html'));
+      console.log('User session -----------------------'+req.session.isUserLoggedIn);
       res.send('buyer');
     }
     else if(result.role == "seller"){
