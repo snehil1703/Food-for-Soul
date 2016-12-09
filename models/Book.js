@@ -577,7 +577,6 @@ exports.books_data = (req, res) => {
 }
 
 
-
 exports.bookInfo = (req, res) => {
     bookrecords.findAll({
         where: {
@@ -593,4 +592,5 @@ exports.bookInfo = (req, res) => {
     }).then(function (result) {
         res.json(result);
     });
+
 }

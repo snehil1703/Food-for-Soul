@@ -14,7 +14,7 @@ var notes = require('../models/Classnote.js');
 
 exports.booksData = (req, res) => {
     book.books_data(req, res);
-};
+}
 
 // To fetch class notes information requested from the user
 //Pre-conditions   --> Need to be on Home Page
@@ -24,7 +24,18 @@ exports.notesData = (req, res) => {
     notes.notes_data(req, res);
 }
 
-// product html
+// To fetch books information for PRODUCT.html
+//Pre-conditions   --> Need to be on the product page
+//Post-conditions  --> Gives the requested book information to product page
+
 exports.bookInfo = (req,res) => {
     book.bookInfo (req,res);
+}
+
+// To fetch class notes information for PRODUCT.html
+//Pre-conditions   --> Need to be on the product page
+//Post-conditions  --> Gives the requested class notes information to product page
+
+exports.notesInfo = (req,res) => {
+    notes.notesInfo (req,res);
 }
