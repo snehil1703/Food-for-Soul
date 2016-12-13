@@ -708,88 +708,6 @@
          }
          });
 
-<<<<<<< HEAD
-
-        var request = $.ajax({
-            url: "/bookInfo",
-            type: "POST",
-            data: {
-                isbn: info[0],
-                sellerID: info[1]
-            },
-            success: function (data) {
-                var r = new Array(), j = -1;
-                var jsonData = JSON.parse(data);
-                for (var i = 0; i < jsonData.length; i++) {
-                    //var counter = jsonData[i];
-                    //console.log(counter);
-                    //var counter = jsonData[i];
-                    console.log(jsonData[i]);
-                    isbn = jsonData[i].isbn;
-                    bookname = jsonData[i].bookName;
-                    sellerid = jsonData[i].sellerID;
-                    //console.log(counter);
-                    r[++j] ='<div class="col-sm-7">';
-                    r[++j] ='<div class="product-gallery-container">';
-                    r[++j] ='<div class="product-zoom-wrapper">';
-                    //r[++j] ='<span class="product-label discount">-25%</span>';
-                    r[++j] ='<div class="product-zoom-container">';
-                    //r[++j] ='<a data-image="'+jsonData[i].source+'" data-zoom-image="/../productImages/750.jpg" class="product-gallery-item">';
-                    //r[++j] ='<img src="'+jsonData[i].source+'" alt="product-small-1">';
-                    //r[++j] ='</a>';
-                    r[++j] ='<img id="product-zoom" onmouseover="zoomImage(this)" src="'+jsonData[i].source+'" data-zoom-image="/../productImages/750.jpg" alt="Product image big">';
-                    r[++j] ='</div>';
-                    r[++j] ='<i class="btn-quickview zoom-icon icon"></i>';
-                    r[++j] ='</div>';
-                    r[++j] ='<div class="swiper-container product-gallery-carousel vertical-center-nav">';
-                    r[++j] ='<div class="swiper-button-prev icon dark"></div>';
-                    r[++j] ='<div class="swiper-button-next icon dark"></div>';
-                    r[++j] ='</div>';
-                    r[++j] ='</div>';
-                    r[++j] ='</div>';
-
-                    r[++j] ='<div class="col-sm-5">';
-                    r[++j] ='<div class="product-details">';
-                    r[++j] ='<div class="product-brand">';
-                    r[++j] =jsonData[i].author;
-                    r[++j] ='</div>';
-
-                    r[++j] ='<h2 class="product-title">';
-                    r[++j] =jsonData[i].bookName;
-                    r[++j] ='</h2>';
-
-                    r[++j] ='<ul class="product-details-list">';
-                    r[++j] ='<li>';
-                    r[++j] =jsonData[i].description;
-                    r[++j] ='</li>';
-                    r[++j] ='</ul>';
-
-                    r[++j] ='<div class="product-ratings-wrapper">';
-
-                    r[++j] ='<div class="product-ratings-desc">';
-                    r[++j] ='<a href="/tab-comments">Write a review</a>';
-                    r[++j] ='</div>';
-                    r[++j] ='</div>';
-
-                    r[++j] ='<div class="product-details-box">';
-                    r[++j] ='<div class="product-price-container">';
-                    r[++j] ='<label>You Pay:</label>';
-                    r[++j] ='<span class="product-price">$'+jsonData[i].price+'</span>';
-                    r[++j] ='</div>';
-                    // <!--<form method = "POST" action="/Addtocart WORKING-->
-                    r[++j] ='<div class="product-action-wrapper">';
-                    r[++j] ='<div class="product-quantity">';
-                    r[++j] ='<input type="text" class="form-control" value="1" name="productQuantity" id="productQuantity" required>';
-                    r[++j] ='</div>';
-                    r[++j] ='<div class="product-action">';
-                    r[++j] ='<button id="addClick" title="Add to Cart" onclick="addToCart()" class="btn-add-cart custom2"><i class="icon icon-cart"></i>Add To Cart </button>';
-                    r[++j] ='</div>';
-                    r[++j] ='</div>';
-                    //<!-- </form> -->
-                    r[++j] ='</div>';
-                    r[++j] ='</div>';
-                    r[++j] ='</div>';
-=======
         if(info[2]=="0") {
             var request = $.ajax({
                 url: "/bookInfo",
@@ -872,7 +790,6 @@
                         r[++j] = '</div>';
                     }
                     $("#show-info").html(r.join(''));
->>>>>>> 384942e99657804629d10dfaf55f868e4607de25
                 }
             });
         }
