@@ -707,6 +707,8 @@
                        password:$("#password").val()
                       },
                     success: function(result) {
+
+                      console.log(result);
                       if(result=='notpresent'){
                         alert('Please Enter Valid emailID');
                         window.location.href = "/login";
@@ -719,6 +721,7 @@
                         window.location.href = "/index";
                       }
                       else if(result=='admin'){
+                        console.log('----------------------------------------');
                         window.location.href = "/AdminDashboard";
                       }
                       else{
