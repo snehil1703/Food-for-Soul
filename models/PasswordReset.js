@@ -6,7 +6,7 @@ var bcrypt = require('bcryptjs');
 
 var Sequelize = require('sequelize');
 var bcrypt = require('bcryptjs');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',{
+var sequelize = new Sequelize('mysql://us-cdbr-iron-east-04.cleardb.net:3306/heroku_636e68d7f13c57e', 'b7f2b0155047a9', '7b23ad76',{
   define: {
    timestamps: false // true by default
  }
