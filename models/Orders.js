@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('foodforsoul', 'root', 'root',
+var sequelize = new Sequelize('mysql://us-cdbr-iron-east-04.cleardb.net:3306/heroku_636e68d7f13c57e', 'b7f2b0155047a9', '7b23ad76',
 {
   //To disable the auto-created columns- createdAt and updatedAt to be populated in the table
   define:
