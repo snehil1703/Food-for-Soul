@@ -502,8 +502,12 @@ app.post('/bookInfo',all_productController.bookInfo);
 //Snehil: fetches required class notes for PRODUCT.html from the database
 app.post('/notesInfo',all_productController.notesInfo);
 
-console.log('Server UP! Go 8080');
-app.listen(8080);
+var port = process.env.PORT || 8080;
+console.log('Starting server...');
+app.listen(port,function(){
+  console.log('App running on ' + port);
+});
+
 
 app.get('/faq', function(req, res) {
     res.sendFile(path.join(__dirname + '/views/FFSFaq.html'));
