@@ -12,27 +12,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//To connect to database
-var mysql = require('mysql');
 
-
-var connection = mysql.createConnection
-({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'foodforsoul'
-});
-
-connection.connect(function(err)
-{
-
-  if (err) throw err;
-  else
-  {
-    console.log('You are now connected...')
-  }
-})
 
 
 //Variable declarations to access Controller files
